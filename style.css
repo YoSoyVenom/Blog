@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     background-color: #d6d9e1;
     display: flex;
     flex-direction: column;
@@ -13,6 +15,7 @@ body {
     align-items: center;
     width: 80%;
     padding: 10px;
+    font-weight: 600;
 }
 
 .encabezado__logo {
@@ -26,7 +29,7 @@ body {
     gap: 20px;
     margin: 0;
     padding: 0;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .navegacion__enlace,
