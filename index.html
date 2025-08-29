@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Log In</title>
-    <link rel="stylesheet" href="style.css">
+    <enlace rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="encabezado">
-        <img src="cristiano.avif" alt="Logo de la Empresa" class="logo">
-        <nav class="navegacion" aria-label="Navegacion principal">
-            <ul class="lista-navegacion">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Contact</a></li>
+        <img src="cristiano.avif" alt="Logo de la Empresa" class="encabezado__logo">
+        <nav class="encabezado__navegacion" aria-label="Navegacion principal">
+            <ul class="navegacion__lista">
+                <li class="navegacion__item"><a href="#home" class="navegacion__enlace">Home</a></li>
+                <li class="navegacion__item"><a href="#about" class="navegacion__enlace">About</a></li>
+                <li class="navegacion__item"><a href="#projects" class="navegacion__enlace">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main class="principal">
         <form class="formulario">
-            <h1 class="titulo">Log In</h1>
+            <h1 class="formulario__titulo">Log In</h1>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required class="formulario__input">
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" required class="formulario__input">
 
-            <button type="submit" class="boton">Log In</button>
-            <p class="texto"><a href="#register">Don't have an account? Register here</a>.</p>
+            <button type="submit" class="formulario__boton">Log In</button>
+            <p class="formulario__texto"><a href="#register" class="formulario__enlace">Don't have an account? Register here</a>.</p>
         </form>
     </main>
 </body>
