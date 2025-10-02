@@ -13,61 +13,63 @@ body {
     flex-direction: column;
 }
 
-/* Encabezado */
+/* Estilos al HEADER */
+
 .encabezado {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 1200px; /* limita para pantallas grandes */
-    margin: 0 auto;
-    padding: 2px 20px;
-}
-
-/* Logo */
-.encabezado__logo {
-    width: 70px;
-    margin: 10px;
-}
-
-/* Menú de Navegación */
-.navegacion__lista {
-    display: none;
-    list-style: none;
+    width: max-content;
+    max-width: 1200px;
+    padding: 5px;
     margin: 0;
-    padding: 0;
 }
 
-/* Menu Desplegable */
+/* Estilos al INPUT TIPO CHECKBOX */
 
 .encabezado__checkbox {
+    position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
+/* Estilos al LABEL DEL INPUT TIPO CHECKBOX */
+
 .encabezado__desplegar {
-    font-size: 3em;
+    font-size: 2rem;
     cursor: pointer;
     position: fixed;
-    top: 10px;
-    right: 20px;
     z-index: 11;
+    right: 10px;
+    color: #111827;
 }
 
-.encabezado__checkbox:checked ~ nav .navegacion__lista {
+/* Estilos a la IMÁGEN */
+
+.encabezado__logo {
+    max-width: 100px;
+}
+
+/* Estilos al UL */
+
+.navegacion__lista {
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
-    font-size: 1rem;
-    height: 100vh;
     flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    width: 100%;
-    z-index: 10;
     justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    font-size: 1rem;
+    list-style: none;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
 }
+
+/* Estilos al A */
 
 .navegacion__enlace,
 .formulario__enlace {
@@ -76,10 +78,20 @@ body {
     color: #111827;
 }
 
+/* Estilos A en estado :hover */
+
 .navegacion__enlace:hover {
     background-color: #f0f0f0;
 }
 
+/* Estilos del NAV cuando el INPUT SEA CHEQUEADO */
+
+.encabezado__checkbox:checked ~ nav .navegacion__lista {
+    z-index: 10;
+    flex-direction: column;
+    background-color: #F9FAFB;
+    transform: translateX(0);
+}
 /* Sección Principal de la Página */
 .main {
     height: 80vh;
