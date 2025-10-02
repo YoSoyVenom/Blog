@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 /* Estilos al Body */
 body {
     margin: 0;
@@ -87,11 +91,11 @@ body {
     width: 100%;
     box-sizing: border-box;
     font-size: 1.2em;
+    outline: none;
 }
 
 .formulario__input:focus {
     border-color: #3B82F6; /* azul acento */
-    outline: none;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
