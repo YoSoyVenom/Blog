@@ -6,12 +6,15 @@
 
 /* Estilos al Body */
 body {
+    padding: 0;
     margin: 0;
     font-family: "Inter", sans-serif;
     background-color: #d6d9e1;
     display: flex;
     flex-direction: column;
 }
+
+/* HEADER SECTION */
 
 /* Estilos al HEADER */
 
@@ -22,8 +25,8 @@ body {
     align-items: center;
     width: max-content;
     max-width: 1200px;
-    padding: 5px;
     margin: 0;
+    padding: 5px;
 }
 
 /* Estilos al INPUT TIPO CHECKBOX */
@@ -48,7 +51,7 @@ body {
 /* Estilos a la IMÁGEN */
 
 .encabezado__logo {
-    max-width: 100px;
+    max-width: 80px;
 }
 
 /* Estilos al UL */
@@ -92,7 +95,13 @@ body {
     background-color: #F9FAFB;
     transform: translateX(0);
 }
+
+/* HEADER SECTION ENDS */
+
+/* MAIN SECTION */
+
 /* Sección Principal de la Página */
+
 .main {
     height: 80vh;
     display: flex;
@@ -103,7 +112,7 @@ body {
 .main__formulario {
     margin: 0 auto;
     max-width: max-content;
-    padding: 40px 60px;
+    padding: 30px 50px;
     text-align: center;
     background-color: #ffffff;
     color: #111827;
@@ -114,7 +123,7 @@ body {
 }
 
 .formulario__titulo {
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 .formulario__label {
@@ -122,7 +131,7 @@ body {
     margin-top: 15px;
     margin-bottom: 5px;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .formulario__input {
@@ -131,7 +140,7 @@ body {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.2em;
+    font-size: 1em;
     outline: none;
 }
 
@@ -148,7 +157,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
@@ -160,3 +169,8 @@ body {
     font-size: 1em;
     color: #6B7280;
 }
+
+/* MAIN SECTION ENDS */
+
+/* QUERY SECTION */
+
