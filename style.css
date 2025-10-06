@@ -173,4 +173,29 @@ body {
 /* MAIN SECTION ENDS */
 
 /* QUERY SECTION */
-
+@media screen and (min-width: 600px) {
+    .encabezado {
+        width: 100%;
+        position: static;
+        z-index: auto;
+        justify-content: space-around;
+    }
+    .encabezado__desplegar {
+        display: none;
+    }
+    .navegacion__lista {
+        position: static;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 20px;
+        z-index: auto;
+        background-color: transparent;
+        transition: none;
+    }
+    .encabezado__navegacion {
+        display: flex;
+        width: 100%;
+    }
+}
