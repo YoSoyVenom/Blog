@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
+}
+
+:root {
+    --color-fondo: #d6d9e1;
+    --color-texto: #111827;
+    --color-hover: #f0f0f0;
+    --color-menu: #F9FAFB;
 }
 
 /* Estilos al Body */
 body {
-    padding: 0;
-    margin: 0;
     font-family: "Inter", sans-serif;
-    background-color: #d6d9e1;
+    background-color: var(--color-fondo);
     display: flex;
     flex-direction: column;
 }
@@ -23,7 +30,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: max-content;
+    width: 100%;
     max-width: 1200px;
     margin: 0;
     padding: 5px;
@@ -45,7 +52,7 @@ body {
     position: fixed;
     z-index: 11;
     right: 10px;
-    color: #111827;
+    color: var(--color-texto);
 }
 
 /* Estilos a la IMÁGEN */
@@ -78,13 +85,13 @@ body {
 .formulario__enlace {
     padding: 10px 15px;
     text-decoration: none;
-    color: #111827;
+    color: var(--color-texto);
 }
 
 /* Estilos A en estado :hover */
 
 .navegacion__enlace:hover {
-    background-color: #f0f0f0;
+    background-color: var(--color-hover);
 }
 
 /* Estilos del NAV cuando el INPUT SEA CHEQUEADO */
@@ -92,7 +99,7 @@ body {
 .encabezado__checkbox:checked ~ nav .navegacion__lista {
     z-index: 10;
     flex-direction: column;
-    background-color: #F9FAFB;
+    background-color: var(--color-menu);
     transform: translateX(0);
 }
 
@@ -112,10 +119,10 @@ body {
 .main__formulario {
     margin: 0 auto;
     max-width: max-content;
-    padding: 30px 50px;
+    padding: 20px 40px;
     text-align: center;
     background-color: #ffffff;
-    color: #111827;
+    color: var(--color-texto);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 8px;
     position: relative;
@@ -150,7 +157,7 @@ body {
 }
 
 .formulario__boton {
-    background-color: #111827;
+    background-color: var(--color-texto);
     color: white;
     padding: 15px 20px;
     border: none;
@@ -174,28 +181,28 @@ body {
 
 /* QUERY SECTION */
 @media screen and (min-width: 600px) {
+    body {
+        align-items: center;
+        justify-content: center;
+    }
     .encabezado {
         width: 100%;
-        position: static;
-        z-index: auto;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 5px 10px;
+    }
+    .encabezado__checkbox {
+        display: none;
     }
     .encabezado__desplegar {
         display: none;
     }
     .navegacion__lista {
         position: static;
-        height: auto;
-        width: auto;
         flex-direction: row;
-        justify-content: space-evenly;
-        gap: 20px;
-        z-index: auto;
-        background-color: transparent;
+        height: max-content;
+        right: 0;
         transition: none;
-    }
-    .encabezado__navegacion {
-        display: flex;
-        width: 100%;
+        transform: none;
+        gap: 5px;
     }
 }
