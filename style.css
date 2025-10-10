@@ -84,7 +84,8 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 /* Enlaces */
-.navegacion__enlace {
+.navegacion__enlace,
+.formulario__enlace {
     text-decoration: none;
     color: #111827;
     font-size: 1.2rem;
@@ -187,31 +188,26 @@ main, .main {
 
 /* MAIN SECTION ENDS */
 
-/* QUERY SECTION */
-@media screen and (min-width: 768px) {
-    body {
-        align-items: center;
-        justify-content: center;
-    }
+/* ===========================
+VERSIÓN DESKTOP
+=========================== */
+@media screen and (min-width: 600px) {
     .encabezado {
-        width: 100%;
-        justify-content: space-between;
-        padding: 5px 10px;
+    padding: 10px 40px;
     }
-    .encabezado__checkbox {
-        display: none;
-    }
+
     .encabezado__desplegar {
-        display: none;
+    display: none;
     }
+
     .navegacion__lista {
-        position: static;
-        flex-direction: row;
-        height: max-content;
-        right: 0;
-        transition: none;
-        transform: none;
-        gap: 5px;
-        opacity: 1;
+    position: static;
+    flex-direction: row;
+    height: auto;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    gap: 20px;
+    background-color: transparent;
     }
 }
