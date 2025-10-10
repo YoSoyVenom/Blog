@@ -25,86 +25,89 @@ body {
 
 /* Estilos al HEADER */
 
+/* ===========================
+HEADER (100% RESPONSIVE BASE)
+=========================== */
 .encabezado {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     max-width: 1200px;
-    margin: 0;
-    padding: 5px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
 }
 
-/* Estilos al INPUT TIPO CHECKBOX */
+/* Logo */
+.encabezado__logo {
+    max-width: 80px;
+    display: block;
+}
 
+/* Checkbox (oculto) */
 .encabezado__checkbox {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-/* Estilos al LABEL DEL INPUT TIPO CHECKBOX */
-
+/* Ícono del menú hamburguesa */
 .encabezado__desplegar {
     font-size: 2rem;
     cursor: pointer;
-    position: fixed;
+    color: #111827;
     z-index: 11;
-    right: 10px;
-    color: var(--color-texto);
 }
 
-/* Estilos a la IMÁGEN */
-
-.encabezado__logo {
-    max-width: 80px;
-}
-
-/* Estilos al UL */
-
+/* Lista de navegación (oculta por defecto en móvil) */
 .navegacion__lista {
-    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #F9FAFB;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 100vh;
-    width: 100%;
-    font-size: 1rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    z-index: 9;
-}
-
-/* Estilos al A */
-
-.navegacion__enlace,
-.formulario__enlace {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: var(--color-texto);
-}
-
-/* Estilos A en estado :hover */
-
-.navegacion__enlace:hover,
-.navegacion__enlace:focus {
-    background-color: var(--color-hover);
-}
-
-/* Estilos del NAV cuando el INPUT SEA CHEQUEADO */
-
-.encabezado__checkbox:checked ~ nav .navegacion__lista {
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
     z-index: 10;
-    flex-direction: column;
-    background-color: var(--color-menu);
+}
+
+/* Enlaces */
+.navegacion__enlace {
+    text-decoration: none;
+    color: #111827;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    transition: background-color 0.2s ease;
+}
+
+.navegacion__enlace:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* Mostrar el menú cuando se chequea el input */
+.encabezado__checkbox:checked ~ nav .navegacion__lista {
     transform: translateX(0);
     opacity: 1;
+    pointer-events: auto;
+}
+
+/* Evita que el contenido se superponga */
+main, .main {
+    position: relative;
+    z-index: 1;
 }
 
 /* HEADER SECTION ENDS */
@@ -114,7 +117,7 @@ body {
 /* Sección Principal de la Página */
 
 .main {
-    height: 80vh;
+    height: 80dvh;
     display: flex;
     justify-content: center;
     align-items: center;
