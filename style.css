@@ -42,13 +42,13 @@ HEADER (100% RESPONSIVE BASE)
     height: 50px;
     width: auto;
     position: relative;
-    z-index: 1;
+    z-index: 20;
 }
 
 .encabezado__desplegar {
     cursor: pointer;
     position: relative;
-    z-index: 1;
+    z-index: 20;
 }
 
 .encabezado__navegacion {
@@ -88,13 +88,11 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 .encabezado__lista--visible {
-    transform: translateY(0);
     opacity: 1;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--color-menu);
-    height: 100dvh;
-    width: 100%;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
 }
