@@ -43,3 +43,7 @@ HEADER (100% RESPONSIVE BASE)
     width: auto;
 }
 
+.encabezado__desplegar {
+    cursor: pointer;
+}
+
