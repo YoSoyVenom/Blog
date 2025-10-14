@@ -55,17 +55,16 @@ HEADER (100% RESPONSIVE BASE)
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.encabezado__lista {
-    list-style: none;
-    display: none;
     align-items: center;
     justify-content: center;
     gap: 20px;
     transform: translateY(-100%);
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.encabezado__lista {
+    list-style: none;
 }
 
 .encabezado__enlace {
