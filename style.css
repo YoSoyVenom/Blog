@@ -36,6 +36,8 @@ HEADER (100% RESPONSIVE BASE)
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+    container-type: inline-size;
+    container-name: header;
 }
 
 .encabezado__logo {
@@ -95,4 +97,26 @@ HEADER (100% RESPONSIVE BASE)
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
     opacity 0.4s ease,
     visibility 0.4s;
+}
+
+@container header (min-width: 600px) {
+    .encabezado {
+        padding: 10px 20px;
+    }
+
+    .encabezado__desplegar {
+        display: none;
+    }
+
+    .encabezado__navegacion {
+        position: static;
+        height: 70px;
+        width: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        background-color: transparent;
+        padding: 0;
+    }
 }
