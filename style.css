@@ -41,10 +41,14 @@ HEADER (100% RESPONSIVE BASE)
 .encabezado__logo {
     height: 50px;
     width: auto;
+    position: relative;
+    z-index: 1;
 }
 
 .encabezado__desplegar {
     cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .encabezado__navegacion {
@@ -75,4 +79,13 @@ HEADER (100% RESPONSIVE BASE)
     transform: translateX(0);
     opacity: 1;
     transition: all 0.3s ease-in-out;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-menu);
+    height: 100dvh;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
 }
