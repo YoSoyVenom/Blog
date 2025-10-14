@@ -45,21 +45,6 @@ HEADER (100% RESPONSIVE BASE)
     display: block;
 }
 
-/* Checkbox (oculto) */
-.encabezado__checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Ícono del menú hamburguesa */
-.encabezado__desplegar {
-    font-size: 2rem;
-    cursor: pointer;
-    color: #111827;
-    z-index: 11;
-}
-
 /* Lista de navegación (oculta por defecto en móvil) */
 .encabezado__lista {
     position: fixed;
@@ -95,6 +80,21 @@ HEADER (100% RESPONSIVE BASE)
 .encabezado__enlace:hover {
     background-color: #f0f0f0;
     border-radius: 4px;
+}
+
+/* Checkbox (oculto) */
+.encabezado__checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ícono del menú hamburguesa */
+.encabezado__desplegar {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #111827;
+    z-index: 11;
 }
 
 /* Mostrar el menú cuando se chequea el input */
