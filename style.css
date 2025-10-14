@@ -87,6 +87,13 @@ HEADER (100% RESPONSIVE BASE)
     font-size: 1em;
 }
 
+.encabezado__enlace:hover {
+    background-color: var(--color-hover);
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
 .encabezado__lista--visible {
     opacity: 1;
     visibility: visible;
