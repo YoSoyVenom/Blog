@@ -61,7 +61,7 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 /* Lista de navegación (oculta por defecto en móvil) */
-.navegacion__lista {
+.encabezado__lista {
     position: fixed;
     top: 0;
     left: 0;
@@ -83,7 +83,7 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 /* Enlaces */
-.navegacion__enlace,
+.encabezado__enlace,
 .formulario__enlace {
     text-decoration: none;
     color: #111827;
@@ -92,13 +92,13 @@ HEADER (100% RESPONSIVE BASE)
     transition: background-color 0.2s ease;
 }
 
-.navegacion__enlace:hover {
+.encabezado__enlace:hover {
     background-color: #f0f0f0;
     border-radius: 4px;
 }
 
 /* Mostrar el menú cuando se chequea el input */
-.encabezado__checkbox:checked ~ nav .navegacion__lista {
+.encabezado__checkbox:checked ~ nav .encabezado__lista {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
@@ -202,7 +202,7 @@ VERSIÓN DESKTOP
     display: none;
     }
 
-    .navegacion__lista {
+    .encabezado__lista {
     position: static;
     flex-direction: row;
     height: auto;
