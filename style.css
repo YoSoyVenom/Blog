@@ -182,8 +182,11 @@ main, .main {
 }
 
 .formulario__texto {
+    margin-top: 15px;
+}
+
+.formulario__texto a {
     font-size: 1em;
-    color: #6B7280;
 }
 
 /* MAIN SECTION ENDS */
