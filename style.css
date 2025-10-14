@@ -59,6 +59,7 @@ HEADER (100% RESPONSIVE BASE)
     align-items: center;
     justify-content: center;
     gap: 20px;
+    transform: translateX(-100%);
 }
 
 .encabezado__enlace {
