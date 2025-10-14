@@ -53,3 +53,10 @@ HEADER (100% RESPONSIVE BASE)
     justify-content: center;
 }
 
+.encabezado__lista {
+    list-style: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
