@@ -47,3 +47,9 @@ HEADER (100% RESPONSIVE BASE)
     cursor: pointer;
 }
 
+.encabezado__navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
