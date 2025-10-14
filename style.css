@@ -60,3 +60,9 @@ HEADER (100% RESPONSIVE BASE)
     justify-content: center;
     gap: 20px;
 }
+
+.encabezado__enlace {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 1em;
+}
