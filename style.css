@@ -36,8 +36,6 @@ HEADER (100% RESPONSIVE BASE)
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    container-type: inline-size;
-    container-name: header;
 }
 
 .encabezado__logo {
@@ -99,18 +97,22 @@ HEADER (100% RESPONSIVE BASE)
     visibility 0.4s;
 }
 
-@container header (min-width: 600px) {
+@media screen and (min-width: 600px) {
     .encabezado {
         padding: 10px 20px;
     }
 
-    .encabezado__desplegar {
+    .encabezado__logo {
+        height: 70px;
+    }
+
+    .encabezado .encabezado__desplegar {
         display: none;
     }
 
     .encabezado__navegacion {
         position: static;
-        height: 70px;
+        height: min-content;
         width: auto;
         transform: none;
         opacity: 1;
@@ -118,5 +120,11 @@ HEADER (100% RESPONSIVE BASE)
         pointer-events: auto;
         background-color: transparent;
         padding: 0;
+    }
+
+    .encabezado__lista {
+        flex-direction: row;
+        height: auto;
+        gap: 0 40px;
     }
 }
