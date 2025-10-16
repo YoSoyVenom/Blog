@@ -30,84 +30,110 @@ HEADER (100% RESPONSIVE BASE)
 =========================== */
 .encabezado {
     width: 100%;
-    margin: 0 auto;
-    padding: 10px 20px;
+    padding: 5px 20px;
+    background-color: var(--color-menu);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
-    z-index: 5;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
-/* Logo */
 .encabezado__logo {
-    max-width: 80px;
-    display: block;
+    height: 50px;
+    width: auto;
+    position: relative;
+    z-index: 20;
 }
 
-/* Lista de navegación (oculta por defecto en móvil) */
-.encabezado__lista {
+.encabezado__desplegar {
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+}
+
+.encabezado__navegacion {
+    display: block;
+    padding: 20px 0;
     position: fixed;
     top: 0;
-    left: 0;
-    height: 100vh;
+    right: 0;
+    height: 100dvh;
     width: 100%;
-    background-color: #F9FAFB;
+    z-index: 10;
+    background-color: var(--color-menu);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
+}
+
+.encabezado__lista {
+    list-style: none;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    list-style: none;
+    padding: 20px;
     margin: 0;
-    padding: 0;
-    transform: translateX(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
-    z-index: 10;
 }
 
-/* Enlaces */
-.encabezado__enlace,
-.formulario__enlace {
+.encabezado__enlace {
     text-decoration: none;
-    color: #111827;
-    font-size: 1.2rem;
-    padding: 10px 15px;
-    transition: background-color 0.2s ease;
+    color: var(--color-texto);
+    font-size: 1em;
 }
 
 .encabezado__enlace:hover {
-    background-color: #f0f0f0;
-    border-radius: 4px;
+    background-color: var(--color-hover);
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* Checkbox (oculto) */
-.encabezado__checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Ícono del menú hamburguesa */
-.encabezado__desplegar {
-    font-size: 2rem;
-    cursor: pointer;
-    color: #111827;
-    z-index: 11;
-}
-
-/* Mostrar el menú cuando se chequea el input */
-.encabezado__checkbox:checked ~ nav .encabezado__lista {
-    transform: translateX(0);
+.encabezado__lista--visible {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s;
 }
 
-/* Evita que el contenido se superponga */
-main, .main {
-    position: relative;
-    z-index: 1;
+@media screen and (min-width: 600px) {
+    .encabezado {
+        padding: 10px 20px;
+    }
+
+    .encabezado__logo {
+        height: 70px;
+    }
+
+    .encabezado .encabezado__desplegar {
+        display: none;
+    }
+
+    .encabezado__navegacion {
+        position: static;
+        height: min-content;
+        width: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .encabezado__lista {
+        flex-direction: row;
+        height: auto;
+        gap: 0 40px;
+    }
 }
 
 /* HEADER SECTION ENDS */
@@ -189,27 +215,3 @@ main, .main {
 }
 
 /* MAIN SECTION ENDS */
-
-/* ===========================
-VERSIÓN DESKTOP
-=========================== */
-@media screen and (min-width: 600px) {
-    .encabezado {
-    padding: 10px 40px;
-    }
-
-    .encabezado__desplegar {
-    display: none;
-    }
-
-    .encabezado__lista {
-    position: static;
-    flex-direction: row;
-    height: auto;
-    transform: none;
-    opacity: 1;
-    pointer-events: auto;
-    gap: 20px;
-    background-color: transparent;
-    }
-}
