@@ -1,0 +1,7 @@
+# Carpetas y archivos a ignorar
+wireframes/
+.vscode/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
