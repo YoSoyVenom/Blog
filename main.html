@@ -10,13 +10,21 @@
 </head>
 <body>
     <header class="encabezado">
-        <img src="./assets/imagenes/logo.png" alt="Logo de la Empresa" class="encabezado__logo">
-        <form class="encabezado__form-busqueda">
-            <input type="search" class="encabezado__busqueda" placeholder="Buscar publicaciones...">
-        </form>
-        <a href="#" class="material-symbols-outlined">account_circle</a>
-        <button class="encabezado__publicar">Nueva publicación</button>
+        <div class="encabezado__contenido">
+            <img src="./assets/imagenes/logo.png" alt="Logo del blog" class="encabezado__logo">
+            <form class="encabezado__form-busqueda" role="search" aria-label="Buscar publicaciones">
+                <input type="search" class="encabezado__busqueda"
+                placeholder="Buscar publicaciones..."
+                name="q">
+            </form>
+
+            <nav class="encabezado__acciones">
+                <button class="encabezado__publicar" aria-label="Crear nueva publicación">Nueva publicación</button>
+                <a href="#" class="material-symbols-outlined encabezado__user" aria-label="Perfil del usuario">account_circle</a>
+            </nav>
+        </div>
     </header>
+
 
 
     <script src="./assets/js/base.js"></script>
