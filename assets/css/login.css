@@ -134,7 +134,7 @@ HEADER (100% RESPONSIVE BASE)
 .main__formulario {
     margin: 0 auto;
     max-width: max-content;
-    padding: 20px 40px;
+    padding: 20px 20px;
     text-align: center;
     background-color: #ffffff;
     color: var(--color-texto);
@@ -145,7 +145,7 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 .formulario__titulo {
-    font-size: 1.7em;
+    font-size: 1.4em;
 }
 
 .formulario__label {
@@ -153,7 +153,7 @@ HEADER (100% RESPONSIVE BASE)
     margin-top: 15px;
     margin-bottom: 5px;
     text-align: left;
-    font-size: 1em;
+    font-size: .9em;
 }
 
 .formulario__input {
@@ -162,7 +162,7 @@ HEADER (100% RESPONSIVE BASE)
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1em;
+    font-size: .9em;
     outline: none;
 }
 
@@ -174,12 +174,12 @@ HEADER (100% RESPONSIVE BASE)
 .formulario__boton {
     background-color: var(--color-texto);
     color: white;
-    padding: 15px 20px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    font-size: 1em;
+    font-size: .9em;
     transition: background-color 0.3s ease;
 }
 
@@ -193,8 +193,25 @@ HEADER (100% RESPONSIVE BASE)
 }
 
 .formulario__texto a {
-    font-size: 1.1em;
+    font-size: .9em;
     color: --var(--color-texto);
+}
+
+/* MAIN SECTION QUERIES */
+
+@media screen and (min-width: 600px) {
+    .main__formulario {
+        padding: 20px 40px;
+    }
+    .formulario__titulo {
+        font-size: 1.7em;
+    }
+    .formulario__label, .formulario__boton, .formulario__input {
+        font-size: 1em;
+    }
+    .formulario__texto a {
+        font-size: 1em;
+    }
 }
 
 /* MAIN SECTION ENDS */
