@@ -1,0 +1,49 @@
+:root {
+    --fondo-general-mobile: #E4E7EE;
+    --fondo-targetas-mobile: #ffffff;
+    --texto-secundario-mobile: #6B7280;
+    --boton-principal-mobile: #3B82F6;
+    --boton-secundario-mobile: #D1D5DB;
+    --sombras: rgba(0,0,0,0.05);
+}
+
+/* Hay que agrupar mejor el html */
+
+.encabezado {
+    width: 100%;
+    background-color: var(--color-menu);
+}
+
+.encabezado__contenido {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px auto;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5px;
+}
+
+.encabezado__form-busqueda,
+.encabezado__acciones {
+    display: contents;
+}
+
+.encabezado__logo {
+    max-width: 70px;
+    order: 0;
+}
+
+.encabezado__publicar {
+    display: none;
+}
+
+.encabezado__busqueda {
+    order: 2;
+    width: 100%;
+    height: 30px;
+}
+
+.encabezado__user {
+    order: 1;
+}
