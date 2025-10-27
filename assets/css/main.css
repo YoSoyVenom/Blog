@@ -1,14 +1,5 @@
-:root {
-    --fondo-general-mobile: #E4E7EE;
-    --fondo-targetas-mobile: #ffffff;
-    --texto-secundario-mobile: #6B7280;
-    --boton-principal-mobile: #3B82F6;
-    --boton-secundario-mobile: #D1D5DB;
-    --sombras: rgba(0,0,0,0.05);
-}
-
-/* Hay que agrupar mejor el html */
-
+/* HEADER STYLES*/
+/* MOBILE HEADER STYLES */
 .encabezado {
     width: 100%;
     background-color: var(--color-menu);
@@ -60,6 +51,7 @@
     order: 1;
 }
 
+/* DESKTOP HEADER STYLES */
 @media screen and (min-width: 600px) {
     .encabezado__contenido {
         gap: 15px;
@@ -82,6 +74,7 @@
         order: 1;
         font-size: 1.2em;
         max-width: 700px;
+        margin: 0 auto;
     }
 
     .encabezado__busqueda:hover {
@@ -111,3 +104,5 @@
         order: 0;
     }
 }
+
+/* HEADER STYLES ENDS */

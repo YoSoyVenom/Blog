@@ -11,4 +11,10 @@
     --color-texto: #111827;
     --color-hover: #f0f0f0;
     --color-menu: #F9FAFB;
+    --fondo-general-mobile: #E4E7EE;
+    --fondo-targetas-mobile: #ffffff;
+    --texto-secundario-mobile: #6B7280;
+    --boton-principal-mobile: #3B82F6;
+    --boton-secundario-mobile: #D1D5DB;
+    --sombras: rgba(0,0,0,0.05);
 }
