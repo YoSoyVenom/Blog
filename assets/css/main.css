@@ -1,3 +1,7 @@
+body {
+    background-color: var(--fondo-general-mobile);
+}
+
 /* HEADER STYLES*/
 /* MOBILE HEADER STYLES */
 .encabezado {
@@ -27,6 +31,16 @@
 
 .encabezado__publicar {
     display: none;
+    order: 1;
+    background-color: var(--boton-principal-mobile);
+    border: none;
+    padding: 7px;
+    min-width: max-content;
+    color: var(--boton-secundario-mobile);
+    outline: none;
+    border-radius: 7px;
+    font-size: 1.2em;
+    transition: background-color .3s linear, color .3s linear;
 }
 
 .encabezado__busqueda {
@@ -40,6 +54,12 @@
     outline: none;
     font-size: .9em;
     transition: filter .3s linear;
+}
+
+.encabezado__publicar:hover,
+.main__publicar {
+    background-color: var(--fondo-general-mobile);
+    color: var(--boton-principal-mobile);
 }
 
 .encabezado__busqueda:hover {
@@ -83,21 +103,6 @@
 
     .encabezado__publicar {
         display: block;
-        order: 1;
-        background-color: var(--boton-principal-mobile);
-        border: none;
-        padding: 7px;
-        min-width: max-content;
-        color: var(--boton-secundario-mobile);
-        outline: none;
-        border-radius: 7px;
-        font-size: 1.2em;
-        transition: background-color .3s linear, color .3s linear;
-    }
-
-    .encabezado__publicar:hover {
-        background-color: var(--fondo-general-mobile);
-        color: var(--boton-principal-mobile);
     }
 
     .encabezado__user {
@@ -109,15 +114,51 @@
 
 /* MAIN STYLES */
 
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
 
+.main__form, 
+.post-card {
+    background-color: var(--fondo-targetas-mobile);
+}
 
+.main__form {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px var(--sombras);
+}
 
+.main__texto-publicacion {
+    padding: 6px;
+    border: none;
+    outline: none;
+    width: clamp(320px, 9dvw, 600px);
+    height: clamp(70px, 6dvh, 160px);
+    font-size: 1.2em;
+}
 
-
-
-
+.main__publicar {
+    order: 1;
+    background-color: var(--boton-principal-mobile);
+    border: none;
+    padding: 7px;
+    min-width: max-content;
+    color: var(--boton-secundario-mobile);
+    outline: none;
+    border-radius: 7px;
+    font-size: 1.2em;
+    transition: background-color .3s linear, color .3s linear;
+}
 
 .sidebar {
     display: none;
 }
-
