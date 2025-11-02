@@ -52,7 +52,7 @@ body {
     margin-top: 10px;
     color: var(--color-texto);
     outline: none;
-    font-size: .9em;
+    font-size: 1em;
     transition: filter .3s linear;
 }
 
@@ -132,31 +132,43 @@ body {
     display: flex;
     flex-direction: column;
     border: none;
-    border-radius: 4px;
-    padding: 10px;
+    border-radius: 7px;
     box-shadow: 0px 0px 10px 0px var(--sombras);
+    width: 95%;
+    padding: 10px;
 }
 
 .main__texto-publicacion {
     padding: 6px;
     border: none;
     outline: none;
-    width: clamp(320px, 9dvw, 600px);
-    height: clamp(70px, 6dvh, 160px);
+    height: 80px;
     font-size: 1.2em;
+    border-bottom: 2px solid var(--fondo-general-mobile);
+    margin-bottom: 9px;
+    font-family: inherit;
 }
 
-.main__publicar {
-    order: 1;
+.main__publicar, .main__cancelar {
     background-color: var(--boton-principal-mobile);
     border: none;
     padding: 7px;
-    min-width: max-content;
+    min-width: fit-content;
     color: var(--boton-secundario-mobile);
     outline: none;
     border-radius: 7px;
-    font-size: 1.2em;
+    font-size: 1em;
     transition: background-color .3s linear, color .3s linear;
+}
+
+.main__cancelar {
+    background-color: var(--boton-secundario-mobile);
+    color: var(--boton-principal-mobile);
+}
+
+.main__cancelar:hover {
+    background-color: var(--boton-principal-mobile);
+    color: var(--boton-secundario-mobile);
 }
 
 .sidebar {
