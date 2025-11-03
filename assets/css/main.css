@@ -180,7 +180,42 @@ body {
     padding: 10px;
 }
 
+.post-card {
+    display: flex;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px 0px var(--sombras);
+    padding: 7px;
+}
 
+.post-card__content {
+    width: fit-content;
+}
+
+.post-card__photo-wrapper {
+    min-width: 40px;
+}
+
+.post-card__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.post-card__name {
+    font-size: 1.2em;
+}
+
+.post-card__message {
+    text-align: ;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.post-card__footer-actions {
+    display: flex;
+    gap: 20px;
+}
 
 .sidebar {
     display: none;
