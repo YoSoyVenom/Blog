@@ -171,6 +171,17 @@ body {
     color: var(--boton-secundario-mobile);
 }
 
+.main__feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+
 .sidebar {
     display: none;
 }
