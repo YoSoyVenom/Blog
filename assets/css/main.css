@@ -177,7 +177,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px;
 }
 
 .post-card {
@@ -185,6 +184,7 @@ body {
     border-radius: 7px;
     box-shadow: 0px 0px 10px 0px var(--sombras);
     padding: 7px;
+    width: 95%;
 }
 
 .post-card__content {
@@ -207,9 +207,8 @@ body {
 }
 
 .post-card__message {
-    text-align: ;
-    font-size: 1em;
-    margin-bottom: 5px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
 }
 
 .post-card__footer-actions {
@@ -219,4 +218,22 @@ body {
 
 .sidebar {
     display: none;
+}
+
+/* MAIN SECTION ENDS */
+
+/* FOOTER STYLES */
+
+.footer {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.footer__copyright {
+    color: var(--color-texto);
+}
+
+.footer__link {
+    color: inherit;
+    text-decoration: none;
 }
