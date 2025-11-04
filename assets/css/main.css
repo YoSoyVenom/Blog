@@ -7,6 +7,8 @@ body {
 .encabezado {
     width: 100%;
     background-color: var(--color-menu);
+    position: sticky;
+    top: 0;
 }
 
 .encabezado__contenido {
@@ -124,7 +126,8 @@ body {
 }
 
 .main__form, 
-.post-card {
+.post-card,
+.sidebar__container {
     background-color: var(--fondo-targetas-mobile);
 }
 
@@ -243,19 +246,24 @@ body {
 @media screen and (min-width: 600px) {
     .layout {
         display: grid;
-        grid-template-rows: 2fr 1fr;
-    }
-    .main {
-        flex-grow: 2;
+        grid-template-columns: 1fr minmax(300px, 400px);
+        gap: 5px;
     }
     .sidebar {
         display: flex;
         flex-direction: column;
-        background-color: var(--fondo-targetas-mobile);
-        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+        top: 10px;
+        gap: 10px;
+        padding: 10px;
         height: fit-content;
-        padding: 15px;
-        margin-top: 10px;
-        margin-right: 10px;
+    }
+    .sidebar__container {
+        width: 90%;
+        border: none;
+        border-radius: 7px;
+        padding: 7px;
     }
 }
