@@ -166,10 +166,10 @@ body {
 
 .main__cancelar {
     background-color: var(--boton-secundario-mobile);
-    color: var(--boton-principal-mobile);
+    color: var(--color-texto);
 }
 
-.main__cancelar:hover {
+.main__cancelar:hover, .sidebar__check-profile:hover {
     background-color: var(--boton-principal-mobile);
     color: var(--boton-secundario-mobile);
 }
@@ -246,7 +246,7 @@ body {
 @media screen and (min-width: 600px) {
     .layout {
         display: grid;
-        grid-template-columns: 1fr minmax(300px, 400px);
+        grid-template-columns: 1fr minmax(250px, 350px);
     }
     .main {
         padding-right: 0;
@@ -257,7 +257,6 @@ body {
         align-items: center;
         position: sticky;
         top: 10px;
-        gap: 10px;
         margin-top: 10px;
         margin-right: 10px;
         height: fit-content;
@@ -268,13 +267,17 @@ body {
         flex-direction: column;
         width: 90%;
         border: none;
-        border-radius: 7px;
-        padding: 15px;
+        border-radius: 9px;
+        padding: 30px;
     }
-    .sidebar__profile{
+    .sidebar__profile, .sidebar__tendencies, .sidebar__users{
         display: flex;
         gap: 5px;
         flex-direction: column;
+    }
+    .sidebar__profile, .sidebar__tendencies {
+        border-bottom: 2px solid var(--fondo-general-mobile);
+        padding: 10px;
     }
     .sidebar__title {
         font-size: 1.2em;
@@ -289,6 +292,7 @@ body {
     .sidebar__profile-info {
         display: flex;
         flex-direction: column;
+        gap: 5px;
         font-size: 1.1em;
     }
     .sidebar__username {
@@ -302,6 +306,16 @@ body {
         border-radius: 7px;
         letter-spacing: 1px;
         cursor: pointer;
+        transition: background-color .3s linear, color .3s linear;
     }
-
+    .sidebar__list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding-left: 20px;
+    }
+    .sidebar__item > a {
+        text-decoration: none;
+        color: var(--color-texto);
+    }
 }
