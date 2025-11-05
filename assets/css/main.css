@@ -9,6 +9,7 @@ body {
     background-color: var(--color-menu);
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
 .encabezado__contenido {
@@ -256,7 +257,8 @@ body {
         justify-content: center;
         align-items: center;
         position: sticky;
-        top: 10px;
+        top: 100px;
+        z-index: 1;
         margin-top: 10px;
         margin-right: 10px;
         height: fit-content;
