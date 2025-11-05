@@ -165,6 +165,11 @@ body {
     transition: background-color .3s linear, color .3s linear;
 }
 
+.main__publicar:hover {
+    background-color: var(--boton-secundario-mobile);
+    color: var(--color-texto);
+}
+
 .main__cancelar {
     background-color: var(--boton-secundario-mobile);
     color: var(--color-texto);
@@ -251,6 +256,7 @@ body {
     }
     .main {
         padding-right: 0;
+        grid-column: 1/2;
     }
     .sidebar {
         display: flex;
@@ -262,6 +268,7 @@ body {
         margin-top: 10px;
         margin-right: 10px;
         height: fit-content;
+        grid-column: 2/3;
     }
     .sidebar__container {
         display: flex;
@@ -319,5 +326,8 @@ body {
     .sidebar__item > a {
         text-decoration: none;
         color: var(--color-texto);
+    }
+    .footer {
+        grid-column: 2/3;
     }
 }
