@@ -75,7 +75,7 @@ body {
 }
 
 /* DESKTOP HEADER STYLES */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     .encabezado__contenido {
         gap: 15px;
         flex-wrap: nowrap;
@@ -240,7 +240,7 @@ body {
 
 .footer {
     text-align: center;
-    margin-bottom: 15px;
+    margin: 20px;
 }
 
 .footer__copyright {
@@ -256,12 +256,11 @@ body {
 
 /* MAIN, ASIDE AND FOOTER SECTIONS MEDIA QUERIES */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     /* LAYOUT STYLES */
     .layout {
         display: grid;
         grid-template-columns: 1fr minmax(250px, 350px);
-        gap: 30px;
     }
 
     /* DESKTOP MAIN STYLES */
