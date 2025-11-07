@@ -168,6 +168,7 @@ body {
     border-radius: 7px;
     font-size: 1em;
     transition: background-color .3s linear, color .3s linear;
+    cursor: pointer;
 }
 
 .main__publicar:hover {
