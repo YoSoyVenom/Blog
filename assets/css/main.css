@@ -231,7 +231,7 @@ body {
     gap: 20px;
 }
 
-.sidebar {
+.sidebar__container {
     display: none;
 }
 
@@ -275,6 +275,7 @@ body {
     /* DESKTOP ASIDE STYLES */
     .sidebar {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         position: sticky;
