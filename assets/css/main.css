@@ -42,7 +42,7 @@ body {
     color: var(--boton-secundario-mobile);
     outline: none;
     border-radius: 7px;
-    font-size: 1.2em;
+    font-size: var(--font-size-xs);
     transition: background-color .3s linear, color .3s linear;
 }
 
@@ -55,7 +55,7 @@ body {
     margin-top: 10px;
     color: var(--color-texto);
     outline: none;
-    font-size: 1em;
+    font-size: var(--font-size-sm);
     transition: filter .3s linear;
 }
 
@@ -95,7 +95,6 @@ body {
 
     .encabezado__busqueda {
         order: 1;
-        font-size: 1.2em;
         max-width: 700px;
         margin: 0 auto;
     }
@@ -152,7 +151,7 @@ body {
     border: none;
     outline: none;
     height: 80px;
-    font-size: 1.2em;
+    font-size: var(--font-size-sm);
     border-bottom: 2px solid var(--fondo-general-mobile);
     margin-bottom: 9px;
     font-family: inherit;
@@ -166,7 +165,7 @@ body {
     color: var(--boton-secundario-mobile);
     outline: none;
     border-radius: 7px;
-    font-size: 1em;
+    font-size: var(--font-size-xs);
     transition: background-color .3s linear, color .3s linear;
     cursor: pointer;
 }
@@ -218,11 +217,11 @@ body {
 }
 
 .post-card__name {
-    font-size: 1.2em;
+    font-size: var(--font-size-md);
 }
 
 .post-card__message {
-    font-size: 1.1em;
+    font-size: var(--font-size-sm);
     margin-bottom: 10px;
 }
 
@@ -279,7 +278,7 @@ body {
         justify-content: center;
         align-items: center;
         position: sticky;
-        top: 100px;
+        top: 110px;
         z-index: 1;
         height: fit-content;
         grid-column: 2/3;
@@ -307,11 +306,7 @@ body {
     }
 
     .sidebar__title {
-        font-size: 1.2em;
-    }
-
-    .sidebar__photo-icon {
-        font-size: 4em;
+        font-size: var(--font-size-md);
     }
 
     .sidebar__profile-content {
@@ -323,11 +318,11 @@ body {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        font-size: 1.1em;
+        font-size: var(--font-size-sm);
     }
 
     .sidebar__username {
-        font-size: 1.1em;
+        font-size: var(--font-size-xs);
         font-weight: 700;
     }
 
