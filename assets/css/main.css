@@ -261,29 +261,25 @@ body {
     .layout {
         display: grid;
         grid-template-columns: 1fr minmax(250px, 350px);
+        grid-template-rows: auto auto;
         gap: 20px;
     }
 
     /* DESKTOP MAIN STYLES */
     .main {
         padding: 0;
-        grid-column: 1/4;
+        grid-column: 1/2;
+        grid-row: 1/3;
     }
 
     /* DESKTOP STYLES ENDS */
-
-    .sidebar-group {
-        grid-column: 4/5;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
 
     /* DESKTOP ASIDE STYLES */
     .sidebar {
         display: flex;
         flex-direction: column;
         height: min-content;
+        grid-row: 1/2;
         position: sticky;
         top: 110px;
         z-index: 1;
@@ -347,4 +343,11 @@ body {
     }
 
     /* ASIDE DESKTOP STYLES ENDS */
+
+    /* DESKTOP FOOTER STYLES */
+    .footer {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+    /* DESKTOP FOOTER STYLES ENDS */
 }
