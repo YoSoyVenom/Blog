@@ -230,7 +230,7 @@ body {
     gap: 20px;
 }
 
-.sidebar__container {
+.sidebar {
     display: none;
 }
 
@@ -261,12 +261,14 @@ body {
     .layout {
         display: grid;
         grid-template-columns: 1fr minmax(250px, 350px);
+        grid-template-rows: 1fr auto;
     }
 
     /* DESKTOP MAIN STYLES */
     .main {
         padding-right: 0;
         grid-column: 1/2;
+        grid-row: 1/3;
     }
 
     /* DESKTOP STYLES ENDS */
@@ -282,6 +284,7 @@ body {
         z-index: 1;
         height: fit-content;
         grid-column: 2/3;
+        grid-row: 1/2;
     }
 
     .sidebar__container {
@@ -353,6 +356,7 @@ body {
     /* DESKTOP FOOTER STYLES */
     .footer {
         grid-column: 2/3;
+        grid-row: 2/3;
     }
 
     /* FOOTER DESKTOP STYLES ENDS */
