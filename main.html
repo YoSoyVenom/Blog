@@ -9,28 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-    <!-- HEADER STRUCTURE -->
-    <header class="encabezado">
-        <div class="encabezado__contenido">
-            <img src="./assets/imagenes/logo.png" alt="Logo del blog" class="encabezado__logo">
-            <form class="encabezado__form-busqueda" role="search" aria-label="Buscar publicaciones">
-                <input type="search" class="encabezado__busqueda"
-                placeholder="Buscar publicaciones..."
-                name="q">
-            </form>
-
-            <nav class="encabezado__acciones">
-                <button class="encabezado__publicar" aria-label="Crear nueva publicación">Nueva publicación</button>
-                <a href="#" class="material-symbols-outlined encabezado__user" aria-label="Perfil del usuario">account_circle</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- MAIN STRUCTURE -->
     <div class="layout">
+        <!-- HEADER STRUCTURE -->
+        <header class="encabezado">
+            <div class="encabezado__contenido">
+                <img src="./assets/imagenes/logo.png" alt="Logo del blog" class="encabezado__logo">
+                <form class="encabezado__form-busqueda" role="search" aria-label="Buscar publicaciones">
+                    <input type="search" class="encabezado__busqueda"
+                    placeholder="Buscar publicaciones..."
+                    name="q">
+                </form>
+
+                <nav class="encabezado__acciones">
+                    <button class="encabezado__publicar" aria-label="Crear nueva publicación">Nueva publicación</button>
+                    <a href="#" class="material-symbols-outlined encabezado__user" aria-label="Perfil del usuario" role="link">account_circle</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MAIN STRUCTURE -->
         <main class="main">
             <form class="main__form">
-                <textarea name="main__texto-publicacion" id="publicacion" class="main__texto-publicacion" placeholder="Escribe una publicación..." aria-label="Escribe tu nueva publicación"></textarea>
+                <textarea name="publicacion" id="publicacion" class="main__texto-publicacion" placeholder="Escribe una publicación..." aria-label="Escribe tu nueva publicación"></textarea>
                 <div class="main__iteration">
                     <button class="main__publicar">Publicar</button>
                     <button class="main__cancelar">Cancelar</button>
@@ -44,20 +44,20 @@
                     <div class="post-card__content">
                         <div class="post-card__info">
                             <h2 class="post-card__name">Robertito</h2>
-                            <time class="post-card__date" datetime="YYYY-MM-DD">2025-10-27</time>
+                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
                         </div>
                         <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
                         <footer class="post-card__footer-actions">
-                            <button class="post-card__action-btn">
+                            <button class="post-card__action-btn" aria-label="Dar me gusta">
                                 <span class="material-symbols-outlined">favorite_border</span>
                             </button>
-                            <button class="post-card__action-btn">
+                            <button class="post-card__action-btn" aria-colspan="Comentar">
                                 <span class="material-symbols-outlined">chat_bubble_outline</span>
                             </button>
-                            <button class="post-card__action-btn">
+                            <button class="post-card__action-btn" aria-label="Repostear">
                                 <span class="material-symbols-outlined">sync</span>
                             </button>
-                            <button class="post-card__action-btn">
+                            <button class="post-card__action-btn" aria-label="Compartir">
                                 <span class="material-symbols-outlined">ios_share</span>
                             </button>
                         </footer>
@@ -110,6 +110,110 @@
                                 <span class="material-symbols-outlined">sync</span>
                             </button>
                             <button class="post-card__action-btn">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                    </div>
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">Robertito</h2>
+                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
+                        </div>
+                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn" aria-label="Dar me gusta">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-colspan="Comentar">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Repostear">
+                                <span class="material-symbols-outlined">sync</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Compartir">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                    </div>
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">Robertito</h2>
+                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
+                        </div>
+                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn" aria-label="Dar me gusta">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-colspan="Comentar">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Repostear">
+                                <span class="material-symbols-outlined">sync</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Compartir">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                    </div>
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">Robertito</h2>
+                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
+                        </div>
+                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn" aria-label="Dar me gusta">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-colspan="Comentar">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Repostear">
+                                <span class="material-symbols-outlined">sync</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Compartir">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                </article>
+                <article class="post-card">
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                    </div>
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">Robertito</h2>
+                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
+                        </div>
+                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn" aria-label="Dar me gusta">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-colspan="Comentar">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Repostear">
+                                <span class="material-symbols-outlined">sync</span>
+                            </button>
+                            <button class="post-card__action-btn" aria-label="Compartir">
                                 <span class="material-symbols-outlined">ios_share</span>
                             </button>
                         </footer>
@@ -124,34 +228,34 @@
                     <div class="sidebar__profile-content">
                         <span class="material-symbols-outlined sidebar__photo-icon" aria-label="Foto de usuario">account_circle</span>
                         <div class="sidebar__profile-info">
-                            <a class="sidebar__username">Nombre de Usuario</a>
-                            <a class="sidebar__check-profile">Ver perfil</a>
+                            <a class="sidebar__username" role="link">Nombre de Usuario</a>
+                            <a class="sidebar__check-profile" role="link">Ver perfil</a>
                         </div>
                     </div>
                 </section>
                 <section class="sidebar__tendencies">
                     <h3 class="sidebar__title">Tendencias</h3>
                     <ul class="sidebar__list">
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Cristiano Ronaldo</a></li>
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Super Bowl</a></li>
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">NBA</a></li>
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Sidney Swednesdey</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Cristiano Ronaldo</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Super Bowl</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">NBA</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Sidney Swednesdey</a></li>
                     </ul>
                 </section>
                 <section class="sidebar__users">
                     <h3 class="sidebar__title">Recomendaciones</h3>
                     <ul class="sidebar__list">
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Gabriel Guevara</a></li>
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Juan Carlos</a></li>
-                        <li class="sidebar__item"><a href="#" class="sidebar__link">Paula Gonzales</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Gabriel Guevara</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Juan Carlos</a></li>
+                        <li class="sidebar__item"><a href="#" class="sidebar__link" role="link">Paula Gonzales</a></li>
                     </ul>
                 </section>
             </div>
         </aside>
-        <footer class="footer">
-            <p class="footer__copyright"><span class="symbol">©</span> 2025 <a class="footer__link" href="#">MyBio</a> | <a class="footer__link" href="#">Privacidad</a> | <a class="footer__link" href="#">Términos</a></p>
-        </footer>
     </div>
+    <footer class="footer">
+        <p class="footer__copyright"><span class="symbol">©</span> 2025 <a class="footer__link" href="#" role="link">MyBio</a> | <a class="footer__link" href="#" role="link">Privacidad</a> | <a class="footer__link" href="#" role="link">Términos</a></p>
+    </footer>
 
     <script src="./assets/js/base.js"></script>
     <script src="./assets/js/main.js"></script>

@@ -19,4 +19,12 @@
     --boton-principal-mobile: #3B82F6;
     --boton-secundario-mobile: #D1D5DB;
     --sombras: rgba(0,0,0,0.05);
+    /* Tamaños de Letra */
+    --font-size-xxs: 0.75rem;
+    --font-size-xs: 0.875rem;
+    --font-size-sm: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.5rem;
 }
