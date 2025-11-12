@@ -4,12 +4,11 @@ body {
     background-color: var(--color-fondo);
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 
-/* ===========================
-HEADER (100% RESPONSIVE BASE)
-=========================== */
+/* HEADER STYLES */
 .encabezado {
     width: 100%;
     padding: 5px 20px;
@@ -86,6 +85,8 @@ HEADER (100% RESPONSIVE BASE)
     visibility 0.4s;
 }
 
+/* HEADER MEDIA QUERIES */
+
 @media screen and (min-width: 600px) {
     .encabezado {
         padding: 10px 20px;
@@ -116,4 +117,85 @@ HEADER (100% RESPONSIVE BASE)
         height: auto;
         gap: 0 40px;
     }
+}
+
+/* HEADER STYLES END */
+
+/* MAIN STYLES */
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+    height: 100vh;
+}
+
+.main__formulario {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--color-menu);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--sombras);
+}
+
+.formulario__titulo {
+    font-size: var(--font-size-xl);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.formulario__grupo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: 'Inter';
+    font-size: var(--font-size-sm);
+}
+
+.formulario__input {
+    padding: 5px;
+    border-radius: 7px;
+    border: none;
+    font-size: var(--font-size-xs);
+    outline: none;
+    transition: box-shadow .3s linear;
+}
+
+.formulario__input:hover, .formulario__input:focus {
+    box-shadow: 0px 2px 4px var(--sombras);
+}
+
+.formulario__boton {
+    width: 100%;
+    padding: 7px 0;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--boton-principal-mobile);
+    color: var(--fondo-targetas-mobile);
+    margin-bottom: 15px;
+    transition: background-color .3s linear;
+    cursor: pointer;
+}
+
+.formulario__boton:hover {
+    background-color: var(--color-texto);
+}
+
+.formulario__termino {
+    font-size: var(--font-size-xs);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.formulario__texto {
+    font-size: var(--font-size-xs);
+    text-align: center;
+}
+
+.formulario__enlace {
+    color: var(--boton-principal-mobile);
 }
