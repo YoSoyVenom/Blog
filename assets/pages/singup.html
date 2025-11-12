@@ -6,8 +6,46 @@
     <title>LogUp</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"/>
 </head>
 <body>
+    <header class="encabezado">
+        <img src="../imagenes/logo.png" alt="Logo de la Empresa" class="encabezado__logo">
+        <nav class="encabezado__navegacion" aria-label="Navegacion principal">
+            <ul class="encabezado__lista">
+                <li class="encabezado__item"><a href="#home" class="encabezado__enlace">Home</a></li>
+                <li class="encabezado__item"><a href="#about" class="encabezado__enlace">About</a></li>
+                <li class="encabezado__item"><a href="#projects" class="encabezado__enlace">Contact</a></li>
+            </ul>
+        </nav>
+        <span class="material-symbols-outlined encabezado__desplegar">menu</span>
+    </header>
+    <main class="main">
+        <form class="main__formulario">
+            <h1 class="formulario__titulo">Sign Up</h1>
+            <label for="formulario__nombre">
+                Full Name
+                <input type="text" id="formulario__nombre" name="nombre" required class="formulario__input" placeholder="Your Name">
+            </label>
+            <label for="formulario__email">
+                Email
+                <input type="text" id="formulario__email" name="email" required class="formulario__input" placeholder="example@dominio.com">
+            </label>
+            <label for="formulario__password">
+                Password
+                <input type="password" id="formulario__password" name="password" required class="formulario__input" placeholder="********">
+            </label>
+            <label for="formulario__confirm_password">
+                Confirm Password
+                <input type="password" id="formulario__confirm_password" name="confirm_password" required class="formulario__input" placeholder="********">
+            </label>
+            <button type="submit" class="formulario__boton">Sign Up</button>
+            <p class="formulario__termino">By signing up, you agree to our <a href="#terms" class="formulario__enlace">Terms of Service</a> and <a href="#privacy" class="formulario__enlace">Privacy Policy</a>.</p>
+            <p class="formulario__texto"><a href="#login" class="formulario__enlace">Already have an account? Log in here</a>.</p>
+        </form>
+    </main>
+    <script src="../js/login.js"></script>
     <script src="../js/logup.js"></script>
 </body>
 </html>
