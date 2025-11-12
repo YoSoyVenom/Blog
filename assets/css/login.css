@@ -133,7 +133,7 @@ HEADER (100% RESPONSIVE BASE)
 
 .main__formulario {
     margin: 0 auto;
-    max-width: max-content;
+    max-width: fit-content;
     padding: 20px 20px;
     text-align: center;
     background-color: #ffffff;
