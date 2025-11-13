@@ -11,7 +11,7 @@
 <body>
     <div class="layout">
         <!-- HEADER STRUCTURE -->
-        <header class="encabezado">
+        <header class="encabezado" id="encabezado-position">
             <div class="encabezado__contenido">
                 <img src="../imagenes/logo.png" alt="Logo del blog" class="encabezado__logo">
                 <form class="encabezado__form-busqueda" role="search" aria-label="Buscar publicaciones">
@@ -22,7 +22,7 @@
 
                 <nav class="encabezado__acciones">
                     <button class="encabezado__publicar" aria-label="Crear nueva publicación">Nueva publicación</button>
-                    <a href="#" class="material-symbols-outlined encabezado__user" aria-label="Perfil del usuario" role="link">account_circle</a>
+                    <a href="#" class="material-symbols-outlined encabezado__user" id="btn-profile" aria-label="Perfil del usuario" role="link">account_circle</a>
                 </nav>
             </div>
         </header>
@@ -167,61 +167,9 @@
                         </footer>
                     </div>
                 </article>
-                <article class="post-card">
-                    <div class="post-card__photo-wrapper">
-                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
-                    </div>
-                    <div class="post-card__content">
-                        <div class="post-card__info">
-                            <h2 class="post-card__name">Robertito</h2>
-                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
-                        </div>
-                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
-                        <footer class="post-card__footer-actions">
-                            <button class="post-card__action-btn" aria-label="Dar me gusta">
-                                <span class="material-symbols-outlined">favorite_border</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-colspan="Comentar">
-                                <span class="material-symbols-outlined">chat_bubble_outline</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-label="Repostear">
-                                <span class="material-symbols-outlined">sync</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-label="Compartir">
-                                <span class="material-symbols-outlined">ios_share</span>
-                            </button>
-                        </footer>
-                    </div>
-                </article>
-                <article class="post-card">
-                    <div class="post-card__photo-wrapper">
-                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
-                    </div>
-                    <div class="post-card__content">
-                        <div class="post-card__info">
-                            <h2 class="post-card__name">Robertito</h2>
-                            <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
-                        </div>
-                        <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
-                        <footer class="post-card__footer-actions">
-                            <button class="post-card__action-btn" aria-label="Dar me gusta">
-                                <span class="material-symbols-outlined">favorite_border</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-colspan="Comentar">
-                                <span class="material-symbols-outlined">chat_bubble_outline</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-label="Repostear">
-                                <span class="material-symbols-outlined">sync</span>
-                            </button>
-                            <button class="post-card__action-btn" aria-label="Compartir">
-                                <span class="material-symbols-outlined">ios_share</span>
-                            </button>
-                        </footer>
-                    </div>
-                </article>
             </section>
         </main>
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar__container">
                 <section class="sidebar__profile">
                     <h3 class="sidebar__title">Perfil</h3>

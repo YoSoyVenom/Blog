@@ -123,6 +123,7 @@ body {
 .main {
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 10px;
     align-items: stretch;
     padding: 0 20px;
@@ -240,9 +241,43 @@ body {
 
 .sidebar {
     display: none;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    visibility: hidden;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s linear;
+    background-color: var(--color-menu);
 }
 
 /* MAIN SECTION ENDS */
+
+/* ASIDE STYLES */
+.header-zindex {
+    z-index: 20;
+}
+
+.aside-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s linear;
+}
+
+.sidebar__container {
+    width: 90%;
+    border-radius: 9px;
+    padding: 20px;
+}
+
+/* ASIDE STYLES ENDS */
 
 /* FOOTER STYLES */
 
