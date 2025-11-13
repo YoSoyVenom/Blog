@@ -2,9 +2,7 @@
 body {
     font-family: "Inter", sans-serif;
     background-color: var(--color-fondo);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
 }
 
 

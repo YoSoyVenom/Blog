@@ -6,7 +6,7 @@
     align-items: center;
     flex: 1;
     padding: 20px;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .main__formulario {
@@ -25,12 +25,12 @@
 }
 
 .formulario__grupo {
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 5px;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-sm);
+    margin-bottom: 15px;
 }
 
 .formulario__input {
@@ -53,6 +53,7 @@
     border: none;
     background-color: var(--boton-principal-mobile);
     color: var(--fondo-targetas-mobile);
+    font-size: var(--font-size-sm);
     margin-bottom: 15px;
     transition: background-color .3s linear;
     cursor: pointer;
