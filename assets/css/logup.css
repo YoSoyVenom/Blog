@@ -6,11 +6,11 @@
     align-items: center;
     flex: 1;
     padding: 20px;
-    height: 100dvh;
+    height: 86dvh;
 }
 
 .main__formulario {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     background-color: var(--color-menu);
     padding: 20px;
