@@ -373,78 +373,30 @@ body {
 
     /* DESKTOP ASIDE STYLES */
     .sidebar {
-        display: flex;
-        flex-direction: column;
+        display: none;
         height: min-content;
         grid-column: 2/3;
         grid-row: 2/3;
         position: sticky;
-        top: 110px;
+        top: auto;
+        transform: translateY(0);
         z-index: 1;
-        padding: 0 20px;
+        padding: 0 20px 0 0;
         margin-top: 20px;
+        background-color: transparent;
+    }
+
+    .aside-visible {
+        display: block;
+        transform: translateY(0);
     }
 
     .sidebar__container {
         width: 100%;
+        height: min-content;
         border-radius: 9px;
         padding: 20px;
-    }
-
-    .sidebar__profile, .sidebar__tendencies, .sidebar__users{
-        border-bottom: 2px solid var(--fondo-general-mobile);
-        display: flex;
-        gap: 5px;
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .sidebar__title {
-        font-size: var(--font-size-md);
-    }
-
-    .sidebar__profile-content {
-        display: flex;
-        gap: 20px;
-    }
-
-    .sidebar__profile-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        font-size: var(--font-size-sm);
-    }
-
-    .sidebar__username {
-        font-size: var(--font-size-xs);
-        font-weight: 700;
-    }
-
-    .sidebar__check-profile {
-        padding: 5px;
-        background-color: var(--boton-secundario-mobile);
-        width: fit-content;
-        border-radius: 7px;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: background-color .3s linear, color .3s linear;
-    }
-
-    .sidebar__check-profile:hover {
-        background-color: var(--boton-principal-mobile);
-        color: var(--boton-secundario-mobile);
-    }
-
-    .sidebar__list {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding-left: 20px;
-    }
-
-    .sidebar__item > a {
-        text-decoration: none;
-        color: var(--color-texto);
+        background-color: var(--fondo-targetas-mobile);
     }
 
     /* ASIDE DESKTOP STYLES ENDS */
