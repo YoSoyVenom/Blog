@@ -131,8 +131,7 @@ body {
 }
 
 .main__form, 
-.post-card,
-.sidebar__container {
+.post-card {
     background-color: var(--fondo-targetas-mobile);
 }
 
@@ -243,7 +242,90 @@ body {
 
 /* ASIDE STYLES */
 
+.sidebar {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: var(--color-menu);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s, border-top 0.4s ease;
+}
 
+.aside-visible {
+    border-top: 2px solid var(--fondo-general-mobile);
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease,
+    visibility 0.4s, border-top 0.4s ease;
+}
+
+.sidebar__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 15px;
+    height: 100%;
+    padding: 20px;
+}
+
+.sidebar__profile, .sidebar__tendencies, .sidebar__users{
+    border-bottom: 2px solid var(--fondo-general-mobile);
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    padding: 15px;
+}
+.sidebar__title {
+    font-size: var(--font-size-md);
+}
+.sidebar__profile-content {
+    display: flex;
+    gap: 50px;
+}
+.sidebar__profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: var(--font-size-sm);
+}
+.sidebar__username {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+.sidebar__check-profile {
+    padding: 5px;
+    background-color: var(--boton-secundario-mobile);
+    width: fit-content;
+    border-radius: 7px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color .3s linear, color .3s linear;
+}
+.sidebar__check-profile:hover {
+    background-color: var(--boton-principal-mobile);
+    color: var(--boton-secundario-mobile);
+}
+.sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 20px;
+}
+.sidebar__item > a {
+    text-decoration: none;
+    color: var(--color-texto);
+}
 /* ASIDE STYLES ENDS */
 
 /* FOOTER STYLES */
@@ -290,7 +372,7 @@ body {
     /* DESKTOP STYLES ENDS */
 
     /* DESKTOP ASIDE STYLES */
-    /* .sidebar {
+    .sidebar {
         display: flex;
         flex-direction: column;
         height: min-content;
@@ -363,7 +445,7 @@ body {
     .sidebar__item > a {
         text-decoration: none;
         color: var(--color-texto);
-    } */
+    }
 
     /* ASIDE DESKTOP STYLES ENDS */
 
