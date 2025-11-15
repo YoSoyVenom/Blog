@@ -7,6 +7,12 @@
     font-family: "Inter", sans-serif;
 }
 
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--color-fondo);
+}
+
+
 :root {
     /* Colores y estilos */
     --color-fondo: #d6d9e1;
