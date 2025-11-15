@@ -373,22 +373,20 @@ body {
 
     /* DESKTOP ASIDE STYLES */
     .sidebar {
-        display: none;
+        display: block;
         height: min-content;
         grid-column: 2/3;
         grid-row: 2/3;
         position: sticky;
-        top: auto;
+        top: 110px;
         transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
         z-index: 1;
         padding: 0 20px 0 0;
         margin-top: 20px;
         background-color: transparent;
-    }
-
-    .aside-visible {
-        display: block;
-        transform: translateY(0);
     }
 
     .sidebar__container {
