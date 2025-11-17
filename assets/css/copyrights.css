@@ -1,3 +1,12 @@
+html,body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 .encabezado {
     padding: 5px;
     background-color: var(--fondo-targetas-mobile);
@@ -69,7 +78,7 @@
     font-size: var(--font-size-xs);
     background-color: var(--color-menu);
     color: var(--color-texto);
-    height: 100%;
+    margin-top: auto;
 }
 
 .footer__link {
