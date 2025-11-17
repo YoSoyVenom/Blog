@@ -1,71 +1,75 @@
 .encabezado {
-    background-color: var(--color-menu);
+    padding: 5px;
+    background-color: var(--fondo-targetas-mobile);
     position: sticky;
     top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0px 2px 4px var(--sombras);
 }
 
 .encabezado__contenido {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
-    padding: 10px 0;
-}
-
-.encabezado__logo {
-    height: 50px;
-    width: auto;
-}
-
-.encabezado__titulo {
-    color: var(--color-texto);
-    font-size: var(--font-size-lg);
-    margin: 0;
-}
-
-.terminos {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding: 0 20px;
+    justify-content: space-between;
     width: 100%;
 }
 
-.terminos__contenido {
+.encabezado__logo {
+    max-height: 70px;
+    cursor: pointer;
+}
+
+.encabezado__titulo {
+    font-size: var(--font-size-lg);
+}
+
+.main {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    background-color: var(--color-menu);
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     gap: 10px;
-    margin: 0 auto;
-    border-radius:  10px;
-    max-width: 800px;
+    padding: 10px;
+    max-width: 700px;
 }
 
-h2 {
-    font-size: var(--font-size-md)
-}
-
-.terminos__contenido p {
-    font-size: var(--font-size-sm);
-    color: var(--color-texto);
-    margin-bottom: 15px;
-}
-
-ul {
+.main__section {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    background-color: var(--fondo-targetas-mobile);
+    padding: 10px;
+    border-radius: 7px;
+    width: 100%;
+}
+
+.main__subtitle {
+    font-size: var(--font-size-md);
+}
+
+.main__texto {
+    font-size: var(--font-size-sm);
+}
+
+.main__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 10px;
+}
+
+.main__link {
+    cursor: pointer;
+    color: var(--boton-principal-mobile);
 }
 
 .footer {
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     font-size: var(--font-size-xs);
     background-color: var(--color-menu);
     color: var(--color-texto);
+    height: 100%;
 }
 
 .footer__link {
