@@ -238,6 +238,10 @@ body {
     gap: 20px;
 }
 
+.post-card__action-btn {
+    cursor: pointer;
+}
+
 /* MAIN SECTION ENDS */
 
 /* ASIDE STYLES */
