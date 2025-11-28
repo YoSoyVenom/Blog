@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Red social para cv de programador.",
+  "homepage": "https://github.com/YoSoyVenom/Blog#readme",
+  "bugs": {
+    "url": "https://github.com/YoSoyVenom/Blog/issues"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "license": "ISC",
+  "author": "Joan Sebastian Guevara Marin",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
