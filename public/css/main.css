@@ -306,6 +306,7 @@ body {
 .sidebar__username {
     font-size: var(--font-size-xs);
     font-weight: 700;
+    text-decoration: none;
 }
 .sidebar__check-profile {
     padding: 5px;
@@ -315,6 +316,7 @@ body {
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color .3s linear, color .3s linear;
+    text-decoration: none;
 }
 .sidebar__check-profile:hover {
     background-color: var(--boton-principal-mobile);
