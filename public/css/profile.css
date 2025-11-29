@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    padding: 10px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.main__info-profile {
+    background-color: var(--color-menu);
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main__post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: var(--fondo-targetas-mobile);
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px 0px var(--sombras);
+    padding: 7px;
+    width: 100%;
+}
+
+.post-card__content {
+    width: 100%;
+}
+
+.post-card__photo-wrapper {
+    min-width: 40px;
+}
+
+.post-card__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.post-card__name {
+    font-size: var(--font-size-md);
+}
+
+.post-card__message {
+    font-size: var(--font-size-sm);
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+}
+
+.post-card__footer-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.post-card__action-btn {
+    cursor: pointer;
+}
