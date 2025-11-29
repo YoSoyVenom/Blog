@@ -79,25 +79,6 @@ body {
     color: var(--boton-principal-mobile);
 }
 
-.footer {
-    text-align: center;
-    padding: 20px;
-    font-size: var(--font-size-xs);
-    background-color: var(--color-menu);
-    color: var(--color-texto);
-    margin-top: auto;
-}
-
-.footer__link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.footer__link:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
-
 @media (min-width: 768px) {
     .encabezado__titulo {
         font-size: var(--font-size-lg);

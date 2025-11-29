@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
-    <title>Your Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet" />
 </head>
 <body>
     <header class="encabezado">
@@ -21,6 +21,44 @@
         </nav>
         <span class="material-symbols-outlined encabezado__desplegar">menu</span>
     </header>
+    <main class="main">
+        <section class="main__info-profile">
+            <h1 class="main__title">Jhon Doe</h1>
+            <p class="main__mail">jhon.doe@example.com</p>
+        </section>
+        <section class="main__post">
+            <h2 class="subtitle">Post</h2>
+            <article class="post-card">
+                <div class="post-card__photo-wrapper">
+                    <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                </div>
+                <div class="post-card__content">
+                    <div class="post-card__info">
+                        <h2 class="post-card__name">Robertito</h2>
+                        <time class="post-card__date" datetime="2025-10-27">27 de octubre de 2025</time>
+                    </div>
+                    <p class="post-card__message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ullam unde laboriosam? Quis quae culpa illo mollitia vero voluptates possimus deleniti corporis, saepe, odit labore cumque porro molestiae nesciunt? Consequatur.</p>
+                    <footer class="post-card__footer-actions">
+                        <button class="post-card__action-btn" aria-label="Dar me gusta">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                        <button class="post-card__action-btn" aria-colspan="Comentar">
+                            <span class="material-symbols-outlined">chat_bubble_outline</span>
+                        </button>
+                        <button class="post-card__action-btn" aria-label="Repostear">
+                            <span class="material-symbols-outlined">sync</span>
+                        </button>
+                        <button class="post-card__action-btn" aria-label="Compartir">
+                            <span class="material-symbols-outlined">ios_share</span>
+                        </button>
+                    </footer>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright"><span class="symbol">©</span> 2025 <a class="footer__link" href="mybio.html" role="link">MyBio</a> | <a class="footer__link" href="privacidad.html" role="link">Privacidad</a> | <a class="footer__link" href="terminos.html" role="link">Términos</a></p>
+    </footer>
     <script src="../js/base.js"></script>
 </body>
 </html>
