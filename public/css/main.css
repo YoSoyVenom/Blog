@@ -311,6 +311,7 @@ body {
 .sidebar__check-profile {
     padding: 5px;
     background-color: var(--boton-secundario-mobile);
+    color: var(--color-texto);
     width: fit-content;
     border-radius: 7px;
     letter-spacing: 1px;
