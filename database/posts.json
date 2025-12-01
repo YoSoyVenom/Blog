@@ -1,0 +1,22 @@
+{
+    "posts": [
+        {
+        "id": 101,
+        "user_id": 1,
+        "content": "Hoy entrené técnica y finalización 🔥⚽",
+        "image": null,
+        "likes": 12,
+        "comments_count": 2,
+        "created_at": "2025-02-13T09:00:00Z"
+        },
+        {
+        "id": 102,
+        "user_id": 2,
+        "content": "Probando mi nueva cámara 📸",
+        "image": "/uploads/post102.jpg",
+        "likes": 5,
+        "comments_count": 0,
+        "created_at": "2025-02-13T11:30:00Z"
+        }
+    ]
+}

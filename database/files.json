@@ -1,0 +1,11 @@
+{
+    "files": [
+        {
+            "id": "file_001",
+            "user_id": 1,
+            "type": "avatar",
+            "path": "/uploads/avatars/1.jpg",
+            "uploaded_at": "2025-02-12T10:05:00Z"
+        }
+    ]
+}
