@@ -1,5 +1,6 @@
 const userModel = require("../models/userModels");
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 // INICIO DE SESION.
 exports.login = (req, res) => {
@@ -9,16 +10,12 @@ exports.login = (req, res) => {
     if (!user) {
         res.status(404).json({message: "Email de usuario no encontrado..."});
     }
-    if (user.password_hash !== password) {
+    const hashedPassword = bcrypt.compareSync(password, user.password);
+    if (!hashedPassword) {
         res.status(401).json({message: "Contraseña incorrecta"});
     }
 
     res.json({
         message: "Inicio de sesión exitoso",
-        user: {
-            id: user.id,
-            email: user.email,
-            password: user.password
-        }
     });
 };
