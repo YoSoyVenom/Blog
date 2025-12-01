@@ -9,10 +9,13 @@ app.use(express.json());
 const RUTA_ESTATICA = path.join(__dirname, "..", "public");
 app.use(express.static(RUTA_ESTATICA));
 
-// CARGAR ARCHIVOS CON LÓGICA DE LAS RUTAS.
-const viewRouter = require("./routes/viewRouter.js");
-
-// CONEXIÓN CON LOS ROUTERS.
+// RUTAS.
+// CARGAR ARCHIVOS HTML.
+const viewRouter = require("./routes/viewRoutes.js");
 app.use("/", viewRouter);
+
+// CARGAR LOGICA DE INICIO DE SESIÓN Y REGISTRO.
+const authRoutes = require("./routes/authRoutes.js");
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
