@@ -30,10 +30,9 @@ async function iniciarSesion(e) {
         if (response.ok) {
             window.location = "/";
             console.log(message);
-        } else {
-            console.log(`Fallo en la autentificación ${response.status}: ${message}`)
-            alert(message);
         }
+        console.log(`Fallo en la autentificación ${response.status}: ${message}`)
+        alert(message);
     } catch (error) {
         console.log(`Error de red: ${error.message}`);
     }
