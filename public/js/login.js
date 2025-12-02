@@ -6,34 +6,42 @@ btnLogin.addEventListener('click', iniciarSesion);
 
 async function iniciarSesion(e) {
     e.preventDefault();
+
+    // VALIDAR CAMPOS VACÍOS ANTES DE ENVIAR AL SERVIDOR
+    if (!email.value || !password.value) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
     const URL = "http://localhost:3200/api/auth/login";
     const credenciales = {
         email: email.value,
         password: password.value
-    }
+    };
+
     try {
-        // PETICIÓN PARA COMPROBAR LOS DATOS DEL USUARIO.
         const response = await fetch(URL, {
             method: "POST",
-
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credenciales)
         });
 
         const data = await response.json();
         const message = data.message;
 
-        // SI LA PETICIÓN SE CUMPLE.
+        // SI EL LOGIN ES EXITOSO
         if (response.ok) {
+            console.log("Login exitoso:", message);
             window.location = "/";
-            console.log(message);
+            return; 
         }
-        console.log(`Fallo en la autentificación ${response.status}: ${message}`)
+
+        // SI HAY ERROR
+        console.warn(`Error ${response.status}: ${message}`);
         alert(message);
+
     } catch (error) {
-        console.log(`Error de red: ${error.message}`);
+        console.error("Error de red:", error.message);
+        alert("Error de conexión con el servidor.");
     }
 }

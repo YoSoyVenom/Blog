@@ -8,29 +8,32 @@ btnRegister.addEventListener('click', register);
 
 async function register(e) {
     e.preventDefault();
+
     const URL = "http://localhost:3200/api/auth/register";
-    const arrayEmail = Array.from(email.value);
-    if (!arrayEmail.includes("@") || !arrayEmail.includes(".")) {
-        return alert("Tu email no cumple con los requerimientos necesarios. Intenta con otro correo.");
-    }
-    if (!(password.value === confirmPassword.value)) {
-        return alert("Tus contraseñas no son las mismas.");
+
+    // VALIDACIÓN EMAIL
+    if (!email.value.includes("@") || !email.value.includes(".")) {
+        return alert("Tu email no cumple con los requerimientos necesarios.");
     }
 
-    const infoNewUser = {
-        username: username,
-        email: email,
-        password: password
+    // VALIDACIÓN CONTRASEÑAS
+    if (password.value !== confirmPassword.value) {
+        return alert("Tus contraseñas no coinciden.");
     }
+
+    // OBJETO CORRECTO
+    const infoNewUser = {
+        username: username.value,
+        email: email.value,
+        password: password.value
+    };
 
     try {
         const response = await fetch(URL, {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(infoNewUser)
         });
 
@@ -38,11 +41,14 @@ async function register(e) {
         const message = data.message;
 
         if (response.ok) {
+            alert(`Felicitaciones! Estás registrado: ${message}.`);
             window.location = "/";
-            return alert(`Felicitaciones! Estás registrado: ${message}.`);
-        } 
-        console.log(`Error de red ${response.status}: ${message}`);
-        return alert(message);
+            return;
+        }
+
+        console.log(`Error ${response.status}: ${message}`);
+        alert(message);
+
     } catch (error) {
         console.log(`Error de red: ${error.message}`);
     }
