@@ -2,44 +2,83 @@ const userModel = require("../models/userModels");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
-// REGISTRO.
+// REGISTRO
+exports.register = async (req, res) => {
 
-exports.register = (req, res) => {
-    const { username, email, password } = req.body;
-    const user = userModel.findUserByEmail(email);
-    if (user) {
-        res.status(400).json({ message: "Este email ya está registrado." });
-    }
-    if (user.username === username) {
-        res.status(400).json({ message: "Este nombre de usuario ya existe" })
-    }
-    const newUser = {
-        id: crypto.randomUUID(),
-        username: username,
-        email: email,
-        password_hash: bcrypt.hashSync(password),
-        profile_picture: null,
-        bio: "",
-        created_at: ""
-    }
-    userModel.createUser(newUser);
-    res.json({ message: "Usuario creado con exito." });
-}
+    try {
+        const { username, email, password } = req.body;
 
-// INICIO DE SESION.
-exports.login = (req, res) => {
-    const { email, password } = req.body;
-    const user = userModel.findUserByEmail(email);
+        // 1. Verificar si ya existe un usuario con ese email
+        const user = await userModel.findUserByEmail(email);
+        if (user) {
+            return res.status(400).json({ message: "Este email ya está registrado." });
+        }
 
-    if (!user) {
-        res.status(404).json({message: "Email de usuario no encontrado..."});
-    }
-    const passwordMatches = bcrypt.compareSync(password, user.password);
-    if (!passwordMatches) {
-        res.status(401).json({message: "Contraseña incorrecta"});
-    }
+        // 2. Verificar username repetido (TU CÓDIGO ESTABA MAL UBICADO)
+        const allUsers = await userModel.getAllUsers();
+        const usernameExists = allUsers.find(u => u.username === username);
+        if (usernameExists) {
+            return res.status(400).json({ message: "Este nombre de usuario ya existe." });
+        }
 
-    res.json({
-        message: "Inicio de sesión exitoso",
-    });
+        // 3. Crear hash SIN errores
+        const hash = await bcrypt.hash(password, 10); // <<— saltRounds obligatorio
+
+        // 4. Crear usuario
+        const newUser = {
+            id: crypto.randomUUID(),
+            username,
+            email,
+            password_hash: hash,
+            profile_picture: null,
+            bio: "",
+            created_at: new Date().toISOString() // mejor que una fecha quemada
+        };
+
+            // Guardar en DB
+        await userModel.createUser(newUser);
+
+        return res.json({ message: "Usuario creado con éxito." });
+        } catch (error) {
+        console.error("Error en register", error);
+        return res.status(500).json({
+            message: "Error interno del servidor",
+            error: error.message
+        });
+    }
+};
+
+
+// LOGIN
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // 1. Buscar usuario
+        const user = await userModel.findUserByEmail(email);
+        if (!user) {
+            return res.status(404).json({ message: "Email de usuario no encontrado." });
+        }
+
+        // 2. Comparar contraseña
+        const passwordMatches = await bcrypt.compare(password, user.password_hash);
+        if (!passwordMatches) {
+            return res.status(401).json({ message: "Contraseña incorrecta." });
+        }
+
+        return res.json({
+            message: "Inicio de sesión exitoso.",
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email
+            }
+        });
+    } catch (error) {
+        console.error("Error en login", error);
+        res.status(500).json({
+            message: "Error interno del servidor",
+            error: error.message
+        });
+    }
 };

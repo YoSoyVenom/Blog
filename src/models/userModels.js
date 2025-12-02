@@ -3,28 +3,29 @@ const path = require("path");
 
 const DB_PATH = path.join(__dirname, "..", "..", "database", "users.json");
 
-function readDB() {
-    const data = fs.readFileSync(DB_PATH, "utf-8");
+async function readDB() {
+    const data = await fs.promises.readFile(DB_PATH, "utf-8");
     return JSON.parse(data);
 }
 
-function writeDB(data) {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+async function writeDB(data) {
+    await fs.promises.writeFile(DB_PATH, JSON.stringify(data, null, 2));
 }
 
 module.exports = {
-    getAllUsers: ()=> {
-        return readDB().users;
+    getAllUsers: async () => {
+        const db = await readDB();
+        return db.users;
     },
 
-    findUserByEmail: (email) => {
-        const { users } = readDB();
-        return users.find(user => user.email === email);
+    findUserByEmail: async (email) => {
+        const db = await readDB();
+        return db.users.find(user => user.email === email);
     },
 
-    createUser: (newUser) => {
-        const db = fs.readDB();
+    createUser: async (newUser) => {
+        const db = await readDB();
         db.users.push(newUser);
-        writeDB(db);
+        await writeDB(db);
     }
-}
+};
