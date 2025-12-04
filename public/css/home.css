@@ -297,6 +297,11 @@ body {
     display: flex;
     gap: 50px;
 }
+
+.sidebar__photo-icon {
+    cursor: pointer;
+}
+
 .sidebar__profile-info {
     display: flex;
     flex-direction: column;
