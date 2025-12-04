@@ -6,7 +6,6 @@ const headerHeight = header.offsetHeight;
 
 function ajustarClasePorResolucion() {
     const anchoVentana = window.innerWidth;
-    console.log(anchoVentana);
     if (anchoVentana < 768) {
         aside.style.top = `${headerHeight}px`;
         aside.style.height = `calc(100dvh - ${headerHeight}px)`;

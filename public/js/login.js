@@ -29,14 +29,25 @@ async function iniciarSesion(e) {
         const data = await response.json();
         const message = data.message;
 
-        // SI EL LOGIN ES EXITOSO
+        // ===========================
+        //  🔥 LOGIN EXITOSO
+        // ===========================
         if (response.ok) {
+
+            // 👉 GUARDAR TOKEN
+            localStorage.setItem("token", data.token);
+
+            // 👉 GUARDAR DATOS DEL USUARIO
+            localStorage.setItem("user", JSON.stringify(data.user));
+
             console.log("Login exitoso:", message);
             window.location = "/";
-            return; 
+            return;
         }
 
-        // SI HAY ERROR
+        // ===========================
+        //  ❌ ERROR
+        // ===========================
         console.warn(`Error ${response.status}: ${message}`);
         alert(message);
 
