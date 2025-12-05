@@ -21,4 +21,3 @@ function ajustarClasePorResolucion() {
 }
 window.addEventListener("resize", ajustarClasePorResolucion);
 ajustarClasePorResolucion();
-
