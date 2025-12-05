@@ -21,3 +21,20 @@ function ajustarClasePorResolucion() {
 }
 window.addEventListener("resize", ajustarClasePorResolucion);
 ajustarClasePorResolucion();
+
+
+// Dialog.
+
+const modal = document.getElementById("modal-publicacion");
+const textarea = document.getElementById("post-content");
+const btnAbrir = document.getElementById("btn-abrir");
+const btnCerrar = document.getElementById("btn-cerrar");
+
+btnAbrir.addEventListener("click", () => {
+    modal.showModal();
+    textarea.focus();
+});
+
+btnCerrar.addEventListener("click", () => {
+    modal.close();
+});

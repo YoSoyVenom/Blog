@@ -359,6 +359,43 @@ body {
 
 /* FOOTER STYLES ENDS */
 
+/* MODAL STYLES */
+
+.modal {
+    background-color: var(--color-menu);
+    height: 100vh;
+    margin: 0 auto;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0px 2px 4px var(--sombras);
+    padding: 10px;
+}
+
+.modal__contenedor {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    min-height: 50%;
+    max-height: 100%;
+}
+
+.modal__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.modal__acciones-superiores {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* MAIN, ASIDE AND FOOTER SECTIONS MEDIA QUERIES */
 
 @media screen and (min-width: 768px) {
