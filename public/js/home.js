@@ -33,8 +33,10 @@ const btnCerrar = document.getElementById("btn-cerrar");
 btnAbrir.addEventListener("click", () => {
     modal.showModal();
     textarea.focus();
+    modal.classList.add("modal-visible");
 });
 
 btnCerrar.addEventListener("click", () => {
     modal.close();
+    modal.classList.remove("modal-visible");
 });

@@ -365,13 +365,16 @@ body {
     background-color: var(--color-menu);
     min-width: 500px;
     height: 100dvh;
-    display: flex;
     margin: 0 auto;
     border: none;
     border-radius: 30px;
     outline: none;
     box-shadow: 0px 2px 4px var(--sombras);
     padding: 10px;
+}
+
+.modal-visible {
+    display: flex;
 }
 
 .modal__contenedor {
