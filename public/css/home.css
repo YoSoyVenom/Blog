@@ -3,7 +3,7 @@ body {
 }
 
 .layout {
-    max-width: 1300px;
+    width: 100%;
 }
 
 /* HEADER STYLES*/
