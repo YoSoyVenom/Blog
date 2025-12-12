@@ -1,22 +1,42 @@
 {
     "posts": [
         {
-        "id": 101,
-        "user_id": 1,
-        "content": "Hoy entrené técnica y finalización 🔥⚽",
-        "image": null,
-        "likes": 12,
-        "comments_count": 2,
-        "created_at": "2025-02-13T09:00:00Z"
+            "id": "b84699be-73d7-4fc2-8f44-a5a2adbb54eb",
+            "user_id": "c12653b9-929c-4e17-8bb7-c4e91902ff01",
+            "username": "Roberto Galarza",
+            "content": "A pesar de todo, seguimos enfrentando los desafios de esta cruda y desasocegadora vida, porque recordamos que aunque los tiempos sean dificiles, nuestra fé, esperanza e inteligencia se sobreponen a ello.",
+            "image": null,
+            "likes": 0,
+            "comments_count": 0,
+            "created_at": "2025-12-12T18:50:39.692Z"
         },
         {
-        "id": 102,
-        "user_id": 2,
-        "content": "Probando mi nueva cámara 📸",
-        "image": "/uploads/post102.jpg",
-        "likes": 5,
-        "comments_count": 0,
-        "created_at": "2025-02-13T11:30:00Z"
+            "id": "67694d30-ee9f-45a2-9d2a-e058212a9f2e",
+            "user_id": "c12653b9-929c-4e17-8bb7-c4e91902ff01",
+            "username": "Roberto Galarza",
+            "content": "Durante nuestra larga y compleja vida, estamos más pendientes de no morir que de vivir.",
+            "image": null,
+            "likes": 0,
+            "comments_count": 0,
+            "created_at": "2025-12-12T18:20:33.364Z"
+        },
+        {
+            "id": 101,
+            "user_id": 1,
+            "content": "Hoy entrené técnica y finalización 🔥⚽",
+            "image": null,
+            "likes": 12,
+            "comments_count": 2,
+            "created_at": "2025-02-13T09:00:00Z"
+        },
+        {
+            "id": 102,
+            "user_id": 2,
+            "content": "Probando mi nueva cámara 📸",
+            "image": "/uploads/post102.jpg",
+            "likes": 5,
+            "comments_count": 0,
+            "created_at": "2025-02-13T11:30:00Z"
         }
     ]
 }

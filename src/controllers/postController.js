@@ -9,11 +9,13 @@ exports.createPost = async (req, res) => { // 💡 Hacemos la función ASÍNCRON
         const userId = req.user.id; 
         const username = req.user.username; 
         
-        const { title, content } = req.body; // Dejamos 'title' y 'content' del frontend (como en el ejemplo anterior)
+        const { content, date } = req.body; // Dejamos 'title' y 'content' del frontend (como en el ejemplo anterior)
 
         if (!content) {
             return res.status(400).json({ message: "El contenido de la publicación es requerido." });
         }
+
+        const createdAt = date ? new Date(date).toISOString() : new Date().toISOString();
 
         // 1. Crear el objeto post, siguiendo la estructura de tu posts.json
         const newPost = {
@@ -24,7 +26,7 @@ exports.createPost = async (req, res) => { // 💡 Hacemos la función ASÍNCRON
             image: null,             // Por defecto, sin imagen
             likes: 0,
             comments_count: 0,
-            created_at: new Date().toISOString()
+            created_at: createdAt
         };
         
         // 2. 🔑 CLAVE: Llamar a la función del modelo para guardar el post
@@ -43,3 +45,19 @@ exports.createPost = async (req, res) => { // 💡 Hacemos la función ASÍNCRON
         });
     }
 };
+
+exports.getAllPosts = async (req, res) => {
+    try {
+        const posts = await postModel.getAllPosts();
+        return res.status(200).json({ 
+            message: "Publicaciones obtenidas con éxito.", 
+            posts: posts
+         });
+    } catch (error) {
+       console.error("Error al obtener publicaciones:", error);
+       return res.status(500).json({
+           message: "Error interno al obtener las publicaciones.",
+           error: error.message
+       });
+    }
+}

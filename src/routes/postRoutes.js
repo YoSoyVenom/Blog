@@ -1,8 +1,8 @@
 // routes/postRoutes.js
 
 const router = require('express').Router();
-const authMiddleware = require('../middleware/auth'); // Importar el guardián
-const postController = require('../controllers/postController'); // Importar el controlador
+const authMiddleware = require('../middleware/auth.js'); // Importar el guardián
+const postController = require('../controllers/postController.js'); // Importar el controlador
 
 // Ruta para crear una nueva publicación
 // Prefijo de la ruta asumido en app.js: /api/posts
@@ -14,5 +14,6 @@ router.post('/create',
 
 // Si quieres una ruta para ver el feed, también la protegerías:
 // router.get('/', authMiddleware, postController.getFeed); 
+router.get('/', postController.getAllPosts);
 
 module.exports = router;

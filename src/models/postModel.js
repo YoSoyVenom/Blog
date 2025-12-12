@@ -4,7 +4,7 @@ const fs = require('fs/promises'); // Usamos la versión de promesas para operac
 const path = require('path');
 
 // Ruta al archivo de datos de posts
-const POSTS_FILE = path.join(__dirname, '..', 'data', 'posts.json');
+const POSTS_FILE = path.join(__dirname, '..', "..", 'database', 'posts.json');
 
 /**
  * Lee el archivo posts.json y devuelve todos los posts.
