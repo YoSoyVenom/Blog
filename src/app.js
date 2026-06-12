@@ -10,6 +10,7 @@ app.use(express.json());
 // 💡 Nuevo: Middleware para leer y escribir cookies
 app.use(cookieParser()); 
 
-
+const userRouter = require("./routes/userRouter");
+app.get("/", userRouter);
 
 module.exports = app;
