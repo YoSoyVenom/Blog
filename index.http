@@ -15,3 +15,6 @@ Content-Type: application/json
     "email": "roberto@example.com",
     "password": "123456"
 }
+
+###
+GET http://localhost:3200/db_prueba
