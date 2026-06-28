@@ -3,13 +3,13 @@ const pool = require("../config/db_config");
 //Funciones de Búsqueda.
 
 async function findUserByEmail (email) {
-    const QUERY = 'SELECT * FROM users WHERE email = $1 RETURNING password_hash';
+    const QUERY = 'SELECT user_id, password_hash FROM users WHERE email = $1';
 
     const result = await pool.query(QUERY, [email]);
 
     if (result.rows.length === 0) return null;
 
-    return result.rows[0].password_hash;
+    return result.rows[0];
 }
 
 async function findUserById(id) {
