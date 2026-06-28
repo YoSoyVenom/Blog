@@ -66,3 +66,7 @@ async function userController(req, res) {
 
     }
 };
+
+module.exports = {
+    userController
+}
