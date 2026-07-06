@@ -1,17 +1,22 @@
-require("dotenv").config;
+require("dotenv").config();
 // app.js
 const express = require("express");
 const path = require("path");
 const app = express();
-const cookieParser = require("cookie-parser"); // Ya lo tienes importado, ¡bien!
+const cookieParser = require("cookie-parser");
+const { loginRouter } = require("./routes/loginRouter");
+app.use(express.urlencoded({ extended: true }));
 
-// PARA MANEJAR req.body
 app.use(express.json());
-
-// 💡 Nuevo: Middleware para leer y escribir cookies
 app.use(cookieParser()); 
+app.use(
+    helmet({
+        crossOriginResourcePolicy: false
+    })
+);
+app.use("/css", express.static(path.join(__dirname, "..", "public", "css")));
+app.use("/js", express.static(path.join(__dirname, "..", "public", "js")));
 
-const userRouter = require("./routes/userRouter");
-app.get("/", userRouter);
+app.use("/login", loginRouter);
 
 module.exports = app;

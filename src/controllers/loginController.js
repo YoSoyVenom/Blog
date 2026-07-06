@@ -1,17 +1,18 @@
+const path = require("path");
 const { findUserByEmail } = require("../services/userService");
 const bcrypt = require("bcrypt");
-const JWT = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = require("../config/jwt");
 
-async function userController(req, res) {
+function loadLogin(req, res) {
+    res.sendFile(path.join(__dirname, "..", "..", "public", "views", "login.html"));
+}
+
+async function loginController(req, res) {
 
     try {
         
         const { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(400).json({ message: "Todos los campos son obligatorios" });
-        }
 
         const user = await findUserByEmail(email);
 
@@ -28,7 +29,7 @@ async function userController(req, res) {
         // Generar JWT
         const payload = { id: user.user_id };
 
-        const accessToken = JWT.sign(
+        const accessToken = jwt.sign(
             payload, 
             ACCESS_SECRET_KEY,
             {
@@ -36,7 +37,7 @@ async function userController(req, res) {
             }
         );
 
-        const refreshToken = JWT.sign(
+        const refreshToken = jwt.sign(
             payload, 
             REFRESH_SECRET_KEY,
             {
@@ -44,29 +45,33 @@ async function userController(req, res) {
             }
         );
 
-        res.cookie("access_token", accessToken, {
+        const cookieOptions = {
             httpOnly: true,
             sameSite: "strict",
-            maxAge: 1000 * 60 * 15,
             secure: process.env.NODE_ENV === "production"
+        };
+
+        res.cookie("access_token", accessToken, {
+            cookieOptions,
+            maxAge: 1000 * 60 * 15
         });
 
         res.cookie("refresh_token", refreshToken, {
-            httpOnly: true,
-            sameSite: "strict",
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-            secure: process.env.NODE_ENV === "production"
+            cookieOptions,
+            maxAge: 1000 * 60 * 60 * 24 * 7
         });
 
         return res.status(200).json({ message: "Inicio de sesión exitoso" });
 
     } catch (error) {
 
+        console.error(error);
         res.status(500).json({ message: "Error interno del servidor" });
 
     }
 };
 
 module.exports = {
-    userController
-}
+    loadLogin,
+    loginController
+};
