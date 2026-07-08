@@ -64,6 +64,16 @@
     background-color: var(--color-texto);
 }
 
+.formulario__response {
+    font-size: var(--font-size-xs);
+    text-align: center;
+    color: #a6192e;
+}
+
+.formulario__texto {
+    text-align: center;
+}
+
 .formulario__texto a {
     font-size: var(--font-size-xs);
     color: var(--color-texto);
