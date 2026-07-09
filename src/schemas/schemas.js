@@ -22,6 +22,11 @@ const validateDataRegister = z.strictObject({
             .regex(/[a-z]/, { message: "La contraseña debe contener al menos una minúscula" })
             .regex(/[0-9]/, { message: "La contraseña debe tener al menos un número" })
             .regex(/[^A-Za-z0-9]/, { message: "La contraseña debe contener caracteres especiales" }),
+            
+        bio: z
+            .string({ required_error: "Escribir una biografía" })
+            .min(10, { message: "La biografía es muy corta" })
+            .max(3000, { message: "La biografía es demasiado extensa." }),
     })
 });
 

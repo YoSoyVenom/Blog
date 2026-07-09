@@ -6,6 +6,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const { loginRouter } = require("./routes/loginRouter");
 const helmet = require("helmet");
+const { registerRouter } = require("./routes/registerRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,6 +21,10 @@ app.use("/css", express.static(path.join(__dirname, "..", "public", "css")));
 app.use("/js", express.static(path.join(__dirname, "..", "public", "js")));
 app.use("/imagenes", express.static(path.join(__dirname, "..", "public", "imagenes")));
 
+// LOGIN
 app.use("/login", loginRouter);
+
+// REGISTER
+app.use("/register", registerRouter);
 
 module.exports = app;

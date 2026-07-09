@@ -6,7 +6,7 @@ const { validateMiddleware } = require("../middleware/validateMiddleware");
 const { loadLogin, loginController } = require("../controllers/loginController");
 
 loginRouter.get("/", loadLogin);
-loginRouter.post("/", loginLimiter, validateMiddleware(validateDataLogin), loginController);
+loginRouter.post("/", loginLimiter, loginMiddleware(validateDataLogin), loginController);
 
 module.exports = {
     loginRouter

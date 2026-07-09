@@ -17,13 +17,13 @@ async function loginController(req, res) {
         const user = await findUserByEmail(email);
 
         if (!user) {
-            return res.status(401).json({ message: "Credenciales inválidas" });
+            return res.status(401).json({ message: "INVALID_CREDENTIALS" });
         }
 
         const isValidPassword = await bcrypt.compare(password, user.password_hash);
 
         if (!isValidPassword) {
-            return res.status(401).json({ message: "Credenciales inválidas" });
+            return res.status(401).json({ message: "INVALID_CREDENTIALS" });
         }
 
         // Generar JWT
@@ -52,21 +52,23 @@ async function loginController(req, res) {
         };
 
         res.cookie("access_token", accessToken, {
-            cookieOptions,
+            ...cookieOptions,
             maxAge: 1000 * 60 * 15
         });
 
+        // DESPUES EL REFRESH TOKEN DEBE GUARDARSE EN LA BASE DE DATOS.
+
         res.cookie("refresh_token", refreshToken, {
-            cookieOptions,
+            ...cookieOptions,
             maxAge: 1000 * 60 * 60 * 24 * 7
         });
 
-        return res.status(200).json({ message: "Inicio de sesión exitoso" });
+        return res.status(200).json({ message: "SUCCESSFUL_LOGIN" });
 
     } catch (error) {
 
         console.error(error);
-        res.status(500).json({ message: "Error interno del servidor" });
+        res.status(500).json({ message: "INTERNAL_SERVER_ERROR" });
 
     }
 };
