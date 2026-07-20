@@ -1,6 +1,6 @@
 const { z } = require("zod"); 
 
-const validateDataRegister = z.strictObject({
+const validateDataRegister = z.object({
     body: z.object({
         username: z
             .string({ required_error: "El nombre de usuario es obligatorio" })
@@ -22,11 +22,17 @@ const validateDataRegister = z.strictObject({
             .regex(/[a-z]/, { message: "La contraseña debe contener al menos una minúscula" })
             .regex(/[0-9]/, { message: "La contraseña debe tener al menos un número" })
             .regex(/[^A-Za-z0-9]/, { message: "La contraseña debe contener caracteres especiales" }),
-            
+        
+        confirmPassword: z
+            .string({ required_error: "Confirmar la contraseña es obligatorio" }),
+
         bio: z
             .string({ required_error: "Escribir una biografía" })
             .min(10, { message: "La biografía es muy corta" })
             .max(3000, { message: "La biografía es demasiado extensa." }),
+    }).refine((data) => data.password === data.confirmPassword, {
+        message: "Las contraseñas no coinciden",
+        path: ["confirmPassword"]
     })
 });
 

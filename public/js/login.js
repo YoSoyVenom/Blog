@@ -7,11 +7,12 @@ async function iniciarSesion(e) {
     e.preventDefault();
 
     if (!email.value || !password.value) {
-        alert("Por favor completa todos los campos.");
+        formularioResponse.innerText = "THE_FIELDS_ARE_REQUIREDS";
         return;
     }
 
     const URL = "/login";
+
     const credenciales = {
         email: email.value,
         password: password.value
@@ -38,7 +39,7 @@ async function iniciarSesion(e) {
         formularioResponse.innerText = message;
 
     } catch (error) {
-        formularioResponse.innerText = "No fue posible conectar con el servidor.";
+        formularioResponse.innerText = "CONNECTION_ERROR";
         console.error(error);
     }
 }

@@ -42,6 +42,11 @@
     transition: box-shadow .3s linear;
 }
 
+.error {
+    color: var(--color-error);
+    font-size: var(--font-size-xs);
+}
+
 .formulario__input:hover, .formulario__input:focus {
     box-shadow: 0px 2px 4px var(--sombras);
 }

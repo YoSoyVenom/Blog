@@ -27,24 +27,30 @@
             <label for="formulario__nombre" class="formulario__grupo">
                 Full Name
                 <input type="text" id="formulario__nombre" name="nombre" required class="formulario__input" placeholder="Your Name">
+                <p class="error" id="username__error"></p>
             </label>
             <label for="formulario__email" class="formulario__grupo">
                 Email
                 <input type="text" id="formulario__email" name="email" required class="formulario__input" placeholder="example@dominio.com">
+                <p class="error" id="email__error"></p>
             </label>
             <label for="formulario__password" class="formulario__grupo">
                 Password
                 <input type="password" id="formulario__password" name="password" required class="formulario__input" placeholder="********">
+                <p class="error" id="password__error"></p>
             </label>
             <label for="formulario__confirm_password" class="formulario__grupo">
                 Confirm Password
                 <input type="password" id="formulario__confirm_password" name="confirm_password" required class="formulario__input" placeholder="********">
+                <p class="error" id="confirm__password__error"></p>
             </label>
             <label for="formulario__bio" class="formulario__grupo">
                 Biography
-                <textarea name="Biography" id="formulario__input" required class="formulario__input" placeholder="Hi! I'm from Colombia and I am happy"></textarea>
+                <textarea name="Biography" id="formulario__biografia" required class="formulario__input" placeholder="Hi! I'm from Colombia and I am happy"></textarea>
+                <p class="biografia" id="biografia__error"></p>
             </label>
             <button type="submit" class="formulario__boton" aria-label="Sign Up" id="btn-register">Sign Up</button>
+            <p class="error" id="formulario__response"></p>
             <p class="formulario__termino">By signing up, you agree to our <a href="./terms" class="formulario__enlace">Terms of Service</a> and <a href="./privacy" class="formulario__enlace">Privacy Policy</a>.</p>
             <p class="formulario__texto">Already have an account? <a href="./login" class="formulario__enlace">Log in here</a>.</p>
         </form>

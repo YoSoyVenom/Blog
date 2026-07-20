@@ -1,3 +1,5 @@
+const { ZodError } = require("zod");
+
 const validateMiddleware = (schema) => (req, res, next) => {
 
     try {
@@ -7,13 +9,14 @@ const validateMiddleware = (schema) => (req, res, next) => {
 
         next();
     } catch (error) {
-        if (error.errors) {
-            const errorMessages = error.errors.map((err) => {
+        if (error instanceof ZodError) {
+            const errorMessages = error.issues.map((err) => {
                 return {
                     field: err.path.at(-1),
                     message: err.message
                 }
             });
+            
             return res.status(400).json({
                 status: "fail",
                 errors: errorMessages

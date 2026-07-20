@@ -67,7 +67,7 @@
 .formulario__response {
     font-size: var(--font-size-xs);
     text-align: center;
-    color: #a6192e;
+    color: var(--color-error);
 }
 
 .formulario__texto {

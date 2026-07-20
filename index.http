@@ -1,7 +1,18 @@
+POST http://localhost:3200/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Milena",
+    "email": "milena8614@gmail.com",
+    "password": "mishijos_primero",
+    "bio": "Soy Milena agricultora y ama de casa."
+}
+
+###
 POST http://localhost:3200/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "joanmarin2021@gmail.com",
-    "password": "rooej038"
+    "email": "ortegajohan73@gmail.com",
+    "password": "simplementeFutbol#10"
 }
