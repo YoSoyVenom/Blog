@@ -27,7 +27,7 @@ async function registerController(req, res) {
         // CREAR TOKENS Y COOKIES.
 
         const payload = {
-            user_id: user_id
+            id: user_id
         };
 
         const accessToken = jwt.sign(

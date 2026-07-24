@@ -4,9 +4,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const cookieParser = require("cookie-parser");
-const { loginRouter } = require("./routes/loginRouter");
 const helmet = require("helmet");
+const { loginRouter } = require("./routes/loginRouter");
 const { registerRouter } = require("./routes/registerRouter");
+const { homeRouter } = require("./routes/homeRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,5 +27,8 @@ app.use("/login", loginRouter);
 
 // REGISTER
 app.use("/register", registerRouter);
+
+// HOME
+app.use("/home", homeRouter)
 
 module.exports = app;
