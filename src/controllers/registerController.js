@@ -3,6 +3,7 @@ const { createUser } = require("../services/userService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = require("../config/jwt");
+const { createRefreshToken } = require("../services/refreshTokenService");
 
 function loadRegister(req, res) {
     res.sendFile(path.join(__dirname, "..", "..", "public", "views", "register.html"));
@@ -38,8 +39,6 @@ async function registerController(req, res) {
             }
         );
 
-        // DESPUES EL REFRESH TOKEN DEBE GUARDARSE EN LA BASE DE DATOS.
-
         const refreshToken = jwt.sign(
             payload,
             REFRESH_SECRET_KEY,
@@ -47,6 +46,8 @@ async function registerController(req, res) {
                 expiresIn: "7d"
             }
         );
+
+        await createRefreshToken(user_id, refreshToken);
 
         const cookieOptions = {
             httpOnly: true,

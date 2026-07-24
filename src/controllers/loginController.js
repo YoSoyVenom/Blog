@@ -1,5 +1,6 @@
 const path = require("path");
 const { findUserByEmail } = require("../services/userService");
+const { createRefreshToken } = require("../services/refreshTokenService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = require("../config/jwt");
@@ -45,6 +46,8 @@ async function loginController(req, res) {
             }
         );
 
+        await createRefreshToken(user.user_id, refreshToken);
+
         const cookieOptions = {
             httpOnly: true,
             sameSite: "strict",
@@ -55,8 +58,6 @@ async function loginController(req, res) {
             ...cookieOptions,
             maxAge: 1000 * 60 * 15
         });
-
-        // DESPUES EL REFRESH TOKEN DEBE GUARDARSE EN LA BASE DE DATOS.
 
         res.cookie("refresh_token", refreshToken, {
             ...cookieOptions,
