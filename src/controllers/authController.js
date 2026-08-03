@@ -11,10 +11,10 @@ async function loadUserData(req, res) {
     const user = await findUserById(id);
 
     if (!user) {
-        res.status(401).json({message: "INVALID_CREDENTIAL"});
+        return res.status(401).json({message: "INVALID_CREDENTIAL"});
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         username: user.username
     });
 }

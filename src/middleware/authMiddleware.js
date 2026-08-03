@@ -5,7 +5,7 @@ function requireAuth(req, res, next) {
     const accessToken = req.cookies.access_token;
 
     if (!accessToken) {
-        return res.status(401);
+        return res.status(401).json({ message: "ACCESS_TOKEN_REQUIRED" });
     }
 
     try {
@@ -17,7 +17,7 @@ function requireAuth(req, res, next) {
 
         next();
     } catch (error) {
-        res.status(401);
+        return res.status(401).json({ message: "INVALID_ACCESS_TOKEN" });
     }
 }
 
