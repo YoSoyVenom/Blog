@@ -6,3 +6,12 @@ if (menuToggle) {
         menuList.classList.toggle('encabezado__lista--visible');
     });
 }
+
+export async function fetchWithAuth() {
+    const response = await fetch("/refresh", {
+        method: "POST",
+        credentials: "include"
+    });
+
+    return response.ok;
+}

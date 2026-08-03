@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const { loginRouter } = require("./routes/loginRouter");
 const { registerRouter } = require("./routes/registerRouter");
 const { homeRouter } = require("./routes/homeRouter");
+const { refreshRouter } = require("./routes/refreshRouter")
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,6 +30,9 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 
 // HOME
-app.use("/home", homeRouter)
+app.use("/home", homeRouter);
+
+// REFRESH TOKEN
+app.use("/refresh", refreshRouter);
 
 module.exports = app;

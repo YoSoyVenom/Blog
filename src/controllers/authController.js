@@ -8,14 +8,14 @@ function loadHome(req, res) {
 async function loadUserData(req, res) {
     const id = req.user.id;
 
-    const username = await findUserById(id);
+    const user = await findUserById(id);
 
-    if (!username) {
+    if (!user) {
         res.status(401).json({message: "INVALID_CREDENTIAL"});
     }
 
     res.status(200).json({
-        username: username
+        username: user.username
     });
 }
 

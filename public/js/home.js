@@ -1,3 +1,5 @@
+import { fetchWithAuth } from "./base.js";
+
 const aside = document.getElementById("sidebar");
 const btnAsideProfile = document.getElementById("btn-profile");
 const header = document.getElementById("encabezado");
@@ -52,10 +54,10 @@ textarea.addEventListener('input', () => {
 const usernameObject = document.getElementById("sidebar__username");
 
 async function showDataUser() {
-    const URL = "/home/me";
+    const url = "/home/me";
 
     try {
-        const response = await fetch(URL, {
+        const response = await fetch(url, {
             method: "GET",
             credentials: "include"
         });
@@ -63,16 +65,23 @@ async function showDataUser() {
         const data = await response.json();
 
         if (response.ok) {
-            usernameObject.innerText = data.username
+            usernameObject.innerText = data.username;
+        } else if (response.status === 401) {
+            const refreshed = await fetchWithAuth();
+        
+            if (refreshed) {
+                return showDataUser();
+            }
+        
+            window.location.href = "/login";
         }
 
-        if (response.status === 401) {
-            return window.location.href = "/login";
-        }
-
-    } catch (error) {
-        console.log("INTERNAL_SERVER_ERROR");
+    } 
+    catch (error) {
+        console.error(error);
     }
 }
+
+// Crear un fetch with auth para validar el refresh
 
 document.addEventListener("DOMContentLoaded", showDataUser);
