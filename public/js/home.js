@@ -1,5 +1,6 @@
 import { fetchWithAuth } from "./base.js";
 
+// ASIDE CODE
 const aside = document.getElementById("sidebar");
 const btnAsideProfile = document.getElementById("btn-profile");
 const header = document.getElementById("encabezado");
@@ -25,35 +26,11 @@ ajustarClasePorResolucion();
 
 const postsContainer = document.querySelector(".main__feed");
 
-const modal = document.getElementById("modal-publicacion");
-const textarea = document.getElementById("post-content");
-const dateInput = document.getElementById("modal-fecha"); 
-const btnAbrir = document.getElementById("btn-abrir");
-const btnCerrar = document.getElementById("btn-cerrar");
-const postForm = modal.querySelector(".modal__formulario");
-const btnPublicar = modal.querySelector(".modal__btn-publicar");
-
-btnAbrir.addEventListener("click", () => {
-    modal.showModal();
-    textarea.focus();
-    modal.classList.add("modal-visible");
-});
-
-btnCerrar.addEventListener("click", () => {
-    modal.close();
-    modal.classList.remove("modal-visible");
-    postForm.reset(); 
-    btnPublicar.disabled = true; 
-});
-
-textarea.addEventListener('input', () => {
-    btnPublicar.disabled = textarea.value.trim() === '';
-});
-
+// MOSTRAR INFORMACIÓN DEL USUARIO
 
 const usernameObject = document.getElementById("sidebar__username");
 
-async function showDataUser() {
+async function mostrarInfoUsuario() {
     const url = "/home/me";
 
     try {
@@ -70,7 +47,7 @@ async function showDataUser() {
             const refreshed = await fetchWithAuth();
         
             if (refreshed) {
-                return showDataUser();
+                return mostrarInfoUsuario();
             }
         
             window.location.href = "/login";
@@ -82,6 +59,32 @@ async function showDataUser() {
     }
 }
 
-// Crear un fetch with auth para validar el refresh
+document.addEventListener("DOMContentLoaded", mostrarInfoUsuario);
 
-document.addEventListener("DOMContentLoaded", showDataUser);
+// LOG OUT
+
+const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
+const simboloCerrarSesion = document.getElementById("simbolo-cerrar-sesion");
+
+btnCerrarSesion.addEventListener("click", cerrarSesion);
+simboloCerrarSesion.addEventListener("click", cerrarSesion);
+
+async function cerrarSesion() {
+    try {
+        const response = await fetch("/logout", {
+            method: "POST",
+            credentials: "include"
+        });
+
+        if (response.ok) {
+            window.location.href = "/login";
+            return;
+        }
+
+        const data = await response.json();
+        console.error(data.message);
+
+    } catch (error) {
+        console.error(error);
+    }
+}

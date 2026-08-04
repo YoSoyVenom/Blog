@@ -21,7 +21,7 @@
                 </form>
 
                 <nav class="encabezado__acciones">
-                    <button class="encabezado__publicar" id="btn-abrir" aria-label="Crear nueva publicación">Nueva publicación</button>
+                    <button class="encabezado__cerrar-sesion" id="btn-cerrar-sesion" aria-label="Crear nueva publicación">Log Out</button>
                     <a href="#" class="material-symbols-outlined encabezado__user" id="btn-profile" aria-label="Perfil del usuario" role="link">account_circle</a>
                 </nav>
             </div>
@@ -50,6 +50,7 @@
                             <a class="sidebar__username" id="sidebar__username" role="link">Nombre de Usuario</a>
                             <a class="sidebar__check-profile" role="link" href="./profile">Ver perfil</a>
                         </div>
+                        <span class="material-symbols-outlined sidebar__logout" id="simbolo-cerrar-sesion" aria-label="Cerrar sesión" id="btn-logout">logout</span>
                     </div>
                 </section>
                 <section class="sidebar__tendencies">
@@ -75,52 +76,6 @@
     <footer class="footer">
         <p class="footer__copyright"><span class="symbol">©</span> 2025 <a class="footer__link" href="/about" role="link">MyBio</a> | <a class="footer__link" href="privacy" role="link">Privacidad</a> | <a class="footer__link" href="/terms" role="link">Términos</a></p>
     </footer>
-
-    <dialog class="modal" id="modal-publicacion" aria-labelledby="modal-titulo">
-        <div class="modal__contenedor"> 
-            <header class="modal__header">
-                <div class="modal__acciones-superiores">
-                    <button type="button" class="modal__btn-cerrar" id="btn-cerrar" aria-label="Cerrar ventana de publicación">
-                        <span class="material-symbols-outlined">close</span>
-                    </button>
-
-                    <button type="button" class="modal__btn-menu" aria-label="Opciones adicionales">
-                        <span class="material-symbols-outlined">more_horiz</span>
-                    </button>
-                </div>
-            
-                <h2 id="modal-titulo" class="modal__title">Nueva publicación</h2>
-            </header>
-
-            <main class="modal__body">
-                <form class="modal__formulario" method="POST" action="/create-post">
-
-                    <label for="post-content" class="sr-only">Contenido de la publicación</label>
-                    <textarea 
-                        name="content" 
-                        id="post-content" 
-                        class="modal__campo modal__campo--textarea" 
-                        placeholder="¿Qué estás pensando?" 
-                        required 
-                    ></textarea>
-
-                    <label for="modal-fecha" class="sr-only">Fecha de la publicación</label>
-                    <input 
-                        type="date" 
-                        name="date" 
-                        id="modal-fecha" 
-                        class="modal__campo modal__campo--date"
-                    >
-
-                    <button type="submit" class="modal__btn-publicar" disabled>
-                        Publicar
-                    </button>
-
-                </form>
-            </main>
-
-        </div>
-    </dialog>
 
     <script type="module" src="../js/base.js"></script>
     <script type="module" src="../js/home.js"></script>
