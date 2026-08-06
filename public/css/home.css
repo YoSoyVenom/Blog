@@ -82,6 +82,9 @@ body {
 
 /* DESKTOP HEADER STYLES */
 @media screen and (min-width: 768px) {
+    .layout {
+        height: auto;
+    }
     .encabezado__contenido {
         gap: 15px;
         flex-wrap: nowrap;

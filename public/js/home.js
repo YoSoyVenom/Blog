@@ -88,3 +88,46 @@ async function cerrarSesion() {
         console.error(error);
     }
 }
+
+const btnPublicar = document.getElementById("main__publicar");
+const textoPublicacion = document.getElementById("texto_publicacion");
+
+btnPublicar.addEventListener("click", crearPost);
+
+
+
+async function crearPost(e) {
+    e.preventDefault();
+
+    const url = "/posts";
+
+    const credenciales = {
+        content: textoPublicacion.value
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(credenciales)
+        });
+
+        if (response.ok) {
+            textoPublicacion.value = "";
+            await loadPosts();
+            return;
+        }
+
+        const data = await response.json();
+        console.error(data.message);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//loadPosts() → obtiene los posts del backend.
+//renderPosts(posts) → los pinta en el HTML.

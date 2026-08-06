@@ -48,7 +48,18 @@ const validateDataLogin = z.strictObject({
     })
 });
 
+const validatePost = z.strictObject({
+    body: z.object({
+        content: z
+            .string({ required_error: "El contenido del post es obligatorio" })
+            .trim()
+            .min(10, { message: "El mensaje es muy corto" })
+            .max(5000, { message: "El mensaje es demasiado extenso" })
+    })
+});
+
 module.exports = {
     validateDataRegister,
-    validateDataLogin
+    validateDataLogin,
+    validatePost
 };

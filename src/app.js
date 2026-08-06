@@ -10,6 +10,7 @@ const { registerRouter } = require("./routes/registerRouter");
 const { homeRouter } = require("./routes/homeRouter");
 const { refreshRouter } = require("./routes/refreshRouter");
 const { logOutRouter } = require("./routes/logOutRouter");
+const { postsRouter } = require("./routes/postsRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,5 +39,8 @@ app.use("/refresh", refreshRouter);
 
 // LOGOUT
 app.use("/logout", logOutRouter)
+
+// POSTS
+app.use("/posts", postsRouter);
 
 module.exports = app;
