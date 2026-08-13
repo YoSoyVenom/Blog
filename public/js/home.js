@@ -1,13 +1,35 @@
+// FUNCIONES BASE.
 import { fetchWithAuth, requestWithAuth } from "./base.js";
 
-// ASIDE CODE
+// VARIABLES
+
+// Variables para el aside.
 const aside = document.getElementById("sidebar");
 const btnAsideProfile = document.getElementById("btn-profile");
 const header = document.getElementById("encabezado");
 const headerHeight = header.offsetHeight;
 
+// Elemento html que contiene el nombre de usuario.
+const usernameObject = document.getElementById("sidebar__username");
+
+// Elemento html para cerrar sesión en resoluciones grandes.
+const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
+// Elemento html para cerrar sesión en resoluciones pequeñas.
+const simboloCerrarSesion = document.getElementById("simbolo-cerrar-sesion");
+
+// Elemento html para hacer publicaciones.
+const btnPublicar = document.getElementById("main__publicar");
+// Elemento html que guarda el contenido de la publicación.
+const textoPublicacion = document.getElementById("texto_publicacion");
+
+// Elemento html que contiene los posts.
+const postsFeed = document.getElementById("posts-feed");
+
+// Función que ajusta el estilo de acuerdo a la resolución.
 function ajustarClasePorResolucion() {
+    // Obtiene el ancho de la pantalla del dispositivo usado.
     const anchoVentana = window.innerWidth;
+    // Ajusta estilos si el ancho de la pantalla es menor a 768px
     if (anchoVentana < 768) {
         aside.style.top = `${headerHeight}px`;
         aside.style.height = `calc(100dvh - ${headerHeight}px)`;
@@ -21,12 +43,12 @@ function ajustarClasePorResolucion() {
         btnAsideProfile.style.display = "none";
     }
 }
+
+// Ejecución del código
 window.addEventListener("resize", ajustarClasePorResolucion);
 ajustarClasePorResolucion();
 
-// MOSTRAR INFORMACIÓN DEL USUARIO
-
-const usernameObject = document.getElementById("sidebar__username");
+// Mostrar información del usuario.
 
 async function mostrarInfoUsuario() {
     const url = "/home/me";
@@ -40,8 +62,10 @@ async function mostrarInfoUsuario() {
         const data = await response.json();
 
         if (response.ok) {
+            // Muestra el nombre de usuario en el html.
             usernameObject.innerText = data.username;
         } else if (response.status === 401) {
+            // Función que válida que el usuario tenga sesión.
             requestWithAuth();
         }
 
@@ -51,22 +75,22 @@ async function mostrarInfoUsuario() {
     }
 }
 
-// LOG OUT
-
-const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
-const simboloCerrarSesion = document.getElementById("simbolo-cerrar-sesion");
-
+// Eventos para cerrar sesión.
 btnCerrarSesion.addEventListener("click", cerrarSesion);
 simboloCerrarSesion.addEventListener("click", cerrarSesion);
 
+// Función que hace la petición para cerrar sesión.
 async function cerrarSesion() {
+    const url = "/logout";
+
     try {
-        const response = await fetch("/logout", {
+        const response = await fetch(url, {
             method: "POST",
             credentials: "include"
         });
 
         if (response.ok) {
+            // Redirige a html si la sesión se cierra correctamente.
             window.location.href = "/login";
             return;
         }
@@ -79,16 +103,15 @@ async function cerrarSesion() {
     }
 }
 
-const btnPublicar = document.getElementById("main__publicar");
-const textoPublicacion = document.getElementById("texto_publicacion");
-
+// Evento para crear una publicación.
 btnPublicar.addEventListener("click", crearPost);
 
+// Función para crear una publicación.
 async function crearPost(e) {
+    // Previene que se recargue la página.
     e.preventDefault();
-
     const url = "/posts";
-
+    // Datos que necesita el BackEnd para crear la publicación.
     const credenciales = {
         content: textoPublicacion.value
     };
@@ -104,7 +127,9 @@ async function crearPost(e) {
         });
 
         if (response.ok) {
+            // Borra el contenido del elemento html que tiene el contenido del post.
             textoPublicacion.value = "";
+            // Llamado a la función que carga los posts.
             await loadPosts();
             return;
         }
@@ -117,8 +142,10 @@ async function crearPost(e) {
     }
 }
 
+// Función que carga los posts.
 async function loadPosts() {
     const url = "/posts";
+
     try {
         const response = await fetch(url, {
             method: "GET"
@@ -126,32 +153,38 @@ async function loadPosts() {
 
         const posts = await response.json();
 
+        // Llamado a la función que renderiza los datos.
         renderPosts(posts);
+
     } catch (error) {
         console.error(error);
     }
 }
 
-const postsFeed = document.getElementById("posts-feed");
-
+// Función que renderiza los posts.
 function renderPosts(posts) {
     try {
 
+        // Borra el contenido del contenedor de posts.
         postsFeed.innerHTML = "";
 
+        // Bucle que itera los datos y renderiza los datos en html.
         for (const post of posts) {
 
+            // Objeto que almacena la fecha.
             const fecha = new Date(post.created_at);
-
+            // Formato más sencillo a la fecha.
             const fechaFormateada = fecha.toLocaleString("es-CO", {
                 dateStyle: "short",
                 timeStyle: "short"
             });
 
+            // Elemento html que contiene la información y sus propiedades.
             const newPost = document.createElement("article");
             newPost.className = "post-card";
+            // Guarda el identificador del post en una propiedad del elemento html.
             newPost.dataset.postId = post.post_id
-
+            // Le agrega datos al elemento html.
             newPost.innerHTML = `
                 <div class="post-card__photo-wrapper">
                     <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
@@ -183,6 +216,7 @@ function renderPosts(posts) {
                     </footer>
                 </div>
             `;
+            // Agrega el elemento html al contenedor de posts.
             postsFeed.appendChild(newPost);
         }
     } catch (error) {
@@ -190,26 +224,32 @@ function renderPosts(posts) {
     }
 }
 
+// Captura cualquier evento click sobre un boton con la clase btn-action.
 postsFeed.addEventListener("click", async (e) => {
+    // Obtiene el elemento btn-action.
     const btnAction = e.target.closest(".btn-action");
-
+    // Válida que se haya dado click sobre un btn-action.
     if (!btnAction) return;
-
+    // Obtiene el post sobre el que se hizo click.
     const postCard = e.target.closest(".post-card");
-
+    // Obtiene el identificador del post.
     const postId = parseInt(postCard.dataset.postId);
-
+    // Obtiene el nombre de la acción.
     const action = btnAction.dataset.action;
-
+    // Condicional para válidar el tipo de acción.
     switch (action) {
         case "delete":
+            // Llamado a función que maneja como se elimina un post.
             await handleDelete(postId);
+            // Llamado a la función que carga los posts.
             await loadPosts()
             break;
         case "like":
+            // Llamado a función que maneja un like dado a un post.
             await handleLike(postId);
             break;
         case "comments":
+            // Llamado a función que muestra los comentarios.
             await handleComments(postId);
             break;
 
@@ -218,9 +258,10 @@ postsFeed.addEventListener("click", async (e) => {
     }
 });
 
+// Función que hace la petición para eliminar un post.
 async function handleDelete(postId) {
     const url = "/posts";
-
+    // Información necesaria para hacer la petición.
     const credenciales = {
         post_id: postId
     }
@@ -236,10 +277,13 @@ async function handleDelete(postId) {
         });
 
         if (response.ok) {
+            // Mensaje si la petición es exitosa.
             console.log("POST_DELETED");
         } else if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
             requestWithAuth();
         } else if (response.status === 404) {
+            // Mensaje si el post no se encontró.
             console.log("POST_NOT_FOUND");
         }
     } catch (error) {
@@ -247,6 +291,7 @@ async function handleDelete(postId) {
     }
 }
 
+// Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", () => {
     mostrarInfoUsuario();
     loadPosts();
