@@ -1,4 +1,4 @@
-import { fetchWithAuth } from "./base.js";
+import { fetchWithAuth, requestWithAuth } from "./base.js";
 
 // ASIDE CODE
 const aside = document.getElementById("sidebar");
@@ -24,8 +24,6 @@ function ajustarClasePorResolucion() {
 window.addEventListener("resize", ajustarClasePorResolucion);
 ajustarClasePorResolucion();
 
-const postsContainer = document.querySelector(".main__feed");
-
 // MOSTRAR INFORMACIÓN DEL USUARIO
 
 const usernameObject = document.getElementById("sidebar__username");
@@ -44,22 +42,14 @@ async function mostrarInfoUsuario() {
         if (response.ok) {
             usernameObject.innerText = data.username;
         } else if (response.status === 401) {
-            const refreshed = await fetchWithAuth();
-        
-            if (refreshed) {
-                return mostrarInfoUsuario();
-            }
-        
-            window.location.href = "/login";
+            requestWithAuth();
         }
 
-    } 
+    }
     catch (error) {
         console.error(error);
     }
 }
-
-document.addEventListener("DOMContentLoaded", mostrarInfoUsuario);
 
 // LOG OUT
 
@@ -94,8 +84,6 @@ const textoPublicacion = document.getElementById("texto_publicacion");
 
 btnPublicar.addEventListener("click", crearPost);
 
-
-
 async function crearPost(e) {
     e.preventDefault();
 
@@ -129,5 +117,137 @@ async function crearPost(e) {
     }
 }
 
-//loadPosts() → obtiene los posts del backend.
-//renderPosts(posts) → los pinta en el HTML.
+async function loadPosts() {
+    const url = "/posts";
+    try {
+        const response = await fetch(url, {
+            method: "GET"
+        });
+
+        const posts = await response.json();
+
+        renderPosts(posts);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const postsFeed = document.getElementById("posts-feed");
+
+function renderPosts(posts) {
+    try {
+
+        postsFeed.innerHTML = "";
+
+        for (const post of posts) {
+
+            const fecha = new Date(post.created_at);
+
+            const fechaFormateada = fecha.toLocaleString("es-CO", {
+                dateStyle: "short",
+                timeStyle: "short"
+            });
+
+            const newPost = document.createElement("article");
+            newPost.className = "post-card";
+            newPost.dataset.postId = post.post_id
+
+            newPost.innerHTML = `
+                <div class="post-card__photo-wrapper">
+                    <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                </div>
+
+                <div class="post-card__content">
+                    <div class="post-card__info">
+                        <h2 class="post-card__name">${post.username}</h2>
+
+                        <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
+
+                    </div>
+
+                    <p class="post-card__message">${post.content_text}</p>
+
+                    <footer class="post-card__footer-actions">
+                        <button class="post-card__action-btn btn-action" data-action="like">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                        <button class="post-card__action-btn btn-action" data-action="comments">
+                            <span class="material-symbols-outlined">chat_bubble_outline</span>
+                        </button>
+                        <button class="post-card__action-btn btn-action" data-action="delete">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                        <button class="post-card__action-btn">
+                            <span class="material-symbols-outlined">ios_share</span>
+                        </button>
+                    </footer>
+                </div>
+            `;
+            postsFeed.appendChild(newPost);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+postsFeed.addEventListener("click", async (e) => {
+    const btnAction = e.target.closest(".btn-action");
+
+    if (!btnAction) return;
+
+    const postCard = e.target.closest(".post-card");
+
+    const postId = parseInt(postCard.dataset.postId);
+
+    const action = btnAction.dataset.action;
+
+    switch (action) {
+        case "delete":
+            await handleDelete(postId);
+            await loadPosts()
+            break;
+        case "like":
+            await handleLike(postId);
+            break;
+        case "comments":
+            await handleComments(postId);
+            break;
+
+        default:
+            console.log("Acción no reconocida");
+    }
+});
+
+async function handleDelete(postId) {
+    const url = "/posts";
+
+    const credenciales = {
+        post_id: postId
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(credenciales)
+        });
+
+        if (response.ok) {
+            console.log("POST_DELETED");
+        } else if (response.status === 401) {
+            requestWithAuth();
+        } else if (response.status === 404) {
+            console.log("POST_NOT_FOUND");
+        }
+    } catch (error) {
+        return console.error(error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    mostrarInfoUsuario();
+    loadPosts();
+});

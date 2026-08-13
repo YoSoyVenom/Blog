@@ -7,6 +7,16 @@ if (menuToggle) {
     });
 }
 
+export async function requestWithAuth() {
+    const refreshed = await fetchWithAuth();
+
+    if (refreshed) {
+        return mostrarInfoUsuario();
+    }
+
+    window.location.href = "/login";
+}
+
 export async function fetchWithAuth() {
     const response = await fetch("/refresh", {
         method: "POST",

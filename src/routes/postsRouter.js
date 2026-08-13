@@ -1,7 +1,7 @@
 const express = require("express");
 const { requireAuth } = require("../middleware/authMiddleware");
 const { validateMiddleware } = require("../middleware/validateMiddleware");
-const { createPostController } = require("../controllers/postController");
+const { createPostController, getPostsController, deletePostController } = require("../controllers/postController");
 const { validatePost } = require("../schemas/schemas");
 const postsRouter = express.Router();
 
@@ -9,9 +9,10 @@ const postsRouter = express.Router();
 postsRouter.post("/", requireAuth, validateMiddleware(validatePost), createPostController);
 
 // OBTENER POSTS (GET)
-postsRouter.get("/", )
+postsRouter.get("/", getPostsController);
 
 // ELIMINAR POST (DELETE)
+postsRouter.delete("/", requireAuth, deletePostController);
 
 module.exports = {
     postsRouter

@@ -4,7 +4,7 @@ body {
 
 .layout {
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
 }
 
 /* HEADER STYLES*/
@@ -83,7 +83,7 @@ body {
 /* DESKTOP HEADER STYLES */
 @media screen and (min-width: 768px) {
     .layout {
-        height: auto;
+        min-height: auto;
     }
     .encabezado__contenido {
         gap: 15px;
