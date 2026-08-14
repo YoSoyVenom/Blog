@@ -184,38 +184,71 @@ function renderPosts(posts) {
             newPost.className = "post-card";
             // Guarda el identificador del post en una propiedad del elemento html.
             newPost.dataset.postId = post.post_id
-            // Le agrega datos al elemento html.
-            newPost.innerHTML = `
-                <div class="post-card__photo-wrapper">
-                    <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
-                </div>
-
-                <div class="post-card__content">
-                    <div class="post-card__info">
-                        <h2 class="post-card__name">${post.username}</h2>
-
-                        <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
-
+            // Validación para que el usuario tenga el boton delete cuando el post sea suyo.
+            if (post.can === "Yes") {
+                // Le agrega datos al elemento html con el boton delete.
+                newPost.innerHTML = `
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
                     </div>
 
-                    <p class="post-card__message">${post.content_text}</p>
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">${post.username}</h2>
 
-                    <footer class="post-card__footer-actions">
-                        <button class="post-card__action-btn btn-action" data-action="like">
-                            <span class="material-symbols-outlined">favorite_border</span>
-                        </button>
-                        <button class="post-card__action-btn btn-action" data-action="comments">
-                            <span class="material-symbols-outlined">chat_bubble_outline</span>
-                        </button>
-                        <button class="post-card__action-btn btn-action" data-action="delete">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <button class="post-card__action-btn">
-                            <span class="material-symbols-outlined">ios_share</span>
-                        </button>
-                    </footer>
-                </div>
-            `;
+                            <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
+
+                        </div>
+
+                        <p class="post-card__message">${post.content_text}</p>
+
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn btn-action" data-action="like">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn btn-action" data-action="comments">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn btn-action" data-action="delete">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                            <button class="post-card__action-btn">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                `;
+            } else {
+                // Le agrega datos al elemento html sin el boton delete.
+                newPost.innerHTML = `
+                    <div class="post-card__photo-wrapper">
+                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                    </div>
+
+                    <div class="post-card__content">
+                        <div class="post-card__info">
+                            <h2 class="post-card__name">${post.username}</h2>
+
+                            <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
+
+                        </div>
+
+                        <p class="post-card__message">${post.content_text}</p>
+
+                        <footer class="post-card__footer-actions">
+                            <button class="post-card__action-btn btn-action" data-action="like">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                            <button class="post-card__action-btn btn-action" data-action="comments">
+                                <span class="material-symbols-outlined">chat_bubble_outline</span>
+                            </button>
+                            <button class="post-card__action-btn">
+                                <span class="material-symbols-outlined">ios_share</span>
+                            </button>
+                        </footer>
+                    </div>
+                `;
+            }
             // Agrega el elemento html al contenedor de posts.
             postsFeed.appendChild(newPost);
         }

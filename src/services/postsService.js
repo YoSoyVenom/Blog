@@ -15,7 +15,8 @@ async function getPosts() {
             posts.post_id,
             posts.content_text,
             posts.created_at,
-            users.username
+            users.username,
+            users.user_id
         FROM posts
         JOIN users
         ON posts.user_id = users.user_id

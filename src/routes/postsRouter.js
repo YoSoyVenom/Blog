@@ -9,7 +9,7 @@ const postsRouter = express.Router();
 postsRouter.post("/", requireAuth, validateMiddleware(validatePost), createPostController);
 
 // OBTENER POSTS (GET)
-postsRouter.get("/", getPostsController);
+postsRouter.get("/", requireAuth, getPostsController);
 
 // ELIMINAR POST (DELETE)
 postsRouter.delete("/", requireAuth, deletePostController);
