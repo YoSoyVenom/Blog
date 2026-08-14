@@ -19,13 +19,7 @@ async function createPostController(req, res) {
 async function getPostsController(req, res) {
     try {
         const userId = req.user.id;
-        const posts = await getPosts();
-
-        posts.forEach(post => {
-            if (userId == post.user_id) {
-                post.can = "Yes";
-            }
-        });
+        const posts = await getPosts(userId);
 
         res.status(200).json(posts);
     } catch (error) {

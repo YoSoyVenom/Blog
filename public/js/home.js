@@ -26,7 +26,7 @@ const textoPublicacion = document.getElementById("texto_publicacion");
 const postsFeed = document.getElementById("posts-feed");
 
 // Función que ajusta el estilo de acuerdo a la resolución.
-function ajustarClasePorResolucion() {
+function adjustClassByResolution() {
     // Obtiene el ancho de la pantalla del dispositivo usado.
     const anchoVentana = window.innerWidth;
     // Ajusta estilos si el ancho de la pantalla es menor a 768px
@@ -45,12 +45,12 @@ function ajustarClasePorResolucion() {
 }
 
 // Ejecución del código
-window.addEventListener("resize", ajustarClasePorResolucion);
-ajustarClasePorResolucion();
+window.addEventListener("resize", adjustClassByResolution);
+adjustClassByResolution();
 
 // Mostrar información del usuario.
 
-async function mostrarInfoUsuario() {
+async function displayUserInfo() {
     const url = "/home/me";
 
     try {
@@ -76,11 +76,11 @@ async function mostrarInfoUsuario() {
 }
 
 // Eventos para cerrar sesión.
-btnCerrarSesion.addEventListener("click", cerrarSesion);
-simboloCerrarSesion.addEventListener("click", cerrarSesion);
+btnCerrarSesion.addEventListener("click", logOut);
+simboloCerrarSesion.addEventListener("click", logOut);
 
 // Función que hace la petición para cerrar sesión.
-async function cerrarSesion() {
+async function logOut() {
     const url = "/logout";
 
     try {
@@ -104,10 +104,10 @@ async function cerrarSesion() {
 }
 
 // Evento para crear una publicación.
-btnPublicar.addEventListener("click", crearPost);
+btnPublicar.addEventListener("click", createPost);
 
 // Función para crear una publicación.
-async function crearPost(e) {
+async function createPost(e) {
     // Previene que se recargue la página.
     e.preventDefault();
     const url = "/posts";
@@ -184,71 +184,42 @@ function renderPosts(posts) {
             newPost.className = "post-card";
             // Guarda el identificador del post en una propiedad del elemento html.
             newPost.dataset.postId = post.post_id
-            // Validación para que el usuario tenga el boton delete cuando el post sea suyo.
-            if (post.can === "Yes") {
-                // Le agrega datos al elemento html con el boton delete.
-                newPost.innerHTML = `
-                    <div class="post-card__photo-wrapper">
-                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+            // Le agrega datos al elemento html con el boton delete.
+            newPost.innerHTML = `
+                <div class="post-card__photo-wrapper">
+                    <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
+                </div>
+
+                <div class="post-card__content">
+                    <div class="post-card__info">
+                        <h2 class="post-card__name">${post.username}</h2>
+
+                        <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
+
                     </div>
 
-                    <div class="post-card__content">
-                        <div class="post-card__info">
-                            <h2 class="post-card__name">${post.username}</h2>
+                    <p class="post-card__message">${post.content_text}</p>
 
-                            <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
-
-                        </div>
-
-                        <p class="post-card__message">${post.content_text}</p>
-
-                        <footer class="post-card__footer-actions">
-                            <button class="post-card__action-btn btn-action" data-action="like">
-                                <span class="material-symbols-outlined">favorite_border</span>
-                            </button>
-                            <button class="post-card__action-btn btn-action" data-action="comments">
-                                <span class="material-symbols-outlined">chat_bubble_outline</span>
-                            </button>
+                    <footer class="post-card__footer-actions">
+                        <button class="post-card__action-btn btn-action" data-action="like">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                        <button class="post-card__action-btn btn-action" data-action="comments">
+                            <span class="material-symbols-outlined">chat_bubble_outline</span>
+                        </button>
+                        <!-- Validación para agregar el boton delete -->
+                        ${post.can_delete ? `
                             <button class="post-card__action-btn btn-action" data-action="delete">
                                 <span class="material-symbols-outlined">delete</span>
                             </button>
-                            <button class="post-card__action-btn">
-                                <span class="material-symbols-outlined">ios_share</span>
-                            </button>
-                        </footer>
-                    </div>
-                `;
-            } else {
-                // Le agrega datos al elemento html sin el boton delete.
-                newPost.innerHTML = `
-                    <div class="post-card__photo-wrapper">
-                        <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
-                    </div>
-
-                    <div class="post-card__content">
-                        <div class="post-card__info">
-                            <h2 class="post-card__name">${post.username}</h2>
-
-                            <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
-
-                        </div>
-
-                        <p class="post-card__message">${post.content_text}</p>
-
-                        <footer class="post-card__footer-actions">
-                            <button class="post-card__action-btn btn-action" data-action="like">
-                                <span class="material-symbols-outlined">favorite_border</span>
-                            </button>
-                            <button class="post-card__action-btn btn-action" data-action="comments">
-                                <span class="material-symbols-outlined">chat_bubble_outline</span>
-                            </button>
-                            <button class="post-card__action-btn">
-                                <span class="material-symbols-outlined">ios_share</span>
-                            </button>
-                        </footer>
-                    </div>
-                `;
-            }
+                        ` : ""
+                        }
+                        <button class="post-card__action-btn">
+                            <span class="material-symbols-outlined">ios_share</span>
+                        </button>
+                    </footer>
+                </div>
+            `;
             // Agrega el elemento html al contenedor de posts.
             postsFeed.appendChild(newPost);
         }
@@ -326,6 +297,6 @@ async function handleDelete(postId) {
 
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", () => {
-    mostrarInfoUsuario();
+    displayUserInfo();
     loadPosts();
 });

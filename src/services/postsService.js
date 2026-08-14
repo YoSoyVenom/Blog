@@ -9,21 +9,24 @@ function createPost(user_id, content) {
     return pool.query(query, [user_id, content]);
 }
 
-async function getPosts() {
+async function getPosts(userId) {
     const query = `
-        SELECT
+        SELECT 
             posts.post_id,
             posts.content_text,
             posts.created_at,
             users.username,
-            users.user_id
+            posts.user_id,
+            CASE 
+                WHEN posts.user_id = $1 THEN true
+                ELSE false
+            END AS can_delete
         FROM posts
-        JOIN users
-        ON posts.user_id = users.user_id
+        JOIN users ON users.user_id = posts.user_id
         ORDER BY posts.created_at DESC;
     `;
 
-    const result = await pool.query(query);
+    const result = await pool.query(query, [userId]);
 
     return result.rows;
 }
