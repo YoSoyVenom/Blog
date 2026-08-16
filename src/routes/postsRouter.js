@@ -1,7 +1,7 @@
 const express = require("express");
 const { requireAuth } = require("../middleware/authMiddleware");
 const { validateMiddleware } = require("../middleware/validateMiddleware");
-const { createPostController, getPostsController, deletePostController } = require("../controllers/postController");
+const { createPostController, getPostsController, deletePostController, toggleLikeController } = require("../controllers/postController");
 const { validatePost } = require("../schemas/schemas");
 const postsRouter = express.Router();
 
@@ -13,6 +13,9 @@ postsRouter.get("/", requireAuth, getPostsController);
 
 // ELIMINAR POST (DELETE)
 postsRouter.delete("/", requireAuth, deletePostController);
+
+// DAR LIKE (POST)
+postsRouter.post("/:post_id/like", requireAuth, toggleLikeController);
 
 module.exports = {
     postsRouter

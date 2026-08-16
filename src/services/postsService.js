@@ -17,12 +17,25 @@ async function getPosts(userId) {
             posts.created_at,
             users.username,
             posts.user_id,
+            COUNT(likes.like_id) AS total_likes,
             CASE 
                 WHEN posts.user_id = $1 THEN true
                 ELSE false
-            END AS can_delete
+            END AS can_delete,
+            EXISTS (
+                SELECT 1 
+                FROM likes 
+                WHERE likes.post_id = posts.post_id AND likes.user_id = $1
+            ) AS is_liked
         FROM posts
         JOIN users ON users.user_id = posts.user_id
+        LEFT JOIN likes ON likes.post_id = posts.post_id
+        GROUP BY 
+            posts.post_id,
+            posts.content_text,
+            posts.created_at,
+            users.username,
+            posts.user_id
         ORDER BY posts.created_at DESC;
     `;
 

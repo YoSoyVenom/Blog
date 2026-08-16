@@ -243,7 +243,26 @@ body {
 }
 
 .post-card__action-btn {
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    gap: 3px;
     cursor: pointer;
+}
+
+.like__symbol {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    color: var(--boton-principal-mobile);
+}
+
+.like__symbol-active {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.post-card__like {
+    color: var(--boton-principal-mobile);
+    font-size: var(--font-size-xxs);
 }
 
 /* MAIN SECTION ENDS */

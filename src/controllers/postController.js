@@ -1,11 +1,12 @@
+const { findLike, deleteLike, createLike } = require("../services/likesService");
 const { createPost, getPosts, deletePost } = require("../services/postsService");
 
 async function createPostController(req, res) {
     try {
-        const id = req.user.id;
+        const userId = req.user.id;
         const content = req.body.content;
 
-        await createPost(id, content);
+        await createPost(userId, content);
 
         res.status(201).json({ message: "POST_CREATED" });
     } catch (error) {
@@ -29,10 +30,10 @@ async function getPostsController(req, res) {
 
 async function deletePostController(req, res) {
     try {
-        const id = req.user.id;
+        const userId = req.user.id;
         const postId = req.body.post_id;
 
-        const deleted = await deletePost(id, postId);
+        const deleted = await deletePost(userId, postId);
 
         if (deleted === 0) {
             return res.status(404).json({ message: "POST_NOT_FOUND" });
@@ -45,8 +46,36 @@ async function deletePostController(req, res) {
     }
 }
 
+async function toggleLikeController(req, res) {
+    try {
+
+        const userId = req.user.id;
+        const postId = Number(req.params.post_id);
+
+        const isLiked = await findLike(userId, postId);
+
+        if (!isLiked) {
+            await createLike(userId, postId);
+            return res.status(200).json({ message: "LIKE_CREATED", liked: true });
+        }
+
+        await deleteLike(userId, postId);
+
+        return res.status(200).json({ message: "LIKE_DELETED", liked: false});
+
+    } catch (error) {
+
+        if (error.code == "23503") {
+            return res.status(404).json({ message: "POST_NOT_FOUND" });
+        }
+
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     createPostController,
     getPostsController,
-    deletePostController
+    deletePostController,
+    toggleLikeController
 }

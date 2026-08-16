@@ -17,10 +17,12 @@ const btnCerrarSesion = document.getElementById("btn-cerrar-sesion");
 // Elemento html para cerrar sesión en resoluciones pequeñas.
 const simboloCerrarSesion = document.getElementById("simbolo-cerrar-sesion");
 
-// Elemento html para hacer publicaciones.
-const btnPublicar = document.getElementById("main__publicar");
 // Elemento html que guarda el contenido de la publicación.
 const textoPublicacion = document.getElementById("texto_publicacion");
+// Elemento html para hacer publicaciones.
+const btnPublicar = document.getElementById("main__publicar");
+// Elemento html que borra el contenido del textarea.
+const btnCancelar = document.getElementById("main__cancelar");
 
 // Elemento html que contiene los posts.
 const postsFeed = document.getElementById("posts-feed");
@@ -201,8 +203,11 @@ function renderPosts(posts) {
                     <p class="post-card__message">${post.content_text}</p>
 
                     <footer class="post-card__footer-actions">
-                        <button class="post-card__action-btn btn-action" data-action="like">
-                            <span class="material-symbols-outlined">favorite_border</span>
+                        <button class="post-card__action-btn btn-action" id="btn-action__like" data-action="like">
+                            <!-- Validación para agregar la clase para dar un color específico al botón -->
+                            <span class="material-symbols-outlined like__symbol ${post.is_liked ? "like__symbol-active" : ""}">favorite</span>
+                            <!-- Número de likes -->
+                            <p class="post-card__like">${post.total_likes}</p>
                         </button>
                         <button class="post-card__action-btn btn-action" data-action="comments">
                             <span class="material-symbols-outlined">chat_bubble_outline</span>
@@ -228,6 +233,13 @@ function renderPosts(posts) {
     }
 }
 
+// Elemento para limpiar la publicación.
+btnCancelar.addEventListener("click", (e) => {
+    e.preventDefault();
+    // Vacia el contenido de la publicación.
+    textoPublicacion.value = "";
+});
+
 // Captura cualquier evento click sobre un boton con la clase btn-action.
 postsFeed.addEventListener("click", async (e) => {
     // Obtiene el elemento btn-action.
@@ -246,11 +258,13 @@ postsFeed.addEventListener("click", async (e) => {
             // Llamado a función que maneja como se elimina un post.
             await handleDelete(postId);
             // Llamado a la función que carga los posts.
-            await loadPosts()
+            await loadPosts();
             break;
         case "like":
             // Llamado a función que maneja un like dado a un post.
             await handleLike(postId);
+            // Llamado a la función que carga los posts.
+            await loadPosts();
             break;
         case "comments":
             // Llamado a función que muestra los comentarios.
@@ -295,8 +309,43 @@ async function handleDelete(postId) {
     }
 }
 
+// Función que hace la petición de dar like o quitar el like.
+async function handleLike(postId) {
+    const url = `/posts/${postId}/like`;
+    // Información necesaria para hacer la petición.
+    const credenciales = {
+        post_id: postId
+    }
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Llamar nuevamente la función si se puedo autenticar.
+            handleLike(postId);
+        } else if (response.status == 404) {
+            console.log(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Función para garantizar el orden en el arranque.
+async function initializeHome() {
+    await displayUserInfo();
+    await loadPosts();
+}
+
 // Funciones que se cargan después de que el html está cargado.
-document.addEventListener("DOMContentLoaded", () => {
-    displayUserInfo();
-    loadPosts();
-});
+document.addEventListener("DOMContentLoaded", initializeHome);
