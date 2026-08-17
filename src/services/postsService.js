@@ -55,8 +55,20 @@ async function deletePost(user_id, post_id) {
     return result.rowCount;
 }
 
+async function getContentPost(postId) {
+    const query = `
+        SELECT content_text FROM posts
+        WHERE post_id = $1
+    `;
+
+    const result = await pool.query(query, [postId]);
+
+    return result.rows[0].content_text;
+}
+
 module.exports = {
     createPost,
     getPosts,
-    deletePost
+    deletePost,
+    getContentPost
 }

@@ -1,5 +1,5 @@
 const { findLike, deleteLike, createLike } = require("../services/likesService");
-const { createPost, getPosts, deletePost } = require("../services/postsService");
+const { createPost, getPosts, deletePost, getContentPost } = require("../services/postsService");
 
 async function createPostController(req, res) {
     try {
@@ -73,9 +73,22 @@ async function toggleLikeController(req, res) {
     }
 }
 
+async function sharePostController(req, res) {
+    try {
+        const postId = Number(req.params.post_id);
+
+        const contentText = await getContentPost(postId);
+
+        return res.status(200).json({ content_text: contentText });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     createPostController,
     getPostsController,
     deletePostController,
-    toggleLikeController
+    toggleLikeController,
+    sharePostController
 }

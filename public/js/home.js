@@ -219,7 +219,7 @@ function renderPosts(posts) {
                             </button>
                         ` : ""
                         }
-                        <button class="post-card__action-btn">
+                        <button class="post-card__action-btn btn-action" data-action="share">
                             <span class="material-symbols-outlined">ios_share</span>
                         </button>
                     </footer>
@@ -265,6 +265,10 @@ postsFeed.addEventListener("click", async (e) => {
             await handleLike(postId);
             // Llamado a la función que carga los posts.
             await loadPosts();
+            break;
+        case "share":
+            // Llamado a función que comparte la publicación.
+            await handleShare(postId);
             break;
         case "comments":
             // Llamado a función que muestra los comentarios.
@@ -341,11 +345,56 @@ async function handleLike(postId) {
     }
 }
 
-// Función para garantizar el orden en el arranque.
-async function initializeHome() {
-    await displayUserInfo();
-    await loadPosts();
+// Función que ejecuta la acción de compartir el post.
+async function handleShare(postId) {
+    // URL con postId como parámetro de consulta.
+    const url = `/posts/${postId}/share`;
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        const data = await response.json();
+        // Data de la publicación.
+        const shareData = {
+            text: `¡Mira esta publicación!: "${data.content_text}"`,
+            url: window.location.href
+        }
+        // Validación de navigator.share dentro del dispositivo.
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+                console.log("Post compartido con éxito");
+            } catch (err) {
+                console.log("El usuario canceló la acción");
+            }
+        } else {
+            // Llamado a función que copia la data en el postapapeles.
+            await copyToClipboard(shareData);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+// Función que copia datos en el portapapeles.
+async function copyToClipboard(shareData) {
+    try {
+        // Se copia en el portapapeles del dispositivo.
+        await navigator.clipboard.writeText(shareData);
+        console.log('Texto guardado en el portapapeles');
+    } catch (err) {
+        console.error('Error al copiar:', err);
+    }
 }
 
 // Funciones que se cargan después de que el html está cargado.
-document.addEventListener("DOMContentLoaded", initializeHome);
+document.addEventListener("DOMContentLoaded", async () => {
+    await displayUserInfo();
+    loadPosts();
+});
