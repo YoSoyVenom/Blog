@@ -14,9 +14,14 @@
             <div class="encabezado__contenido">
                 <img src="../imagenes/logo.png" alt="Logo del blog" class="encabezado__logo">
                 <form class="encabezado__form-busqueda" role="search" aria-label="Buscar publicaciones">
-                    <input type="search" class="encabezado__busqueda"
-                    placeholder="Buscar publicaciones..."
-                    name="q">
+                    <div class="encabezado__agrupador">
+                        <input type="search" class="encabezado__busqueda"
+                        placeholder="Buscar publicaciones..."
+                        name="q">
+                        <button class="encabezado__form-buscar">
+                            <span class="material-symbols-outlined encabezado__search">search</span>
+                        </button>
+                    </div>
                 </form>
 
                 <nav class="encabezado__acciones">
@@ -71,6 +76,55 @@
                 </section>
             </div>
         </aside>
+        <dialog class="main__modal" id="main__modal" open="true">
+            <div class="main__comments">
+                <header class="main__comments-header">
+                    <button class="main__comments-close">
+                        <span class="material-symbols-outlined btn-close">arrow_back_ios</span>
+                    </button>
+                </header>
+                <section class="main__comments-feed">
+
+                    <article class="comment__card">
+                        <div class="comment-card__photo-wrapper">
+                            <span class="material-symbols-outlined comment-card__photo" aria-label="Foto de usuario">account_circle</span>
+                        </div>
+
+                        <div class="comment-card__content">
+                            <div class="comment-card__info">
+                                <h2 class="comment-card__name">Robertito</h2>
+
+                                <time class="comment-card__date" datetime="">2026</time>
+
+                            </div>
+
+                            <p class="comment-card__message">QUe video de mierda</p>
+
+                            <footer class="comment-card__footer-actions">
+                                <button class="comment-card__action-btn btn-action" data-action="comments">Ver respuestas</button>
+                                <button class="comment-card__action-btn btn-action" id="btn-action__like" data-action="like">
+                                    <!-- Validación para agregar la clase para dar un color específico al botón -->
+                                    <span class="material-symbols-outlined like__symbol">favorite</span>
+                                    <!-- Número de likes -->
+                                    <p class="comment-card__like"></p>
+                                </button>
+                                <!-- Validación para agregar el boton delete -->
+                                <button class="comment-card__action-btn btn-action" data-action="delete">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </footer>
+                        </div>
+                    </article>
+
+                </section>
+                <div class="main__comment-publicar">
+                    <textarea name="publicacion" id="texto_publicacion" class="comment__text" placeholder="Escribe una publicación..." aria-label="Escribe tu nueva publicación"></textarea>
+                    <button class="encabezado__form-buscar">
+                        <span class="material-symbols-outlined comment__send">send</span>
+                    </button>
+                </div>
+            </div>
+        </dialog>
     </div>
     <footer class="footer">
         <p class="footer__copyright"><span class="symbol">©</span> 2025 <a class="footer__link" href="/about" role="link">MyBio</a> | <a class="footer__link" href="privacy" role="link">Privacidad</a> | <a class="footer__link" href="/terms" role="link">Términos</a></p>

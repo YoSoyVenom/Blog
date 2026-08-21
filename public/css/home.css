@@ -53,9 +53,20 @@ body {
     cursor: pointer;
 }
 
-.encabezado__busqueda {
+.encabezado__cerrar-sesion:hover {
+    background-color: var(--fondo-general-mobile);
+    color: var(--boton-principal-mobile);
+}
+
+.encabezado__agrupador {
+    display: flex;
+    justify-content: space-around;
     order: 2;
     width: 100%;
+}
+
+.encabezado__busqueda {
+    width: 90%;
     padding: 7px 10px;
     border: none;
     border-radius: 7px;
@@ -65,13 +76,21 @@ body {
     transition: filter .3s linear;
 }
 
-.encabezado__cerrar-sesion:hover {
-    background-color: var(--fondo-general-mobile);
-    color: var(--boton-principal-mobile);
-}
-
 .encabezado__busqueda:hover {
     filter: drop-shadow(0px 0px 4px var(--sombras));
+}
+
+.encabezado__form-buscar {
+    display: flex;
+    align-items: center;
+    order: 3;
+    border: none;
+    background-color: var(--color-menu);
+}
+
+.encabezado__search {
+    color: var(--color-texto);
+    cursor: pointer;
 }
 
 .encabezado__user {
@@ -102,7 +121,7 @@ body {
         order: 3;
     }
 
-    .encabezado__busqueda {
+    .encabezado__agrupador {
         order: 1;
         max-width: 700px;
         margin: 0 auto;
@@ -135,7 +154,8 @@ body {
 }
 
 .main__form, 
-.post-card {
+.post-card,
+.comment__card {
     background-color: var(--fondo-targetas-mobile);
 }
 
@@ -203,7 +223,8 @@ body {
     gap: 10px;
 }
 
-.post-card {
+.post-card,
+.comment__card {
     display: flex;
     align-items: flex-start;
     border-radius: 7px;
@@ -212,37 +233,44 @@ body {
     width: 100%;
 }
 
-.post-card__content {
-    width: 100%;
-}
-
-.post-card__photo-wrapper {
+.post-card__photo-wrapper,
+.comment-card__photo-wrapper {
     min-width: 40px;
 }
 
-.post-card__info {
+.post-card__content,
+.comment-card__content {
+    width: 100%;
+}
+
+.post-card__info,
+.comment-card__info {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
 }
 
-.post-card__name {
+.post-card__name,
+.comment-card__name {
     font-size: var(--font-size-md);
 }
 
-.post-card__message {
+.post-card__message,
+.comment-card__message {
     font-size: var(--font-size-sm);
     margin-bottom: 10px;
     overflow-wrap: break-word;
 }
 
-.post-card__footer-actions {
-    display: flex;
+.post-card__footer-actions,
+.comment-card__footer-actions {
+    display: flex;  
     gap: 20px;
 }
 
-.post-card__action-btn {
+.post-card__action-btn,
+.comment-card__action-btn {
     border: none;
     display: flex;
     align-items: center;
@@ -369,6 +397,90 @@ body {
 }
 
 /* ASIDE STYLES ENDS */
+
+/* MODAL COMMENTS STYLES */
+
+.main__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    height: 100dvh;
+    width: 100vw;
+    border: none;
+    background-color: var(--sombras);
+}
+
+.main__comments {
+    background-color: var(--color-menu);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 90%;          /* En móviles ocupa el 90% del ancho */
+    max-width: 800px;    /* Nunca será más grande que 800px */
+    max-height: 90vh;    /* Evita que se salga verticalmente */
+    height: auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.main__comments-header {
+    width: 100%;
+    border-bottom: 2px solid var(--fondo-general-mobile);
+    padding: 5px;
+}
+
+.main__comments-close {
+    background-color: var(--fondo-targetas-mobile);
+    border: none;
+}
+
+.btn-close {
+    color: var(--color-texto);
+}
+
+.main__comments-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.main__comment-publicar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+}
+
+.comment__text {
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    width: 90%;
+    padding: 7px;
+    max-height: 50px;
+    font-size: var(--font-size-sm);
+}
+
+.comment__send {
+    cursor: pointer;
+    color: var(--color-texto);
+}
+
+/* MODAL COMMENTS STYLES END */
 
 /* FOOTER STYLES */
 
