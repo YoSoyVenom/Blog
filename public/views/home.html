@@ -76,45 +76,85 @@
                 </section>
             </div>
         </aside>
-        <dialog class="main__modal" id="main__modal" open="true">
+        <dialog class="main__modal" id="main__modal">
             <div class="main__comments">
                 <header class="main__comments-header">
                     <button class="main__comments-close">
                         <span class="material-symbols-outlined btn-close">arrow_back_ios</span>
                     </button>
                 </header>
+                <section class="main__feed">
+
+                </section>
                 <section class="main__comments-feed">
 
-                    <article class="comment__card">
-                        <div class="comment-card__photo-wrapper">
-                            <span class="material-symbols-outlined comment-card__photo" aria-label="Foto de usuario">account_circle</span>
-                        </div>
-
-                        <div class="comment-card__content">
-                            <div class="comment-card__info">
-                                <h2 class="comment-card__name">Robertito</h2>
-
-                                <time class="comment-card__date" datetime="">2026</time>
-
+                    <div class="comment__thread">
+                        <article class="comment__card">
+                            <div class="comment-card__photo-wrapper">
+                                <span class="material-symbols-outlined comment-card__photo" aria-label="Foto de usuario">account_circle</span>
                             </div>
 
-                            <p class="comment-card__message">QUe video de mierda</p>
+                            <div class="comment-card__content">
+                                <div class="comment-card__info">
+                                    <h2 class="comment-card__name">Robertito</h2>
 
-                            <footer class="comment-card__footer-actions">
+                                    <time class="comment-card__date" datetime="">2026</time>
+
+                                </div>
+
+                                <p class="comment-card__message">I'm struggling a bit with your face</p>
+
+                                <footer class="comment-card__footer-actions">
+                                    <button class="comment-card__action-btn btn-action" data-action="comment">Responder</button>
+                                    <button class="comment-card__action-btn btn-action" id="btn-action__like" data-action="like">
+                                        <!-- Validación para agregar la clase para dar un color específico al botón -->
+                                        <span class="material-symbols-outlined like__symbol">favorite</span>
+                                        <!-- Número de likes -->
+                                        <p class="comment-card__like"></p>
+                                    </button>
+                                    <!-- Validación para agregar el boton delete -->
+                                    <button class="comment-card__action-btn btn-action" data-action="delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </footer>
                                 <button class="comment-card__action-btn btn-action" data-action="comments">Ver respuestas</button>
-                                <button class="comment-card__action-btn btn-action" id="btn-action__like" data-action="like">
-                                    <!-- Validación para agregar la clase para dar un color específico al botón -->
-                                    <span class="material-symbols-outlined like__symbol">favorite</span>
-                                    <!-- Número de likes -->
-                                    <p class="comment-card__like"></p>
-                                </button>
-                                <!-- Validación para agregar el boton delete -->
-                                <button class="comment-card__action-btn btn-action" data-action="delete">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </footer>
+                            </div>
+                        </article>
+
+                        <div class="comment-thread__answers-open">
+                            <article class="comment__card">
+                                <div class="comment-card__photo-wrapper">
+                                    <span class="material-symbols-outlined comment-card__photo" aria-label="Foto de usuario">account_circle</span>
+                                </div>
+
+                                <div class="comment-card__content">
+                                    <div class="comment-card__info">
+                                        <h2 class="comment-card__name">Robertito</h2>
+
+                                        <time class="comment-card__date" datetime="">2026</time>
+
+                                    </div>
+
+                                    <p class="comment-card__message">On your fuck ass. Your mom will come here to suck my dick.</p>
+
+                                    <footer class="comment-card__footer-actions">
+                                        <button class="comment-card__action-btn btn-action" data-action="comment">Responder</button>
+                                        <button class="comment-card__action-btn btn-action" id="btn-action__like" data-action="like">
+                                            <!-- Validación para agregar la clase para dar un color específico al botón -->
+                                            <span class="material-symbols-outlined like__symbol">favorite</span>
+                                            <!-- Número de likes -->
+                                            <p class="comment-card__like"></p>
+                                        </button>
+                                        <!-- Validación para agregar el boton delete -->
+                                        <button class="comment-card__action-btn btn-action" data-action="delete">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </footer>
+                                    <button class="comment-card__action-btn btn-action" data-action="comments">Ver respuestas</button>
+                                </div>
+                            </article>
                         </div>
-                    </article>
+                    </div>
 
                 </section>
                 <div class="main__comment-publicar">

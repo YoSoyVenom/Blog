@@ -414,6 +414,10 @@ body {
     background-color: var(--sombras);
 }
 
+.main__modal-close {
+    display: none;
+}
+
 .main__comments {
     background-color: var(--color-menu);
     display: flex;
@@ -421,9 +425,9 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 90%;          /* En móviles ocupa el 90% del ancho */
-    max-width: 800px;    /* Nunca será más grande que 800px */
-    max-height: 90vh;    /* Evita que se salga verticalmente */
+    width: 90%;          
+    max-width: 800px;    
+    max-height: 90vh; 
     height: auto;
     padding: 20px;
     border-radius: 8px;
@@ -436,7 +440,7 @@ body {
 }
 
 .main__comments-close {
-    background-color: var(--fondo-targetas-mobile);
+    background-color: var(--color-menu);
     border: none;
 }
 
@@ -451,6 +455,25 @@ body {
     align-items: center;
     gap: 10px;
     width: 100%;
+}
+
+.comment__thread {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.comment-thread__answers-open {
+    margin-left: 50px;
+    padding-left: 12px;
+    border-left: 1px solid var(--color-fondo);
+}
+
+.comment-thread__answers-close {
+    display: none;
 }
 
 .main__comment-publicar {

@@ -68,7 +68,9 @@ async function displayUserInfo() {
             usernameObject.innerText = data.username;
         } else if (response.status === 401) {
             // Función que válida que el usuario tenga sesión.
-            requestWithAuth();
+            await requestWithAuth();
+            // Recursión de displayUserInfo.
+            displayUserInfo();
         }
 
     }
@@ -316,10 +318,6 @@ async function handleDelete(postId) {
 // Función que hace la petición de dar like o quitar el like.
 async function handleLike(postId) {
     const url = `/posts/${postId}/like`;
-    // Información necesaria para hacer la petición.
-    const credenciales = {
-        post_id: postId
-    }
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -394,7 +392,15 @@ async function copyToClipboard(shareData) {
 }
 
 // Funciones que se cargan después de que el html está cargado.
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", initHome);
+
+// Función que inicializa la página.
+async function initHome() {
+    // Llamado a función que carga los datos de usuario.
     await displayUserInfo();
-    loadPosts();
-});
+    // Llamado a función que carga los posts.
+    await loadPosts();
+}
+
+
+// NOTA: PUEDO HACER UNA FUNCIÓN MÁS ADELANTE LLAMADA ensureAuthenticated QUE ASEGURE LA SESIÓN.
