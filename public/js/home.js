@@ -1,5 +1,5 @@
 // FUNCIONES BASE.
-import { fetchWithAuth, requestWithAuth } from "./base.js";
+import { fetchWithAuth, requestWithAuth, renderPost, renderComment, renderSinglePost } from "./base.js";
 
 // VARIABLES
 
@@ -26,6 +26,15 @@ const btnCancelar = document.getElementById("main__cancelar");
 
 // Elemento html que contiene los posts.
 const postsFeed = document.getElementById("posts-feed");
+
+// Elemento html de la ventana modal.
+const modalComments = document.getElementById("main__modal");
+// Elemento html que guarda el post en la ventana modal.
+const postContainer = document.getElementById("post__container");
+// Elemento html que contiene los comentarios.
+const commentsFeed = document.getElementById("comments__feed");
+// Elemento html que cierra la ventana modal.
+const btnCloseModal = document.getElementById("btn-close");
 
 // Función que ajusta el estilo de acuerdo a la resolución.
 function adjustClassByResolution() {
@@ -174,61 +183,8 @@ function renderPosts(posts) {
 
         // Bucle que itera los datos y renderiza los datos en html.
         for (const post of posts) {
-
-            // Objeto que almacena la fecha.
-            const fecha = new Date(post.created_at);
-            // Formato más sencillo a la fecha.
-            const fechaFormateada = fecha.toLocaleString("es-CO", {
-                dateStyle: "short",
-                timeStyle: "short"
-            });
-
-            // Elemento html que contiene la información y sus propiedades.
-            const newPost = document.createElement("article");
-            newPost.className = "post-card";
-            // Guarda el identificador del post en una propiedad del elemento html.
-            newPost.dataset.postId = post.post_id
-            // Le agrega datos al elemento html con el boton delete.
-            newPost.innerHTML = `
-                <div class="post-card__photo-wrapper">
-                    <span class="material-symbols-outlined post-card__photo" aria-label="Foto de usuario">account_circle</span>
-                </div>
-
-                <div class="post-card__content">
-                    <div class="post-card__info">
-                        <h2 class="post-card__name">${post.username}</h2>
-
-                        <time class="post-card__date" datetime="${post.created_at}">${fechaFormateada}</time>
-
-                    </div>
-
-                    <p class="post-card__message">${post.content_text}</p>
-
-                    <footer class="post-card__footer-actions">
-                        <button class="post-card__action-btn btn-action" id="btn-action__like" data-action="like">
-                            <!-- Validación para agregar la clase para dar un color específico al botón -->
-                            <span class="material-symbols-outlined like__symbol ${post.is_liked ? "like__symbol-active" : ""}">favorite</span>
-                            <!-- Número de likes -->
-                            <p class="post-card__like">${post.total_likes}</p>
-                        </button>
-                        <button class="post-card__action-btn btn-action" data-action="comments">
-                            <span class="material-symbols-outlined">chat_bubble_outline</span>
-                        </button>
-                        <!-- Validación para agregar el boton delete -->
-                        ${post.can_delete ? `
-                            <button class="post-card__action-btn btn-action" data-action="delete">
-                                <span class="material-symbols-outlined">delete</span>
-                            </button>
-                        ` : ""
-                        }
-                        <button class="post-card__action-btn btn-action" data-action="share">
-                            <span class="material-symbols-outlined">ios_share</span>
-                        </button>
-                    </footer>
-                </div>
-            `;
-            // Agrega el elemento html al contenedor de posts.
-            postsFeed.appendChild(newPost);
+            // LLamado a la función que renderiza el post. 
+            renderPost(postsFeed, post)
         }
     } catch (error) {
         console.error(error);
@@ -390,6 +346,105 @@ async function copyToClipboard(shareData) {
         console.error('Error al copiar:', err);
     }
 }
+
+// Función que maneja los comentarios.
+async function handleComments(postId) {
+    // LLamado a funciones para obtener los datos.
+    const [post, comments] = await Promise.all([
+        // Llamado a función que carga el post.
+        loadPost(postId),
+        // Llamado a función que carga los comentarios.
+        loadComments(postId)
+    ]);
+    // Llamado a la función que renderiza el post.
+    renderSinglePost(postContainer, post);
+    // Llamado a la función que renderiza los comentarios.
+    renderComments(comments);
+    // LLamado a la función que abre la ventana modal.
+    openModalComments();
+}
+
+// Función que obtiene el post.
+async function loadPost(postId) {
+    // URL para hacer la petición con el parámetro de consulta postId.
+    const url = `/posts/${postId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET"
+        });
+
+        const post = await response.json();
+
+        if (response.ok) {
+            // Retorna el post obtenido.
+            return post;
+        } else if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Nuevo llamado a la función si se pudo autenticar.
+            return loadPost(postId);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
+// Función que carga los comentarios.
+async function loadComments(postId) {
+    // URL para hacer la petición con el parámetro de consulta postId.
+    const url = `/comments/${postId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET"
+        });
+
+        const comments = await response.json();
+
+        if (response.ok) {
+            // Retorna un objeto con los comentarios.
+            return comments;
+        } else if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Nuevo llamado a la función si se pudo autenticar.
+            return loadComments(postId);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Función que renderiza los comentarios.
+function renderComments(comments) {
+    try {
+
+        // Borra el contenido del contenedor de posts.
+        commentsFeed.innerHTML = "";
+
+        // Bucle que itera los datos y renderiza los datos en html.
+        for (const comment of comments) {
+            // LLamado a la función que renderiza el post. 
+            renderComment(commentsFeed, comment);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Función que abre la ventana modal.
+function openModalComments() {
+    // Agrega la clase que coloca display: flex;
+    modalComments.classList.remove("main__modal-close");
+}
+
+// Función que cierra la ventana modal.
+btnCloseModal.addEventListener("click", () => {
+    // Agrega la clase que coloca display: flex;
+    modalComments.classList.add("main__modal-close");
+});
 
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", initHome);

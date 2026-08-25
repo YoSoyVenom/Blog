@@ -446,6 +446,13 @@ body {
 
 .btn-close {
     color: var(--color-texto);
+    cursor: pointer;
+}
+
+.post__feed {
+    width: 100%;
+    border-bottom: 2px solid var(--fondo-general-mobile);
+    padding-bottom: 10px;
 }
 
 .main__comments-feed {

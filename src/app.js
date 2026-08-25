@@ -11,6 +11,7 @@ const { homeRouter } = require("./routes/homeRouter");
 const { refreshRouter } = require("./routes/refreshRouter");
 const { logOutRouter } = require("./routes/logOutRouter");
 const { postsRouter } = require("./routes/postsRouter");
+const { commentsRouter } = require("./routes/commentsRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -42,5 +43,8 @@ app.use("/logout", logOutRouter)
 
 // POSTS
 app.use("/posts", postsRouter);
+
+// COMMENTS
+app.use("/comments", commentsRouter);
 
 module.exports = app;

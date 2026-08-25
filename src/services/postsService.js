@@ -1,12 +1,12 @@
 const pool = require("../config/db_config");
 
-function createPost(user_id, content) {
+function createPost(userId, content) {
     const query = `
         INSERT INTO posts (user_id, content_text)
         VALUES ($1, $2)
     `;
 
-    return pool.query(query, [user_id, content]);
+    return pool.query(query, [userId, content]);
 }
 
 async function getPosts(userId) {
@@ -44,13 +44,13 @@ async function getPosts(userId) {
     return result.rows;
 }
 
-async function deletePost(user_id, post_id) {
+async function deletePost(userId, postId) {
     const query = `
         DELETE FROM posts
         WHERE user_id = $1 AND post_id = $2
     `;
 
-    const result = await pool.query(query, [user_id, post_id]);
+    const result = await pool.query(query, [userId, postId]);
 
     return result.rowCount;
 }
@@ -66,9 +66,42 @@ async function getContentPost(postId) {
     return result.rows[0].content_text;
 }
 
+async function getPost(userId, postId) {
+    const query = `
+        SELECT 
+            posts.post_id,
+            posts.content_text,
+            posts.created_at,
+            users.username,
+            posts.user_id,
+            COUNT(likes.like_id) AS total_likes,
+            EXISTS (
+                SELECT 1 
+                FROM likes 
+                WHERE likes.post_id = posts.post_id AND likes.user_id = $1
+            ) AS is_liked
+        FROM posts
+        JOIN users ON users.user_id = posts.user_id
+        LEFT JOIN likes ON likes.post_id = posts.post_id
+        WHERE posts.post_id = $2
+        GROUP BY 
+            posts.post_id,
+            posts.content_text,
+            posts.created_at,
+            users.username,
+            posts.user_id
+        ORDER BY posts.created_at DESC;
+    `;
+
+    const result = await pool.query(query, [userId, postId]);
+
+    return result.rows[0];
+}
+
 module.exports = {
     createPost,
     getPosts,
     deletePost,
-    getContentPost
+    getContentPost,
+    getPost
 }
