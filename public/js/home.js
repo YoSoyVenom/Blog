@@ -3,6 +3,9 @@ import { fetchWithAuth, requestWithAuth, renderPost, renderComment, renderSingle
 
 // VARIABLES
 
+// Variable global.
+let currentPostId = null;
+
 // Variables para el aside.
 const aside = document.getElementById("sidebar");
 const btnAsideProfile = document.getElementById("btn-profile");
@@ -61,7 +64,7 @@ adjustClassByResolution();
 
 // Mostrar información del usuario.
 
-async function displayUserInfo() {
+export async function displayUserInfo() {
     const url = "/home/me";
 
     try {
@@ -289,7 +292,7 @@ async function handleLike(postId) {
             // Llamado a función base que válida la sesión del usuario.
             await requestWithAuth();
             // Llamar nuevamente la función si se puedo autenticar.
-            handleLike(postId);
+            return handleLike(postId);
         } else if (response.status == 404) {
             console.log(data.message);
         }
@@ -349,6 +352,8 @@ async function copyToClipboard(shareData) {
 
 // Función que maneja los comentarios.
 async function handleComments(postId) {
+    // Actualización a currentPostId.
+    currentPostId = postId;
     // LLamado a funciones para obtener los datos.
     const [post, comments] = await Promise.all([
         // Llamado a función que carga el post.
@@ -445,6 +450,87 @@ btnCloseModal.addEventListener("click", () => {
     // Agrega la clase que coloca display: flex;
     modalComments.classList.add("main__modal-close");
 });
+
+// Captura cualquier evento click sobre un boton con la clase btn-action.
+commentsFeed.addEventListener("click", async (e) => {
+    // Obtiene el botón sobre el que se hizo click.
+    const btnAction = e.target.closest(".btn-action");
+
+    // Valida que se haya hecho click sobre un botón de acción.
+    if (!btnAction) return;
+
+    // Obtiene la tarjeta del comentario.
+    const commentCard = e.target.closest(".comment__card");
+
+    // Valida que exista la tarjeta del comentario.
+    if (!commentCard) return;
+
+    // Obtiene el identificador del comentario.
+    const commentId = Number(commentCard.dataset.commentId);
+
+    // Obtiene el tipo de acción.
+    const action = btnAction.dataset.action;
+
+    // Ejecuta la acción correspondiente.
+    switch (action) {
+        case "reply":
+            await handleCommentAnswer(commentId);
+            break;
+
+        case "like":
+            // Llamado a la función que maneja dar like.
+            await handleCommentLike(commentId);
+            // Llamado a la función que refresca los comentarios en la ventana modal.
+            await refreshComments();
+            break;
+
+        case "delete":
+            await handleCommentDelete(commentId);
+            break;
+
+        case "answers":
+            await handleCommentAnswers(commentId);
+            break;
+
+        default:
+            console.log("Acción no reconocida");
+    }
+});
+// Función que maneja un like dado a un comentario.
+async function handleCommentLike(commentId) {
+    const url = `/comments/${commentId}/like`;
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Llamar nuevamente la función si se puedo autenticar.
+            return handleCommentLike(commentId);
+        } else if (response.status == 404) {
+            console.log(data.message);
+        }
+    } catch (error) {
+        console.log(data.message);
+    }
+}
+
+// Función que refresca los comentarios después de alguna acción.
+async function refreshComments() {
+    // Llamado a función que obtiene los comentarios.
+    const comments = await loadComments(currentPostId);
+    // Llamado a función que renderiza los comentarios.
+    renderComments(comments);
+}
 
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", initHome);
