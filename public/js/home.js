@@ -82,7 +82,7 @@ export async function displayUserInfo() {
             // Función que válida que el usuario tenga sesión.
             await requestWithAuth();
             // Recursión de displayUserInfo.
-            displayUserInfo();
+            return displayUserInfo();
         }
 
     }

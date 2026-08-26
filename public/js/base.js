@@ -1,5 +1,3 @@
-// import { displayUserInfo } from "./home";
-
 // Variables para menu desplegable.
 const menuToggle = document.querySelector('.encabezado__desplegar');
 const menuList = document.querySelector('.encabezado__navegacion');
@@ -17,8 +15,8 @@ export async function requestWithAuth() {
     const refreshed = await fetchWithAuth();
     // Válida la respuesta a la función.
     if (refreshed) {
-        // Muestra la información del usuario.
-        return displayUserInfo();
+        // Devuelve que la función se cumplió con éxito.
+        return true;
     }
     // Redirige a iniciar sesión si no hay sesión.
     window.location.href = "/login";
