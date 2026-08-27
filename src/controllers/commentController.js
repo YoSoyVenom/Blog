@@ -1,5 +1,5 @@
 const { findCommentLike, createCommentLike, deleteCommentLike } = require("../services/commentLikeService");
-const { getComments } = require("../services/commentService");
+const { getComments, createComment } = require("../services/commentService");
 
 async function getCommentsController(req, res) {
     try {
@@ -43,8 +43,22 @@ async function toggleCommentLikeController(req, res) {
     }
 }
 
+async function createCommentController(req, res) {
+    try {
+        const userId = req.user.id;
+        const postId = req.body.postId;
+        const content = req.body.content;
+
+        await createComment(userId, postId, content);
+
+        res.status(201).json({ message: "COMMENT_CREATED" });
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
+}
 
 module.exports = {
     getCommentsController,
-    toggleCommentLikeController
+    toggleCommentLikeController,
+    createCommentController
 }

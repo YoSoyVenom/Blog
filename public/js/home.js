@@ -38,6 +38,10 @@ const postContainer = document.getElementById("post__container");
 const commentsFeed = document.getElementById("comments__feed");
 // Elemento html que cierra la ventana modal.
 const btnCloseModal = document.getElementById("btn-close");
+// Elemento html que tiene el contenido del comentario.
+const textoComentario = document.getElementById("texto_comentario");
+// Elemento html que envía la petición al BackEnd para crear un comentario.
+const commentSend = document.getElementById("comment__send");
 
 // Función que ajusta el estilo de acuerdo a la resolución.
 function adjustClassByResolution() {
@@ -531,6 +535,47 @@ async function refreshComments() {
     // Llamado a función que renderiza los comentarios.
     renderComments(comments);
 }
+
+
+commentSend.addEventListener("click", createComment);
+
+// Función que hace la petición de crear un comentario.
+async function createComment(e) {
+    // Previene que se recargue la página.
+    e.preventDefault();
+    const url = "/comments";
+    // Datos que necesita el BackEnd para crear la publicación.
+    const credenciales = {
+        postId: currentPostId,
+        content: textoComentario.value
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(credenciales)
+        });
+
+        if (response.ok) {
+            // Borra el contenido del elemento html que tiene el contenido del comentario.
+            textoComentario.value = "";
+            // Llamado a la función que carga los comentarios.
+            await refreshComments();
+            return;
+        }
+
+        const data = await response.json();
+        console.error(data.message);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", initHome);

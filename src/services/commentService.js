@@ -37,10 +37,16 @@ async function getComments(userId, postId) {
     return result.rows;
 }
 
-async function name(params) {
-    
+async function createComment(userId, postId, content) {
+    const query = `
+        INSERT INTO comments (user_id, post_id, content) 
+        VALUES ($1, $2, $3);
+    `;
+
+    return await pool.query(query, [userId, postId, content]);
 }
 
 module.exports = {
-    getComments
+    getComments,
+    createComment
 }
