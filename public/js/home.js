@@ -5,6 +5,7 @@ import { requestWithAuth, renderPost, renderComment, renderSinglePost } from "./
 
 // Variable global.
 let currentPostId = null;
+let openModal = false
 
 // Variables para el aside.
 const aside = document.getElementById("sidebar");
@@ -205,8 +206,7 @@ btnCancelar.addEventListener("click", (e) => {
     textoPublicacion.value = "";
 });
 
-// Captura cualquier evento click sobre un boton con la clase btn-action.
-postsFeed.addEventListener("click", async (e) => {
+async function handlePostActions(e) {
     // Obtiene el elemento btn-action.
     const btnAction = e.target.closest(".btn-action");
     // Válida que se haya dado click sobre un btn-action.
@@ -224,12 +224,20 @@ postsFeed.addEventListener("click", async (e) => {
             await handleDelete(postId);
             // Llamado a la función que carga los posts.
             await loadPosts();
+            if (openModal) {
+                // Llamado a función que refresca el post.
+                await refreshPost(postId);
+            }
             break;
         case "like":
             // Llamado a función que maneja un like dado a un post.
             await handleLike(postId);
             // Llamado a la función que carga los posts.
             await loadPosts();
+            if (openModal) {
+                // Llamado a función que refresca el post.
+                await refreshPost(postId);
+            }
             break;
         case "share":
             // Llamado a función que comparte la publicación.
@@ -243,7 +251,19 @@ postsFeed.addEventListener("click", async (e) => {
         default:
             console.log("Acción no reconocida");
     }
-});
+}
+
+// Captura cualquier evento click sobre un boton con la clase btn-action.
+postsFeed.addEventListener("click", handlePostActions);
+// Captura cualquier evento click sobre un boton con la clase btn-action en la ventana modal.
+postContainer.addEventListener("click", handlePostActions);
+
+async function refreshPost(postId) {
+    // Llamado a función que carga el post.
+    const post = await loadPost(postId);
+    // Llamado a la función que renderiza el post.
+    renderSinglePost(postContainer, post);
+}
 
 // Función que hace la petición para eliminar un post.
 async function handleDelete(postId) {
@@ -447,12 +467,16 @@ function renderComments(comments) {
 function openModalComments() {
     // Agrega la clase que coloca display: flex;
     modalComments.classList.remove("main__modal-close");
+    // Modifica la variable global de openModal.
+    openModal = true;
 }
 
 // Función que cierra la ventana modal.
 btnCloseModal.addEventListener("click", () => {
     // Agrega la clase que coloca display: flex;
     modalComments.classList.add("main__modal-close");
+    // Modifica la variable global de openModal.
+    openModal = false;
 });
 
 // Captura cualquier evento click sobre un boton con la clase btn-action.
