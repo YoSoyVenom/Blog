@@ -46,7 +46,19 @@ async function createComment(userId, postId, content) {
     return await pool.query(query, [userId, postId, content]);
 }
 
+async function deleteComment(commentId, userId) {
+    const query = `
+        DELETE FROM comments 
+        WHERE comment_id = $1 and user_id = $2;
+    `;
+
+    const result = await pool.query(query, [commentId, userId]);
+
+    return result.rowCount > 0;
+}
+
 module.exports = {
     getComments,
-    createComment
+    createComment,
+    deleteComment
 }

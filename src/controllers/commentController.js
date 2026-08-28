@@ -1,5 +1,5 @@
 const { findCommentLike, createCommentLike, deleteCommentLike } = require("../services/commentLikeService");
-const { getComments, createComment } = require("../services/commentService");
+const { getComments, createComment, deleteComment } = require("../services/commentService");
 
 async function getCommentsController(req, res) {
     try {
@@ -57,8 +57,26 @@ async function createCommentController(req, res) {
     }
 }
 
+async function deleteCommentController(req, res) {
+    try {
+        const userId = req.user.id;
+        const commentId = req.body.commentId;
+
+        const deleted = await deleteComment(commentId, userId);
+
+        if (!deleted) {
+            return res.status(404).json({ message: "COMMENT_NOT_FOUND" });
+        }
+
+        return res.status(200).json({ message: "SUCCESFUL_DELETE" });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     getCommentsController,
     toggleCommentLikeController,
-    createCommentController
+    createCommentController,
+    deleteCommentController
 }

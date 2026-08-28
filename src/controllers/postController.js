@@ -35,7 +35,7 @@ async function deletePostController(req, res) {
 
         const deleted = await deletePost(userId, postId);
 
-        if (deleted === 0) {
+        if (!deleted) {
             return res.status(404).json({ message: "POST_NOT_FOUND" });
         }
 

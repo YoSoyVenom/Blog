@@ -1,5 +1,5 @@
 // FUNCIONES BASE.
-import { fetchWithAuth, requestWithAuth, renderPost, renderComment, renderSinglePost } from "./base.js";
+import { requestWithAuth, renderPost, renderComment, renderSinglePost } from "./base.js";
 
 // VARIABLES
 
@@ -525,6 +525,41 @@ async function handleCommentLike(commentId) {
         }
     } catch (error) {
         console.log(data.message);
+    }
+}
+
+// Función que manejala eliminación de comentarios.
+async function handleCommentDelete(commentId) {
+    const url = "/comments";
+
+    const credenciales = {
+        commentId: commentId
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(credenciales)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            return refreshComments();
+        } else if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Vuelve a llamar la función.
+            return handleCommentDelete(commentId);
+        } else if (response.status === 404) {
+            console.log(data.message);
+        }
+    } catch (error) {
+        console.error(data.message);
     }
 }
 

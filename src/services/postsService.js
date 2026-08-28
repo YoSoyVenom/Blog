@@ -52,7 +52,7 @@ async function deletePost(userId, postId) {
 
     const result = await pool.query(query, [userId, postId]);
 
-    return result.rowCount;
+    return result.rowCount > 0;
 }
 
 async function getContentPost(postId) {
