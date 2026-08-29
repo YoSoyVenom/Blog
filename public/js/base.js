@@ -140,7 +140,7 @@ export function renderComment(container, comment) {
             </div>
         </article>
 
-        <div class="comment-thread__answers-open"></div>
+        <div class="comment-thread__answers"></div>
     `;
     // Agrega el elemento html al contenedor de posts.
     container.appendChild(newThread);

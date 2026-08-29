@@ -5,7 +5,8 @@ import { requestWithAuth, renderPost, renderComment, renderSinglePost } from "./
 
 // Variable global.
 let currentPostId = null;
-let openModal = false
+let openModal = false;
+let replyingToCommentId = null;
 
 // Variables para el aside.
 const aside = document.getElementById("sidebar");
@@ -504,6 +505,7 @@ commentsFeed.addEventListener("click", async (e) => {
     // Ejecuta la acción correspondiente.
     switch (action) {
         case "reply":
+            // LLamado a función que manejar el boton de responder.
             await handleCommentAnswer(commentId);
             break;
 
@@ -521,11 +523,17 @@ commentsFeed.addEventListener("click", async (e) => {
         case "answers":
             await handleCommentAnswers(commentId);
             break;
-
         default:
             console.log("Acción no reconocida");
     }
 });
+
+// Función que maneja la respuesta a un comentario.
+function handleCommentAnswer(commentId) {
+    replyingToCommentId = commentId;
+
+}
+
 // Función que maneja un like dado a un comentario.
 async function handleCommentLike(commentId) {
     const url = `/comments/${commentId}/like`;
@@ -554,7 +562,7 @@ async function handleCommentLike(commentId) {
     }
 }
 
-// Función que manejala eliminación de comentarios.
+// Función que manejaja eliminación de comentarios.
 async function handleCommentDelete(commentId) {
     const url = "/comments";
 
@@ -586,6 +594,52 @@ async function handleCommentDelete(commentId) {
         }
     } catch (error) {
         console.error(data.message);
+    }
+}
+
+// Función que maneja la carga de respuestas.
+async function handleCommentAnswers(commentId) {
+    // Llamado a función que carga las respuestas del comentario.
+    const replies = await loadReplies(commentId);
+
+    // Buscar el hilo del comentario.
+    const thread = document
+        .querySelector(`[data-comment-id="${commentId}"]`)
+        .closest(".comment__thread");
+
+    // Obtener el contenedor de respuestas
+    const answersContainer = thread.querySelector(".comment-thread__answers");
+    answersContainer.style.display = "flex";
+
+    answersContainer.innerHTML = "";
+
+    for (const reply of replies) {
+        renderComment(answersContainer, reply);
+    }
+}
+
+// Función que carga las respuestas de un comentario.
+async function loadReplies(commentId) {
+    const url = `/comments/${commentId}/answers`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET"
+        });
+
+        const answers = await response.json();
+
+        if (response.ok) {
+            // Retorna un objeto con las respuestas.
+            return answers;
+        } else if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Nuevo llamado a la función si se pudo autenticar.
+            return loadReplies(commentId);
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 

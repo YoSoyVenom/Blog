@@ -57,8 +57,45 @@ async function deleteComment(commentId, userId) {
     return result.rowCount > 0;
 }
 
+async function getAnswers(commentId, userId) {
+    const query = `
+        SELECT 
+            comments.comment_id,
+            comments.content,
+            comments.created_at,
+            comments.user_id,
+            users.username,
+            COUNT(comment_likes.like_id) AS total_likes,
+            (comments.user_id = $2) AS can_delete,
+            EXISTS (
+                SELECT 1
+                FROM comment_likes
+                WHERE comment_likes.comment_id = comments.comment_id
+                AND comment_likes.user_id = $2
+            ) AS is_liked
+        FROM comments
+        JOIN users
+            ON users.user_id = comments.user_id
+        LEFT JOIN comment_likes
+            ON comment_likes.comment_id = comments.comment_id
+        WHERE comments.parent_comment_id = $1
+        GROUP BY
+            comments.comment_id,
+            comments.content,
+            comments.created_at,
+            comments.user_id,
+            users.username
+        ORDER BY comments.created_at DESC;
+    `;
+
+    const result = await pool.query(query, [commentId, userId]);
+
+    return result.rows;
+}
+
 module.exports = {
     getComments,
     createComment,
-    deleteComment
+    deleteComment,
+    getAnswers
 }
