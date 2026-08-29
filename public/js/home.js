@@ -206,6 +206,12 @@ btnCancelar.addEventListener("click", (e) => {
     textoPublicacion.value = "";
 });
 
+// Captura cualquier evento click sobre un boton con la clase btn-action.
+postsFeed.addEventListener("click", handlePostActions);
+// Captura cualquier evento click sobre un boton con la clase btn-action en la ventana modal.
+postContainer.addEventListener("click", handlePostActions);
+
+// Función que maneja las acciones dentro de un post.
 async function handlePostActions(e) {
     // Obtiene el elemento btn-action.
     const btnAction = e.target.closest(".btn-action");
@@ -253,11 +259,7 @@ async function handlePostActions(e) {
     }
 }
 
-// Captura cualquier evento click sobre un boton con la clase btn-action.
-postsFeed.addEventListener("click", handlePostActions);
-// Captura cualquier evento click sobre un boton con la clase btn-action en la ventana modal.
-postContainer.addEventListener("click", handlePostActions);
-
+// Función que refresca el post después de una acción en la ventana modal.
 async function refreshPost(postId) {
     // Llamado a función que carga el post.
     const post = await loadPost(postId);
