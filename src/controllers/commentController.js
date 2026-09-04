@@ -46,10 +46,9 @@ async function toggleCommentLikeController(req, res) {
 async function createCommentController(req, res) {
     try {
         const userId = req.user.id;
-        const postId = req.body.postId;
-        const content = req.body.content;
+        const { postId, content, parentCommentId = null } = req.body;
 
-        await createComment(userId, postId, content);
+        await createComment(userId, postId, content, parentCommentId);
 
         res.status(201).json({ message: "COMMENT_CREATED" });
     } catch (error) {

@@ -37,13 +37,13 @@ async function getComments(userId, postId) {
     return result.rows;
 }
 
-async function createComment(userId, postId, content) {
+async function createComment(userId, postId, content, parentCommentId) {
     const query = `
-        INSERT INTO comments (user_id, post_id, content) 
-        VALUES ($1, $2, $3);
+        INSERT INTO comments (user_id, post_id, content, parent_comment_id) 
+        VALUES ($1, $2, $3, $4);
     `;
 
-    return await pool.query(query, [userId, postId, content]);
+    return await pool.query(query, [userId, postId, content, parentCommentId]);
 }
 
 async function deleteComment(commentId, userId) {

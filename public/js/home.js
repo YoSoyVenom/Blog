@@ -45,6 +45,13 @@ const textoComentario = document.getElementById("texto_comentario");
 // Elemento html que envía la petición al BackEnd para crear un comentario.
 const commentSend = document.getElementById("comment__send");
 
+// Elemento que muestra la información del comentario al que se responde.
+const replyInfo = document.querySelector(".comment__reply-info");
+// Nombre de usuario cuando se esta respondiendo.
+const replyUsername = document.getElementById("reply-username");
+// Boton de cancelar para los comentarios.
+const replyCancelBtn = document.getElementById("comment__reply-cancel");
+
 // Función que ajusta el estilo de acuerdo a la resolución.
 function adjustClassByResolution() {
     // Obtiene el ancho de la pantalla del dispositivo usado.
@@ -205,6 +212,15 @@ btnCancelar.addEventListener("click", (e) => {
     e.preventDefault();
     // Vacia el contenido de la publicación.
     textoPublicacion.value = "";
+});
+
+// Elemento para limpiar la publicación.
+replyCancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    // Vacia el contenido de la publicación.
+    textoComentario.value = "";
+    // Quitar la visualización de la información de respuesta.
+    replyInfo.classList.add("hidden");
 });
 
 // Captura cualquier evento click sobre un boton con la clase btn-action.
@@ -506,7 +522,7 @@ commentsFeed.addEventListener("click", async (e) => {
     switch (action) {
         case "reply":
             // LLamado a función que manejar el boton de responder.
-            await handleCommentAnswer(commentId);
+            handleCommentAnswer(commentId);
             break;
 
         case "like":
@@ -530,7 +546,20 @@ commentsFeed.addEventListener("click", async (e) => {
 
 // Función que maneja la respuesta a un comentario.
 function handleCommentAnswer(commentId) {
+    // Buscar el hilo del comentario.
+    const thread = document
+        .querySelector(`[data-comment-id="${commentId}"]`)
+        .closest(".comment__thread");
+    // Contenedor que contiene el nombre de usuario.
+    const usernameContainer = thread.querySelector(".comment-card__name");
+    // Remueve la clase que oculta a la respuesta.
+    replyInfo.classList.remove("hidden");
+    // Obtiene y agrega el nombre de usuario al contenedor de usuario en la respuesta.
+    replyUsername.textContent = usernameContainer.textContent.trim();
+    // Actualiza la variable replyingToCommentId.
     replyingToCommentId = commentId;
+    // Activa el textarea para escribir.
+    textoComentario.focus();
 
 }
 
@@ -548,6 +577,10 @@ async function handleCommentLike(commentId) {
         });
 
         const data = await response.json();
+
+        if (response.ok) {
+            return await handleCommentAnswers(commentId);
+        }
 
         if (response.status === 401) {
             // Llamado a función base que válida la sesión del usuario.
@@ -651,7 +684,6 @@ async function refreshComments() {
     renderComments(comments);
 }
 
-
 commentSend.addEventListener("click", createComment);
 
 // Función que hace la petición de crear un comentario.
@@ -664,6 +696,12 @@ async function createComment(e) {
         postId: currentPostId,
         content: textoComentario.value
     };
+
+    // Validación para saber si se el comentario es una respuesta a otro comentario.
+    if (replyingToCommentId) {
+        // Agrega el comentario al que se responde.
+        credenciales.parentCommentId = replyingToCommentId;
+    }
 
     try {
         const response = await fetch(url, {
@@ -678,6 +716,11 @@ async function createComment(e) {
         if (response.ok) {
             // Borra el contenido del elemento html que tiene el contenido del comentario.
             textoComentario.value = "";
+            if (replyingToCommentId) {
+                // Llamado a la función que carga las respuestas.
+                return await handleCommentAnswers(replyingToCommentId);
+            }
+
             // Llamado a la función que carga los comentarios.
             await refreshComments();
             return;
