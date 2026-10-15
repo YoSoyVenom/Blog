@@ -62,13 +62,14 @@ async function deleteCommentController(req, res) {
         const commentId = req.body.commentId;
 
         const deleted = await deleteComment(commentId, userId);
-
+        console.log(deleted);
         if (!deleted) {
             return res.status(404).json({ message: "COMMENT_NOT_FOUND" });
         }
 
         return res.status(200).json({ message: "SUCCESFUL_DELETE" });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ message: error.message });
     }
 }

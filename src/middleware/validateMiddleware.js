@@ -1,8 +1,10 @@
+const { ClientBase } = require("pg");
 const { ZodError } = require("zod");
 
 const validateMiddleware = (schema) => (req, res, next) => {
 
     try {
+        console.log(req.body)
         schema.parse({
             body: req.body
         });

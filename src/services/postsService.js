@@ -45,6 +45,7 @@ async function getPosts(userId) {
 }
 
 async function deletePost(userId, postId) {
+    console.log(userId)
     const query = `
         DELETE FROM posts
         WHERE user_id = $1 AND post_id = $2

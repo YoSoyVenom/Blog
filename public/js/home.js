@@ -7,6 +7,7 @@ import { requestWithAuth, renderPost, renderComment, renderSinglePost } from "./
 let currentPostId = null;
 let openModal = false;
 let replyingToCommentId = null;
+let expandedCommentId = null;
 
 // Variables para el aside.
 const aside = document.getElementById("sidebar");
@@ -528,11 +529,16 @@ commentsFeed.addEventListener("click", async (e) => {
         case "like":
             // Llamado a la función que maneja dar like.
             await handleCommentLike(commentId);
+            if (expandedCommentId) {
+                // Recarga los comentarios si son respuestas de otro.
+                return await handleCommentAnswers(expandedCommentId);
+            }
             // Llamado a la función que refresca los comentarios en la ventana modal.
             await refreshComments();
             break;
 
         case "delete":
+            console.log(commentId)
             await handleCommentDelete(commentId);
             break;
 
@@ -577,10 +583,6 @@ async function handleCommentLike(commentId) {
         });
 
         const data = await response.json();
-
-        if (response.ok) {
-            return await handleCommentAnswers(commentId);
-        }
 
         if (response.status === 401) {
             // Llamado a función base que válida la sesión del usuario.
@@ -632,6 +634,8 @@ async function handleCommentDelete(commentId) {
 
 // Función que maneja la carga de respuestas.
 async function handleCommentAnswers(commentId) {
+    // Actualización de variable global.
+    expandedCommentId = commentId;
     // Llamado a función que carga las respuestas del comentario.
     const replies = await loadReplies(commentId);
 
