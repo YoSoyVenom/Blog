@@ -43,7 +43,6 @@ async function deletePostController(req, res) {
 
     } catch (error) {
         console.log(error)
-        //Hay que eliminar todos los comentarios también.
         return res.status(500).json({ message: error.message });
     }
 }

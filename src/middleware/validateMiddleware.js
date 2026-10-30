@@ -1,4 +1,3 @@
-const { ClientBase } = require("pg");
 const { ZodError } = require("zod");
 
 const validateMiddleware = (schema) => (req, res, next) => {

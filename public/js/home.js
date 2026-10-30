@@ -738,7 +738,6 @@ async function createComment(e) {
     }
 }
 
-
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", initHome);
 
@@ -749,6 +748,3 @@ async function initHome() {
     // Llamado a función que carga los posts.
     await loadPosts();
 }
-
-
-// NOTA: PUEDO HACER UNA FUNCIÓN MÁS ADELANTE LLAMADA ensureAuthenticated QUE ASEGURE LA SESIÓN.
