@@ -12,6 +12,7 @@ const { refreshRouter } = require("./routes/refreshRouter");
 const { logOutRouter } = require("./routes/logOutRouter");
 const { postsRouter } = require("./routes/postsRouter");
 const { commentsRouter } = require("./routes/commentsRouter");
+const { profileRouter } = require("./routes/profileRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -46,5 +47,8 @@ app.use("/posts", postsRouter);
 
 // COMMENTS
 app.use("/comments", commentsRouter);
+
+// PROFILE.
+app.use("/profile", profileRouter);
 
 module.exports = app;

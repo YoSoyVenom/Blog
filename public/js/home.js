@@ -50,8 +50,10 @@ const commentSend = document.getElementById("comment__send");
 const replyInfo = document.querySelector(".comment__reply-info");
 // Nombre de usuario cuando se esta respondiendo.
 const replyUsername = document.getElementById("reply-username");
-// Boton de cancelar para los comentarios.
+// Botón de cancelar para los comentarios.
 const replyCancelBtn = document.getElementById("comment__reply-cancel");
+// Botón para ver el perfil de usuario.
+const checkProfile = document.getElementById("sidebar__check-profile");
 
 // Función que ajusta el estilo de acuerdo a la resolución.
 function adjustClassByResolution() {
@@ -737,6 +739,12 @@ async function createComment(e) {
         console.error(error);
     }
 }
+
+// Función que carga el perfil del usuario.
+checkProfile.addEventListener("click", (e) => {
+    // Redirige a la página de perfil.
+    window.location.href = "/profile";
+})
 
 // Funciones que se cargan después de que el html está cargado.
 document.addEventListener("DOMContentLoaded", initHome);
