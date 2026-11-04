@@ -63,7 +63,7 @@ export function renderPost(container, post) {
                     <span class="material-symbols-outlined like__symbol ${post.is_liked ? "like__symbol-active" : ""}">favorite</span>
                     <!-- Número de likes -->
                     <p class="post-card__like">${post.total_likes}</p>
-                </button>
+                </button
                 <button class="post-card__action-btn btn-action" data-action="comments">
                     <span class="material-symbols-outlined">chat_bubble_outline</span>
                 </button>
