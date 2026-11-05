@@ -15,12 +15,11 @@ async function loadDataProfile(req, res) {
         const userId = req.user.id;
 
         // Obtener los datos de perfil.
-        const datos = await getDataProfile();
+        const datosDeUsuario = await getDataProfile(userId);
+        console
 
         // Devuelve los datos de perfil.
-        return res.status(200).json(datos);
-
-        console.log(datos)
+        return res.status(200).json(datosDeUsuario);
 
     } catch (error) {
         // Manejo de error.
@@ -33,3 +32,6 @@ module.exports = {
     loadProfile,
     loadDataProfile
 }
+
+
+// Lo mejor será hacer peticiones individuales

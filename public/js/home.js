@@ -79,7 +79,6 @@ window.addEventListener("resize", adjustClassByResolution);
 adjustClassByResolution();
 
 // Mostrar información del usuario.
-
 export async function displayUserInfo() {
     const url = "/home/me";
 
