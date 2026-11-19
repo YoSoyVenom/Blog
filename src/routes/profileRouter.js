@@ -10,9 +10,9 @@ const profileRouter = express.Router();
 // Ruta que sirve la página.
 profileRouter.get("/", loadProfile);
 // Ruta que carga los datos de la página profile.
-profileRouter.post("/me", requireAuth, loadDataProfile);
+profileRouter.get("/me", requireAuth, loadDataProfile);
 // Ruta que carga los posts de la página profile.
-profileRouter.post("/posts", requireAuth, loadPostsProfile);
+profileRouter.get("/posts", requireAuth, loadPostsProfile);
 
 // Exportación de router.
 module.exports = {

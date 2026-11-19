@@ -1,5 +1,6 @@
 // FUNCIONES BASE.
-import { requestWithAuth, renderPost, renderComment, renderSinglePost } from "./base.js";
+import { requestWithAuth, renderComment } from "./base.js";
+import { renderPosts, renderSinglePost } from "./posts.js";
 
 // VARIABLES
 
@@ -175,6 +176,7 @@ async function createPost(e) {
 
 // Función que carga los posts.
 async function loadPosts() {
+    // URL a donde hacer la petición.
     const url = "/posts";
 
     try {
@@ -185,25 +187,8 @@ async function loadPosts() {
         const posts = await response.json();
 
         // Llamado a la función que renderiza los datos.
-        renderPosts(posts);
+        renderPosts(postsFeed, posts);
 
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// Función que renderiza los posts.
-function renderPosts(posts) {
-    try {
-
-        // Borra el contenido del contenedor de posts.
-        postsFeed.innerHTML = "";
-
-        // Bucle que itera los datos y renderiza los datos en html.
-        for (const post of posts) {
-            // LLamado a la función que renderiza el post. 
-            renderPost(postsFeed, post)
-        }
     } catch (error) {
         console.error(error);
     }

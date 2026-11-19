@@ -34,7 +34,7 @@ async function loadPostsProfile(req, res) {
 
         // Obtener los posts del perfil.
         const userPosts = await getProfilePosts(userId);
-
+        
         // Devuelve los posts del usuario.
         return res.status(200).json(userPosts);
     } catch (error) {

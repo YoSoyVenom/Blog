@@ -38,7 +38,7 @@ async function getProfilePosts(userId) {
             ON users.user_id = posts.user_id
         LEFT JOIN likes
             ON likes.post_id = posts.post_id
-        WHERE posts.user_id = $2
+        WHERE posts.user_id = $1
         GROUP BY
             posts.post_id,
             posts.content_text,
@@ -49,7 +49,7 @@ async function getProfilePosts(userId) {
     `;
 
     // Resultado de realizar la query.
-    const result = await pool.query(query, [userId, userId]);
+    const result = await pool.query(query, [userId]);
 
     // Retorna los posts.
     return result.rows;
