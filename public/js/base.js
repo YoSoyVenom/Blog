@@ -32,6 +32,17 @@ export async function fetchWithAuth() {
     return response.ok;
 }
 
+// Función que copia datos en el portapapeles.
+export async function copyToClipboard(shareData) {
+    try {
+        // Se copia en el portapapeles del dispositivo.
+        await navigator.clipboard.writeText(shareData);
+        console.log('Texto guardado en el portapapeles');
+    } catch (err) {
+        console.error('Error al copiar:', err);
+    }
+}
+
 export function renderComment(container, comment) {
     // Objeto que almacena la fecha.
     const fecha = new Date(comment.created_at);

@@ -1,6 +1,6 @@
 // FUNCIONES BASE.
 import { requestWithAuth, renderComment } from "./base.js";
-import { renderPosts, renderSinglePost, handleLike } from "./posts.js";
+import { renderPosts, renderSinglePost, handleLike, handleDelete, handleShare } from "./posts.js";
 
 // VARIABLES
 
@@ -271,38 +271,38 @@ async function refreshPost(postId) {
     renderSinglePost(postContainer, post);
 }
 
-// Función que hace la petición para eliminar un post.
-async function handleDelete(postId) {
-    const url = "/posts";
-    // Información necesaria para hacer la petición.
-    const credenciales = {
-        post_id: postId
-    }
+// // Función que hace la petición para eliminar un post.
+// async function handleDelete(postId) {
+//     const url = "/posts";
+//     // Información necesaria para hacer la petición.
+//     const credenciales = {
+//         post_id: postId
+//     }
 
-    try {
-        const response = await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify(credenciales)
-        });
+//     try {
+//         const response = await fetch(url, {
+//             method: "DELETE",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             credentials: "include",
+//             body: JSON.stringify(credenciales)
+//         });
 
-        if (response.ok) {
-            // Mensaje si la petición es exitosa.
-            console.log("POST_DELETED");
-        } else if (response.status === 401) {
-            // Llamado a función base que válida la sesión del usuario.
-            requestWithAuth();
-        } else if (response.status === 404) {
-            // Mensaje si el post no se encontró.
-            console.log("POST_NOT_FOUND");
-        }
-    } catch (error) {
-        return console.error(error);
-    }
-}
+//         if (response.ok) {
+//             // Mensaje si la petición es exitosa.
+//             console.log("POST_DELETED");
+//         } else if (response.status === 401) {
+//             // Llamado a función base que válida la sesión del usuario.
+//             requestWithAuth();
+//         } else if (response.status === 404) {
+//             // Mensaje si el post no se encontró.
+//             console.log("POST_NOT_FOUND");
+//         }
+//     } catch (error) {
+//         return console.error(error);
+//     }
+// }
 
 // // Función que hace la petición de dar like o quitar el like.
 // async function handleLike(postId) {
@@ -332,53 +332,53 @@ async function handleDelete(postId) {
 //     }
 // }
 
-// Función que ejecuta la acción de compartir el post.
-async function handleShare(postId) {
-    // URL con postId como parámetro de consulta.
-    const url = `/posts/${postId}/share`;
+// // Función que ejecuta la acción de compartir el post.
+// async function handleShare(postId) {
+//     // URL con postId como parámetro de consulta.
+//     const url = `/posts/${postId}/share`;
 
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include"
-        });
+//     try {
+//         const response = await fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             credentials: "include"
+//         });
 
-        const data = await response.json();
-        // Data de la publicación.
-        const shareData = {
-            text: `¡Mira esta publicación!: "${data.content_text}"`,
-            url: window.location.href
-        }
-        // Validación de navigator.share dentro del dispositivo.
-        if (navigator.share) {
-            try {
-                await navigator.share(shareData);
-                console.log("Post compartido con éxito");
-            } catch (err) {
-                console.log("El usuario canceló la acción");
-            }
-        } else {
-            // Llamado a función que copia la data en el postapapeles.
-            await copyToClipboard(shareData);
-        }
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+//         const data = await response.json();
+//         // Data de la publicación.
+//         const shareData = {
+//             text: `¡Mira esta publicación!: "${data.content_text}"`,
+//             url: window.location.href
+//         }
+//         // Validación de navigator.share dentro del dispositivo.
+//         if (navigator.share) {
+//             try {
+//                 await navigator.share(shareData);
+//                 console.log("Post compartido con éxito");
+//             } catch (err) {
+//                 console.log("El usuario canceló la acción");
+//             }
+//         } else {
+//             // Llamado a función que copia la data en el postapapeles.
+//             await copyToClipboard(shareData);
+//         }
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
 
-// Función que copia datos en el portapapeles.
-async function copyToClipboard(shareData) {
-    try {
-        // Se copia en el portapapeles del dispositivo.
-        await navigator.clipboard.writeText(shareData);
-        console.log('Texto guardado en el portapapeles');
-    } catch (err) {
-        console.error('Error al copiar:', err);
-    }
-}
+// // Función que copia datos en el portapapeles.
+// async function copyToClipboard(shareData) {
+//     try {
+//         // Se copia en el portapapeles del dispositivo.
+//         await navigator.clipboard.writeText(shareData);
+//         console.log('Texto guardado en el portapapeles');
+//     } catch (err) {
+//         console.error('Error al copiar:', err);
+//     }
+// }
 
 // Función que maneja los comentarios.
 async function handleComments(postId) {
