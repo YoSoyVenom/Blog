@@ -1,3 +1,5 @@
+import { requestWithAuth } from "./base.js";
+
 // Función que renderiza un post.
 export function renderPost(container, post) {
     // Objeto que almacena la fecha.
@@ -73,4 +75,36 @@ export function renderSinglePost(container, post) {
     container.innerHTML = "";
     // Renderiza el post.
     renderPost(container, post);
+}
+
+
+// FUNCIONALIDAD DE LOS POSTS.
+//
+
+// Función que hace la petición de dar like o quitar el like.
+export async function handleLike(postId) {
+    const url = `/posts/${postId}/like`;
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            // Llamado a función base que válida la sesión del usuario.
+            await requestWithAuth();
+            // Llamar nuevamente la función si se puedo autenticar.
+            return handleLike(postId);
+        } else if (response.status == 404) {
+            console.log(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
 }

@@ -1,6 +1,6 @@
 // FUNCIONES BASE.
 import { requestWithAuth, renderComment } from "./base.js";
-import { renderPosts, renderSinglePost } from "./posts.js";
+import { renderPosts, renderSinglePost, handleLike } from "./posts.js";
 
 // VARIABLES
 
@@ -304,33 +304,33 @@ async function handleDelete(postId) {
     }
 }
 
-// Función que hace la petición de dar like o quitar el like.
-async function handleLike(postId) {
-    const url = `/posts/${postId}/like`;
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include"
-        });
+// // Función que hace la petición de dar like o quitar el like.
+// async function handleLike(postId) {
+//     const url = `/posts/${postId}/like`;
+//     try {
+//         const response = await fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             credentials: "include"
+//         });
 
-        const data = await response.json();
+//         const data = await response.json();
 
-        if (response.status === 401) {
-            // Llamado a función base que válida la sesión del usuario.
-            await requestWithAuth();
-            // Llamar nuevamente la función si se puedo autenticar.
-            return handleLike(postId);
-        } else if (response.status == 404) {
-            console.log(data.message);
-        }
+//         if (response.status === 401) {
+//             // Llamado a función base que válida la sesión del usuario.
+//             await requestWithAuth();
+//             // Llamar nuevamente la función si se puedo autenticar.
+//             return handleLike(postId);
+//         } else if (response.status == 404) {
+//             console.log(data.message);
+//         }
 
-    } catch (error) {
-        console.error(error);
-    }
-}
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 // Función que ejecuta la acción de compartir el post.
 async function handleShare(postId) {
